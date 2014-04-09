@@ -14,7 +14,7 @@ public class Hero {
 		JUMP
 	}
 	
-	static final float SPEED = 2f; // character velocity
+	public static final float SPEED = 4f; // character velocity
 	public final float JUMP_SPEED = 1f; // jumping speed
 	public final float SIZE = 0.5f; // character size
 	
@@ -43,5 +43,23 @@ public class Hero {
 		return bounds;
 	}
 	
+	public void setState(State newState) {
+		this.state = newState;
+	}
+	
+	public void update(float delta) {
+		pos.add(vel.cpy().scl(delta));
+	}
+	
+	public void setFacingLeft(boolean dir) {
+		dir_left = dir;
+	}
+	
+	public Vector2 getVelocity() {
+		return vel;
+	}
+	public Vector2 getAcceleration() {
+		return accel;
+	}
 
 }
