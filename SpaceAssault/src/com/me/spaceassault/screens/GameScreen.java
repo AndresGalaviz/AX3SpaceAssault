@@ -18,6 +18,9 @@ public class GameScreen implements Screen, InputProcessor {
 
 	private int width, height;
 
+	/**
+	 * Render de la pantalla del juego
+	 */
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -26,6 +29,9 @@ public class GameScreen implements Screen, InputProcessor {
 		renderer.render();
 	}
 
+	/**
+	 * Ajusta el tamaño de la pantalla
+	 */
 	@Override
 	public void resize(int width, int height) {
 		renderer.setSize(width, height);
@@ -34,6 +40,9 @@ public class GameScreen implements Screen, InputProcessor {
 
 	}
 
+	/**
+	 * Lo que se muestra cuando la pantalla está activa
+	 */
 	@Override
 	public void show() {
 		world = new World();
@@ -44,6 +53,9 @@ public class GameScreen implements Screen, InputProcessor {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Lo que se hace cuando la pantalla está inactiva
+	 */
 	@Override
 	public void hide() {
 		Gdx.input.setInputProcessor(null);

@@ -6,7 +6,10 @@ import java.util.Map;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.world.World;
 
-
+/**
+ * Clase que controla el input durante la pantalla del juego
+ *
+ */
 
 public class WorldController {
 	
@@ -67,6 +70,10 @@ public class WorldController {
 		processInput();
 		hero.update(delta);
 	}
+	
+	/**
+	 * Metodo que procesa el input para dirigir al personaje principal de acuerdo a lo que ingrese el usuario
+	 */
 	private void processInput() {
 		if (keys.get(Keys.LEFT)) {
 			// left is pressed

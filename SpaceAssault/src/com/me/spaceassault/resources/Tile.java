@@ -16,10 +16,18 @@ public class Tile {
 		this.bounds.width = SIZE;
 	}
 
+	/**
+	 * Regresa la posición del cuadro
+	 * @return pos
+	 */
 	public Vector2 getPosition() {
 		return pos;
 	}
 	
+	/**
+	 * Regresa el borde del cuadro, para manejo de colisiones
+	 * @return bounds
+	 */
 	public Rectangle getBounds() {
 		return bounds;
 	}

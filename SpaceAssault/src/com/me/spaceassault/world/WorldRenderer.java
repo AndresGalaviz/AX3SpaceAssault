@@ -15,6 +15,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Método que dibuja el mundo en la pantalla del juego
+ *
+ */
+
 public class WorldRenderer {
 
 	private World world;
@@ -53,6 +58,11 @@ public class WorldRenderer {
 	}
 	
 
+	/**
+	 * Metodo constructor
+	 * @param world, el mundo que se usará
+	 * @param debug, si está en modo debug o no
+	 */
 	public WorldRenderer(World world, boolean debug) {
 		this.world = world;
 		this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
@@ -64,6 +74,9 @@ public class WorldRenderer {
 		
 	}
 	
+	/**
+	 * Carga las texturas para las imágenes
+	 */
 	public void loadTextures(){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
 		heroIdleRight = atlas.findRegion("1");
@@ -86,6 +99,9 @@ public class WorldRenderer {
 		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
 	}
 
+	/**
+	 * Dibuja las imágenes en la pantalla
+	 */
 	public void render() {
 		// render blocks
 		spriteBatch.begin();
@@ -98,6 +114,10 @@ public class WorldRenderer {
 		}
 			
 	}
+	
+	/**
+	 * Dibuja si el renderer está en modo debug
+	 */
 	public void drawDebug() {
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Line);
@@ -117,12 +137,19 @@ public class WorldRenderer {
 		debugRenderer.rect(x1, y1, rect.width, rect.height);
 		debugRenderer.end();
 	}
+	
+	/**
+	 * Dibuja los bloques que delimitan el mapa
+	 */
 	private void drawTiles() {
 		for(Tile tile : world.getTiles()) {
 			spriteBatch.draw(tileTexture, tile.getPosition().x*ppuX, tile.getPosition().y*ppuY, tile.SIZE*ppuX, tile.SIZE*ppuY);
 		}
 	}
 	
+	/**
+	 * Dibuja el personaje principal
+	 */
 	private void drawHero() {
 		Hero hero = world.getHero();
 		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;

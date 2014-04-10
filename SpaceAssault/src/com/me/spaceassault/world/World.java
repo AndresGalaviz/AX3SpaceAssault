@@ -5,7 +5,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 
-
+/**
+ * Clase que contiene la información del mapa
+ * @author Alberto
+ *
+ */
 public class World {
 
 	Array<Tile> tiles = new Array<Tile>();
@@ -21,6 +25,9 @@ public class World {
     	return Pyro;
     }
 	
+    /**
+     * Metodo que coloca objetos en el mundo
+     */
 	private void createDemoWorld() {
 		Pyro = new Hero(new Vector2(7,2));
 		
@@ -40,9 +47,5 @@ public class World {
         tiles.add(new Tile(new Vector2(6, 4)));
         tiles.add(new Tile(new Vector2(6, 5)));
 
-
-
-
-		
 	}
 }

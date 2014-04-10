@@ -36,41 +36,81 @@ public class Hero {
 		return this;
 	}
 	
+	/**
+	 * Regresa la posicion del jugador
+	 * @return un Vector2 con la posicion
+	 */
 	public Vector2 getPosition() {
 		return pos;
 	}
 	
+	/**
+	 * Regresa los límites del jugador
+	 * @return bounds
+	 */
 	public Rectangle getBounds() {
 		return bounds;
 	}
 	
+	/**
+	 * Regresa el estado actual
+	 * @return state
+	 */
 	public State getState() {
 		return state;
 	}
 	
+	/**
+	 * Define un nuevo estado para el jugador
+	 * @param newState
+	 */
 	public void setState(State newState) {
 		this.state = newState;
 	}
 	
+	/**
+	 * Sirve para las animaciones
+	 * @return
+	 */
 	public float getStateTime() {
 		return stateTime;
 	}
 	
+	/**
+	 * Actualiza el tiempo de la animacion y posicion del personaje
+	 * @param delta
+	 */
 	public void update(float delta) {
 		stateTime += delta;
 		pos.add(vel.cpy().scl(delta));
 	}
 	
+	/**
+	 * Establece la dirección a la que voltea el personaje
+	 * @param dir
+	 */
 	public void setFacingLeft(boolean dir) {
 		dir_left = dir;
 	}
 	
+	/**
+	 * Regresa la velocidad
+	 * @return vel
+	 */
 	public Vector2 getVelocity() {
 		return vel;
 	}
+	/**
+	 * Regresa la aceleración del salto
+	 * @return accel
+	 */
 	public Vector2 getAcceleration() {
 		return accel;
 	}
+	/**
+	 * Regresa la dirección del personaje
+	 * @return dir_left (boolean)
+	 */
 	public boolean isFacingLeft() {
 		return dir_left;
 	}
