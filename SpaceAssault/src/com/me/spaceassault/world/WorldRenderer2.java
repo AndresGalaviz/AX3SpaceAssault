@@ -65,7 +65,7 @@ public class WorldRenderer2 {
 	}
 	
 	public void loadTextures(){
-		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characters/characterpng/textures.pack"));
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
 		heroIdleRight = atlas.findRegion("1");
 		heroIdleLeft = new TextureRegion(heroIdleRight);
 		heroIdleRight.flip(true, false);
