@@ -1,0 +1,19 @@
+<TextureAtlas imagePath="sheet.png">
+	<SubTexture name="devo_run_000.png" x="162" y="606" width="160" height="200"/>
+	<SubTexture name="devo_run_001.png" x="486" y="0" width="160" height="200"/>
+	<SubTexture name="devo_run_002.png" x="324" y="808" width="160" height="200"/>
+	<SubTexture name="devo_run_003.png" x="324" y="606" width="160" height="200"/>
+	<SubTexture name="devo_run_004.png" x="324" y="404" width="160" height="200"/>
+	<SubTexture name="devo_run_005.png" x="324" y="202" width="160" height="200"/>
+	<SubTexture name="devo_run_006.png" x="324" y="0" width="160" height="200"/>
+	<SubTexture name="devo_run_007.png" x="162" y="808" width="160" height="200"/>
+	<SubTexture name="devo_run_008.png" x="486" y="202" width="160" height="200"/>
+	<SubTexture name="devo_run_009.png" x="162" y="404" width="160" height="200"/>
+	<SubTexture name="devo_run_010.png" x="162" y="202" width="160" height="200"/>
+	<SubTexture name="devo_run_011.png" x="162" y="0" width="160" height="200"/>
+	<SubTexture name="devo_run_012.png" x="0" y="808" width="160" height="200"/>
+	<SubTexture name="devo_run_013.png" x="0" y="606" width="160" height="200"/>
+	<SubTexture name="devo_run_014.png" x="0" y="404" width="160" height="200"/>
+	<SubTexture name="devo_run_015.png" x="0" y="202" width="160" height="200"/>
+	<SubTexture name="devo_run_016.png" x="0" y="0" width="160" height="200"/>
+</TextureAtlas>
