@@ -6,6 +6,7 @@ import com.me.spaceassault.world.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -29,7 +30,7 @@ public class WorldRenderer2 {
 	/** Textures **/
     private TextureRegion heroIdleLeft;
     private TextureRegion heroIdleRight;
-    private TextureRegion tileTexture;
+    private Texture tileTexture;
     private TextureRegion heroFrame;
 
     /** Animations **/
@@ -65,23 +66,24 @@ public class WorldRenderer2 {
 	
 	public void loadTextures(){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/textures/textures.pack"));
-		heroIdleLeft = atlas.findRegion("bob-01");
-		heroIdleRight = new TextureRegion(heroIdleLeft);
+		heroIdleRight = atlas.findRegion("1");
+		heroIdleLeft = new TextureRegion(heroIdleRight);
 		heroIdleRight.flip(true, false);
-		tileTexture = atlas.findRegion("block");
-		TextureRegion[] walkLeftFrames = new TextureRegion[5];
-		for (int i = 0; i < 5; i++) {
-			walkLeftFrames[i] = atlas.findRegion("bob-0" + (i + 2));
-		}
-		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
-
+		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
+		
 		TextureRegion[] walkRightFrames = new TextureRegion[5];
-
-		for (int i = 0; i < 5; i++) {
-			walkRightFrames[i] = new TextureRegion(walkLeftFrames[i]);
-			walkRightFrames[i].flip(true, false);
+		for (int i = 0; i < 17; i++) {
+			walkRightFrames[i] = atlas.findRegion("" + i);
 		}
 		walkRightAnimation = new Animation(RUNNING_FRAME_DURATION, walkRightFrames);
+
+		TextureRegion[] walkLeftFrames = new TextureRegion[5];
+
+		for (int i = 0; i < 5; i++) {
+			walkLeftFrames[i] = new TextureRegion(walkLeftFrames[i]);
+			walkLeftFrames[i].flip(true, false);
+		}
+		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
 	}
 
 	public void render() {
