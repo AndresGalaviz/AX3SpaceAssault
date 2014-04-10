@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
-public class Hero {
+public class Hero2 {
 	
 	// character states
 	public enum State {
@@ -24,15 +24,14 @@ public class Hero {
 	Rectangle bounds = new Rectangle();
 	boolean dir_left = true;
 	State state = State.IDLE;
-	float stateTime = 0;
 	
-	public Hero(Vector2 position) {
+	public Hero2(Vector2 position) {
 		this.pos = position;
 		this.bounds.height = SIZE;
 		this.bounds.width = SIZE;
 	}
 	
-	public Hero getHero() {
+	public Hero2 getHero() {
 		return this;
 	}
 	
@@ -44,20 +43,11 @@ public class Hero {
 		return bounds;
 	}
 	
-	public State getState() {
-		return state;
-	}
-	
 	public void setState(State newState) {
 		this.state = newState;
 	}
 	
-	public float getStateTime() {
-		return stateTime;
-	}
-	
 	public void update(float delta) {
-		stateTime += delta;
 		pos.add(vel.cpy().scl(delta));
 	}
 	
@@ -74,7 +64,5 @@ public class Hero {
 	public boolean isFacingLeft() {
 		return dir_left;
 	}
-	
-	
 
 }
