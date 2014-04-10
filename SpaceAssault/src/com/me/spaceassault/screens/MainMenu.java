@@ -19,9 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.echo.game.Launcher;
-import com.echo.game.utilities.TextureManager;
-import com.echo.tweenAccessors.ActorAccessor;
+import com.me.spaceassault.utilities.TextureManager;
 
 
 public class MainMenu implements Screen{
@@ -32,7 +30,7 @@ public class MainMenu implements Screen{
 
 	private Skin skin;
 	private Table table;
-	private TextButton buttonPlay, buttonMultiplayer, buttonProfile, buttonLeaderboards;
+	private TextButton buttonPlay, buttonInstructions, buttonCredits;
 	private BitmapFont white, black;
 	private Label heading;
 	private Label hscore;
@@ -52,8 +50,6 @@ public class MainMenu implements Screen{
 //		batch.draw(Assets.moon, Gdx.graphics.getWidth()/4 *3, Gdx.graphics.getHeight()/4 *3);
 //		batch.draw(Assets.background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
-		
-		tweenManager.update(delta);
 		
 		stage.act(delta);
 		stage.draw();
@@ -99,32 +95,31 @@ public class MainMenu implements Screen{
 		textButtonStyle.font.setScale(1.5f);
 		
 		//creating playbutton
-		buttonPlay = new TextButton("Single", textButtonStyle);
+		buttonPlay = new TextButton("Play", textButtonStyle);
 		buttonPlay.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.log("SCREEN", "LevelSelect...");
 				MainMenu.this.dispose();
-				((Launcher) Gdx.app.getApplicationListener()).setScreen(new SelectLevel());
+				// setScreen(new GameScreen())
 			}
 		});
 		buttonPlay.pad(20);
 		
-		buttonMultiplayer = new TextButton("Multi", textButtonStyle);
-		buttonMultiplayer.addListener(new ClickListener(){
+		buttonInstructions = new TextButton("Instructions", textButtonStyle);
+		buttonInstructions.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.log("SCREEN", "MatchScreen...");
 				MainMenu.this.dispose();
-				((Launcher) Gdx.app.getApplicationListener()).setScreen(new MatchScreen());
+				// setScreen(new InstructionsScreen())
 			}
 		});
-		buttonMultiplayer.pad(20);
+		buttonInstructions.pad(20);
 		
-		//creating exitbutton
-		buttonProfile = new TextButton("Profile", textButtonStyle);
+		buttonCredits = new TextButton("Credits", textButtonStyle);
 		
-		buttonProfile.addListener(new ClickListener(){
+		buttonCredits.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 //				Gdx.app.exit();
@@ -132,32 +127,8 @@ public class MainMenu implements Screen{
 //				else Walker.actionResolver.loginGPGS();
 			}
 		});
-		buttonProfile.pad(20);
+		buttonCredits.pad(20);
 		
-		
-		//creating buttonAchievements
-		buttonLeaderboards = new TextButton("Trophies", textButtonStyle);
-		
-		buttonLeaderboards.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				Gdx.app.log("login", "achievements...");
-				if(Gdx.app.getType()==ApplicationType.Android){
-
-					if (Launcher.actionResolver.getSignedInGPGS())
-						Launcher.actionResolver.getAchievementsGPGS();
-					else Launcher.actionResolver.loginGPGS();
-				}
-//				Gdx.app.exit();
-//				if (Walker.actionResolver.getSignedInGPGS()) Walker.actionResolver.getAchievementsGPGS();
-//				else Walker.actionResolver.loginGPGS();
-			}
-		});
-		buttonLeaderboards.pad(20);
-		//LOADING FILE
-//		highscore = prefs.getInteger("highscore");
-		
-//		Gdx.app.log("FILE", "highscore"+highscore);
 		
 		
 		
@@ -182,56 +153,16 @@ public class MainMenu implements Screen{
 		table.add(buttonPlay).size(200, 100).spaceRight(10);
 		table.getCell(buttonPlay).spaceBottom(25);
 //		table.row();
-		table.add(buttonMultiplayer).size(200, 100).spaceLeft(10);
-		table.getCell(buttonMultiplayer).spaceBottom(25);
+		table.add(buttonInstructions).size(200, 100).spaceLeft(10);
+		table.getCell(buttonInstructions).spaceBottom(25);
 		table.row();
-		table.add(buttonProfile).size(400, 100).colspan(2);
-		table.getCell(buttonProfile).spaceBottom(25);
+		table.add(buttonCredits).size(400, 100).colspan(2);
+		table.getCell(buttonCredits).spaceBottom(25);
 		
-		table.row();
-		table.add(buttonLeaderboards).size(400, 100).colspan(2);
-		table.getCell(buttonLeaderboards).spaceBottom(25);
 		table.row();
 //		table.add(hscore).spaceBottom(50);
 		table.debug();//debug
 		stage.addActor(table);
-		
-		//creating animations
-		tweenManager = new TweenManager();
-		Tween.registerAccessor(Actor.class , new ActorAccessor());
-		
-		//deploying animations
-//		Timeline.createSequence().beginSequence()
-//			.push(Tween.to(heading, ActorAccessor.RGB, 0.5f).target(0,0,1))
-//			.push(Tween.to(heading, ActorAccessor.RGB, 0.5f).target(0,1,0))
-//			.push(Tween.to(heading, ActorAccessor.RGB, 0.5f).target(1,0,0))
-//			.end().repeat(Tween.INFINITY, 0).start(tweenManager);
-		
-		Timeline.createSequence().beginSequence()
-			.push(Tween.set(buttonPlay, ActorAccessor.ALPHA).target(0))
-			.push(Tween.set(buttonMultiplayer, ActorAccessor.ALPHA).target(0))
-			.push(Tween.set(buttonProfile, ActorAccessor.ALPHA).target(0))
-			.push(Tween.set(buttonLeaderboards, ActorAccessor.ALPHA).target(0))
-			.push(Tween.set(hscore, ActorAccessor.ALPHA).target(0))
-			.beginParallel()
-			.push(Tween.from(heading, ActorAccessor.ALPHA, 1f).target(0))
-			.pushPause(350)
-			.push(Tween.to(buttonPlay, ActorAccessor.ALPHA, 1f).target(1))
-			.pushPause(350)
-			.push(Tween.to(buttonMultiplayer, ActorAccessor.ALPHA, 1f).target(1))
-			.pushPause(350)
-			.push(Tween.to(buttonProfile, ActorAccessor.ALPHA, 1f).target(1))
-			.pushPause(350)
-			.push(Tween.to(buttonLeaderboards, ActorAccessor.ALPHA, 1f).target(1))
-			.pushPause(350)
-			.push(Tween.to(hscore, ActorAccessor.ALPHA, 1f).target(1))
-			.end()
-			.end().start(tweenManager);
-		
-//		Tween.from(table, ActorAccessor.ALPHA, 0.5f).target(0).start(tweenManager);
-//		Tween.from(table, ActorAccessor.ALPHA, 0.5f).target(Gdx.graphics.getHeight()/8).start(tweenManager);
-		Tween.from(table, ActorAccessor.Y, .75f).target(Gdx.graphics.getHeight() / 8).start(tweenManager);
-
 	}
 
 	@Override
