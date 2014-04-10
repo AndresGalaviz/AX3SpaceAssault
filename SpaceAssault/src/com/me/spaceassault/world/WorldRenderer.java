@@ -7,7 +7,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
@@ -19,15 +22,23 @@ public class WorldRenderer {
 
 	private static final float CAMERA_WIDTH = 10f;
 	private static final float CAMERA_HEIGHT = 7f;
-	
-	/** for debug rendering **/
+    private static final float RUNNING_FRAME_DURATION = 0.04f;
+
+    /** for debug rendering **/
 	ShapeRenderer debugRenderer = new ShapeRenderer();
 	
 	/** Textures **/
-	private Texture heroTexture;
-	private Texture tileTexture;
+    private TextureRegion heroIdleLeft;
+    private TextureRegion heroIdleRight;
+    private Texture tileTexture;
+    private TextureRegion heroFrame;
+
+    /** Animations **/
+    private Animation walkLeftAnimation;
+    private Animation walkRightAnimation;
 	
-	private SpriteBatch spriteBatch;
+
+    private SpriteBatch spriteBatch;
 	private boolean debug = false;
 	private int width;
 	private int height;
@@ -54,8 +65,25 @@ public class WorldRenderer {
 	}
 	
 	public void loadTextures(){
-		heroTexture = new Texture(Gdx.files.internal("images/characters/warrior.png"));
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
+		heroIdleRight = atlas.findRegion("1");
+		heroIdleLeft = new TextureRegion(heroIdleRight);
+		heroIdleRight.flip(true, false);
 		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
+		
+		TextureRegion[] walkRightFrames = new TextureRegion[17];
+		for (int i = 0; i < 17; i++) {
+			walkRightFrames[i] = atlas.findRegion("" + i);
+		}
+		walkRightAnimation = new Animation(RUNNING_FRAME_DURATION, walkRightFrames);
+
+		TextureRegion[] walkLeftFrames = new TextureRegion[17];
+
+		for (int i = 0; i < 17; i++) {
+			walkLeftFrames[i] = new TextureRegion(walkRightFrames[i]);
+			walkLeftFrames[i].flip(true, false);
+		}
+		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
 	}
 
 	public void render() {
@@ -97,6 +125,10 @@ public class WorldRenderer {
 	
 	private void drawHero() {
 		Hero hero = world.getHero();
-		spriteBatch.draw(heroTexture, hero.getPosition().x*ppuX, hero.getPosition().y*ppuY, hero.SIZE*ppuX, hero.SIZE*ppuY);
+		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
+		if(hero.getState().equals(Hero.State.WALK)) {
+			heroFrame = hero.isFacingLeft() ? walkLeftAnimation.getKeyFrame(hero.getStateTime(), true) : walkRightAnimation.getKeyFrame(hero.getStateTime(), true);
+		}
+		spriteBatch.draw(heroFrame, hero.getPosition().x * ppuX, hero.getPosition().y * ppuY, hero.SIZE * ppuX, hero.SIZE * ppuY);
 	}
 }

@@ -24,6 +24,7 @@ public class Hero {
 	Rectangle bounds = new Rectangle();
 	boolean dir_left = true;
 	State state = State.IDLE;
+	float stateTime = 0;
 	
 	public Hero(Vector2 position) {
 		this.pos = position;
@@ -43,11 +44,20 @@ public class Hero {
 		return bounds;
 	}
 	
+	public State getState() {
+		return state;
+	}
+	
 	public void setState(State newState) {
 		this.state = newState;
 	}
 	
+	public float getStateTime() {
+		return stateTime;
+	}
+	
 	public void update(float delta) {
+		stateTime += delta;
 		pos.add(vel.cpy().scl(delta));
 	}
 	
@@ -61,5 +71,10 @@ public class Hero {
 	public Vector2 getAcceleration() {
 		return accel;
 	}
+	public boolean isFacingLeft() {
+		return dir_left;
+	}
+	
+	
 
 }
