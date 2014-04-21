@@ -23,7 +23,10 @@ public class HeroController {
 	private static final float DAMP = 0.90f;
 	private static final float MAX_VEL = 4f;
 	
+	
 	private static final float WIDTH = 10f;
+	//this is for commit
+	
 	
 	private World world;
 	private Hero hero;
