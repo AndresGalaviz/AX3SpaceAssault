@@ -16,7 +16,7 @@ public class Hero {
 	
 	public static final float SPEED = 4f; // character velocity
 	public final float JUMP_SPEED = 1f; // jumping speed
-	public final float SIZE = 2f; // character size
+	public final float SIZE = 1f; // character size
 	
 	Vector2 pos = new Vector2(); 
 	Vector2 accel = new Vector2(); 
@@ -113,6 +113,10 @@ public class Hero {
 	 */
 	public boolean isFacingLeft() {
 		return dir_left;
+	}
+	
+	public void setPosition(Vector2 position) {
+		pos = position;
 	}
 	
 

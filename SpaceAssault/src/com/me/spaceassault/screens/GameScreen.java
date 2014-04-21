@@ -30,7 +30,7 @@ public class GameScreen implements Screen, InputProcessor {
 	}
 
 	/**
-	 * Ajusta el tamaño de la pantalla
+	 * Ajusta el tamano de la pantalla
 	 */
 	@Override
 	public void resize(int width, int height) {
@@ -41,7 +41,7 @@ public class GameScreen implements Screen, InputProcessor {
 	}
 
 	/**
-	 * Lo que se muestra cuando la pantalla está activa
+	 * Lo que se muestra cuando la pantalla esta activa
 	 */
 	@Override
 	public void show() {
@@ -54,7 +54,7 @@ public class GameScreen implements Screen, InputProcessor {
 	}
 
 	/**
-	 * Lo que se hace cuando la pantalla está inactiva
+	 * Lo que se hace cuando la pantalla esta inactiva
 	 */
 	@Override
 	public void hide() {
