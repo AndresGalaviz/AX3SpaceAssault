@@ -16,7 +16,7 @@ public class Hero {
 	
 	public static final float SPEED = 4f; // character velocity
 	public final float JUMP_SPEED = 1f; // jumping speed
-	public final float SIZE = 0.5f; // character size
+	public final float SIZE = 2f; // character size
 	
 	Vector2 pos = new Vector2(); 
 	Vector2 accel = new Vector2(); 
@@ -45,7 +45,7 @@ public class Hero {
 	}
 	
 	/**
-	 * Regresa los límites del jugador
+	 * Regresa los limites del jugador
 	 * @return bounds
 	 */
 	public Rectangle getBounds() {
@@ -86,7 +86,7 @@ public class Hero {
 	}
 	
 	/**
-	 * Establece la dirección a la que voltea el personaje
+	 * Establece la direccion a la que voltea el personaje
 	 * @param dir
 	 */
 	public void setFacingLeft(boolean dir) {
@@ -101,19 +101,21 @@ public class Hero {
 		return vel;
 	}
 	/**
-	 * Regresa la aceleración del salto
+	 * Regresa la aceleracion del salto
 	 * @return accel
 	 */
 	public Vector2 getAcceleration() {
 		return accel;
 	}
 	/**
-	 * Regresa la dirección del personaje
+	 * Regresa la direccion del personaje
 	 * @return dir_left (boolean)
 	 */
 	public boolean isFacingLeft() {
 		return dir_left;
 	}
+	
+
 	
 	
 
