@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * Método que dibuja el mundo en la pantalla del juego
+ * Metodo que dibuja el mundo en la pantalla del juego
  *
  */
 
@@ -41,6 +41,11 @@ public class WorldRenderer {
     /** Animations **/
     private Animation walkLeftAnimation;
     private Animation walkRightAnimation;
+
+	private TextureRegion heroJumpLeft;
+	private TextureRegion heroFallLeft;
+	private TextureRegion heroJumpRight;
+	private TextureRegion heroFallRight;
 	
 
     private SpriteBatch spriteBatch;
@@ -60,8 +65,8 @@ public class WorldRenderer {
 
 	/**
 	 * Metodo constructor
-	 * @param world, el mundo que se usará
-	 * @param debug, si está en modo debug o no
+	 * @param world, el mundo que se usar
+	 * @param debug, si esta en modo debug o no
 	 */
 	public WorldRenderer(World world, boolean debug) {
 		this.world = world;
@@ -75,7 +80,7 @@ public class WorldRenderer {
 	}
 	
 	/**
-	 * Carga las texturas para las imágenes
+	 * Carga las texturas para las imagenes
 	 */
 	public void loadTextures(){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
@@ -97,10 +102,17 @@ public class WorldRenderer {
 			walkLeftFrames[i].flip(true, false);
 		}
 		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
+		heroJumpLeft = atlas.findRegion(""); //TODO
+		heroJumpRight = new TextureRegion(heroJumpLeft);
+		heroJumpRight.flip(true, false);
+		
+		heroFallLeft = atlas.findRegion("hero-down");
+		heroFallRight = new TextureRegion(heroFallLeft);
+		heroFallRight.flip(true, false);
 	}
 
 	/**
-	 * Dibuja las imágenes en la pantalla
+	 * Dibuja las imagenes en la pantalla
 	 */
 	public void render() {
 		// render blocks
@@ -116,7 +128,7 @@ public class WorldRenderer {
 	}
 	
 	/**
-	 * Dibuja si el renderer está en modo debug
+	 * Dibuja si el renderer esta en modo debug
 	 */
 	public void drawDebug() {
 		debugRenderer.setProjectionMatrix(cam.combined);
@@ -155,6 +167,12 @@ public class WorldRenderer {
 		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
 		if(hero.getState().equals(Hero.State.WALK)) {
 			heroFrame = hero.isFacingLeft() ? walkLeftAnimation.getKeyFrame(hero.getStateTime(), true) : walkRightAnimation.getKeyFrame(hero.getStateTime(), true);
+		} else if (hero.getState().equals(Hero.State.JUMP)) {
+			if (hero.getVelocity().y > 0) {
+				heroFrame = hero.isFacingLeft() ? heroJumpLeft : heroJumpRight;
+			} else {
+				heroFrame = hero.isFacingLeft() ? heroFallLeft : heroFallRight;
+			}
 		}
 		spriteBatch.draw(heroFrame, hero.getPosition().x * ppuX, hero.getPosition().y * ppuY, hero.SIZE * ppuX, hero.SIZE * ppuY);
 	}

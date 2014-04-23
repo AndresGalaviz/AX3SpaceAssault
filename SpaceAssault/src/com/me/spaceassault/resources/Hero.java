@@ -90,6 +90,7 @@ public class Hero {
 	 * @param dir
 	 */
 	public void setFacingLeft(boolean dir) {
+		System.out.print(dir);
 		dir_left = dir;
 	}
 	
