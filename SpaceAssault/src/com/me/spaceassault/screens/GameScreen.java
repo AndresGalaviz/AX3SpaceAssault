@@ -149,7 +149,20 @@ public class GameScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchDragged(int x, int y, int pointer) {
-		// TODO Auto-generated method stub
+		if (!Gdx.app.getType().equals(ApplicationType.Android)){
+			return false;
+		}		
+		if (x < width / 3) {
+			if(!controller.isRightOn())
+				controller.leftPressed();
+		} else if (x > width / 3 && x < 2*width/3 ) {
+			controller.firePressed();
+		} else{
+			controller.rightPressed();
+		}
+		if(y < height / 2){
+			controller.jumpPressed();
+		}
 		return false;
 	}
 

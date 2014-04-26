@@ -216,7 +216,6 @@ public class WorldController {
 	}
 
 	/** Change hero's state and parameters based on input controls **/
-	/** Change hero's state and parameters based on input controls **/
 	private boolean processInput() {
 		if (keys.get(Keys.JUMP)) {
 			if (!hero.getState().equals(Hero.State.JUMP)) {

@@ -107,7 +107,7 @@ public class WorldRenderer {
 		
 		TextureAtlas jump = new TextureAtlas(Gdx.files.internal("images/characterpng/jump/jump.pack"));
 		
-		heroJumpRight = jump.findRegion("1"); //TODO
+		heroJumpRight = jump.findRegion("1");
 		heroJumpLeft = new TextureRegion(heroJumpRight);
 		heroJumpLeft.flip(true, false);
 		
@@ -181,8 +181,7 @@ public class WorldRenderer {
 		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
 		if(hero.getState().equals(Hero.State.WALK)) {
 			heroFrame = hero.isFacingLeft() ? walkLeftAnimation.getKeyFrame(hero.getStateTime(), true) : walkRightAnimation.getKeyFrame(hero.getStateTime(), true);
-		} else 
-			if (hero.getState().equals(Hero.State.JUMP)) {
+		} else if (hero.getState().equals(Hero.State.JUMP)) {
 			if (hero.getVelocity().y > 0) {
 				heroFrame = hero.isFacingLeft() ? heroJumpLeft : heroJumpRight;
 			} else {
