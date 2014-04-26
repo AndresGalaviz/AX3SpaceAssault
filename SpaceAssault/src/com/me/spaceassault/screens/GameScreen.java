@@ -134,7 +134,7 @@ public class GameScreen implements Screen, InputProcessor {
 			return false;
 		}
 		if (x < width / 3) {
-			
+			if(!controller.isRightOn())
 			controller.leftReleased();
 		} else if (x > width / 3 && x < 2*width/3 ) {
 			controller.fireReleased();

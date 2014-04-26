@@ -107,13 +107,13 @@ public class WorldRenderer {
 		
 		TextureAtlas jump = new TextureAtlas(Gdx.files.internal("images/characterpng/jump/jump.pack"));
 		
-		heroJumpLeft = atlas.findRegion("1"); //TODO
-		heroJumpRight = new TextureRegion(heroJumpLeft);
-		heroJumpRight.flip(true, false);
+		heroJumpRight = jump.findRegion("1"); //TODO
+		heroJumpLeft = new TextureRegion(heroJumpRight);
+		heroJumpLeft.flip(true, false);
 		
-		heroFallLeft = atlas.findRegion("1");
-		heroFallRight = new TextureRegion(heroFallLeft);
-		heroFallRight.flip(true, false);
+		heroFallRight = jump.findRegion("1");
+		heroFallLeft = new TextureRegion(heroFallRight);
+		heroFallLeft.flip(true, false);
 	}
 
 	/**
