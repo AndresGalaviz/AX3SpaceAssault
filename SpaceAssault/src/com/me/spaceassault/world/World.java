@@ -80,6 +80,7 @@ public class World {
 
 	private void createDemoWorld() {
 		pyro = new Hero(new Vector2(7, 2));
+		System.out.print("Creado");
 		level = new Level();
 	}
 }

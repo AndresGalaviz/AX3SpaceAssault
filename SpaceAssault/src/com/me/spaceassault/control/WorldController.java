@@ -3,7 +3,9 @@ package com.me.spaceassault.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
@@ -31,7 +33,14 @@ public class WorldController {
 	private boolean jumpingPressed;
 	private static final float WIDTH = 10f;
 	private Array<Tile> collidable = new Array<Tile>();
+	public boolean grounded = true;
 	
+	private Pool<Rectangle> rectPool = new Pool<Rectangle>() {
+		@Override
+		protected Rectangle newObject () {
+			return new Rectangle();
+		}
+	};
 	
     static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
     static {
@@ -84,13 +93,13 @@ public class WorldController {
 	/** The main update method **/
 	public void update(float delta) {
 		processInput();
-		if (grounded && hero.getState().equals(Hero.State.JUMPING)) {
+		if (grounded && hero.getState().equals(Hero.State.JUMP)) {
 			hero.setState(Hero.State.IDLE);
 		}
 		hero.getAcceleration().y = GRAVITY;
-		hero.getAcceleration().mul(delta);
+		hero.getAcceleration().scl(delta);
 		hero.getVelocity().add(hero.getAcceleration().x, hero.getAcceleration().y);
-		checkCollisionWithBlocks(delta);
+		checkCollisionWithTiles(delta);
 		hero.getVelocity().x *= DAMP;
 		if (hero.getVelocity().x > MAX_VEL) {
 			hero.getVelocity().x = MAX_VEL;
@@ -99,6 +108,68 @@ public class WorldController {
 			hero.getVelocity().x = -MAX_VEL;
 		}
 		hero.update(delta);
+	}
+	
+	private void checkCollisionWithTiles(float delta) {
+		hero.getVelocity().scl(delta);
+		Rectangle heroRect = rectPool.obtain();
+		heroRect.set(hero.getBounds().x, hero.getBounds().y, hero.getBounds().width, hero.getBounds().height);
+		int startX, endX;
+		int startY = (int) hero.getBounds().y;
+		int endY = (int) (hero.getBounds().y + hero.getBounds().height);
+		if (hero.getVelocity().x < 0) {
+			startX = endX = (int) Math.floor(hero.getBounds().x + hero.getVelocity().x);
+		} else {
+			startX = endX = (int) Math.floor(hero.getBounds().x + hero.getBounds().width + hero.getVelocity().x);
+		}
+		populateCollidableTiles(startX, startY, endX, endY);
+		heroRect.x += hero.getVelocity().x;
+		world.getCollisionRects().clear();
+		for (Tile tile : collidable) {
+			if (tile == null) continue;
+			if (heroRect.overlaps(tile.getBounds())) {
+				hero.getVelocity().x = 0;
+				world.getCollisionRects().add(tile.getBounds());
+				break;
+			}
+		}
+		heroRect.x = hero.getPosition().x;
+		startX = (int) hero.getBounds().x;
+		endX = (int) (hero.getBounds().x + hero.getBounds().width);
+		if (hero.getVelocity().y < 0) {
+			startY = endY = (int) Math.floor(hero.getBounds().y + hero.getVelocity().y);
+		} else {
+			startY = endY = (int) Math.floor(hero.getBounds().y + hero.getBounds().height + hero.getVelocity().y);
+		}
+		populateCollidableTiles(startX, startY, endX, endY);
+		heroRect.y += hero.getVelocity().y;
+		for (Tile tile : collidable) {
+			if (tile == null) continue;
+			if (heroRect.overlaps(tile.getBounds())) {
+				if (hero.getVelocity().y < 0) {
+					grounded = true;
+				}
+				hero.getVelocity().y = 0;
+				world.getCollisionRects().add(tile.getBounds());
+				break;
+			}
+		}
+		heroRect.y = hero.getPosition().y;
+		hero.getPosition().add(hero.getVelocity());
+		hero.getBounds().x = hero.getPosition().x;
+		hero.getBounds().y = hero.getPosition().y;
+		hero.getVelocity().scl(1 / delta);
+	}
+	
+	private void populateCollidableTiles(int startX, int startY, int endX, int endY) {
+		collidable.clear();
+		for (int x = startX; x <= endX; x++) {
+			for (int y = startY; y <= endY; y++) {
+				if (x >= 0 && x < world.getLevel().getWidth() && y >=0 && y < world.getLevel().getHeight()) {
+					collidable.add(world.getLevel().get(x, y));
+				}
+			}
+		}
 	}
 
 	/** Change hero's state and parameters based on input controls **/

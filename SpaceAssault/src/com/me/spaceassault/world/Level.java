@@ -66,5 +66,6 @@ public class Level {
 		tiles[6][3] = new Tile(new Vector2(6, 3));
 		tiles[6][4] = new Tile(new Vector2(6, 4));
 		tiles[6][5] = new Tile(new Vector2(6, 5));
+		System.out.print("Cargado");
 	}
 }

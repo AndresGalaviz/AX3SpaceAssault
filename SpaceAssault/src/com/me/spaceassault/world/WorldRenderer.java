@@ -125,7 +125,7 @@ public class WorldRenderer {
 			drawTiles();
 			drawHero();
 		spriteBatch.end();
-			
+		drawCollisionBlocks();
 		if(debug) {
 			drawDebug();
 		}
@@ -162,6 +162,16 @@ public class WorldRenderer {
 		for(Tile tile : world.getTiles()) {
 			spriteBatch.draw(tileTexture, tile.getPosition().x*ppuX, tile.getPosition().y*ppuY, tile.SIZE*ppuX, tile.SIZE*ppuY);
 		}
+	}
+	
+	private void drawCollisionBlocks() {
+		debugRenderer.setProjectionMatrix(cam.combined);
+		debugRenderer.begin(ShapeType.Filled);
+		debugRenderer.setColor(new Color(1, 1, 1, 1));
+		for (Rectangle rect : world.getCollisionRects()) {
+			debugRenderer.rect(rect.x, rect.y, rect.width, rect.height);
+		}
+		debugRenderer.end();
 	}
 	
 	/**
