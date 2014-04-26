@@ -14,8 +14,8 @@ public class Hero {
 		JUMP
 	}
 	
-	public static final float SPEED = 4f; // character velocity
-	public final float JUMP_SPEED = 1f; // jumping speed
+	public static final float SPEED = 50f; // character velocity
+	public final float JUMP_SPEED = 4f; // jumping speed
 	public final float SIZE = .8f; // character size
 	
 	Vector2 pos = new Vector2(); 

@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.me.spaceassault;
 
 import org.robovm.cocoatouch.foundation.NSAutoreleasePool;
 import org.robovm.cocoatouch.uikit.UIApplication;

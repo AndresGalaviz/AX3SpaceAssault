@@ -22,7 +22,6 @@ public class World {
 	/*Cajas de colision*/
 	
 	Array<Rectangle> collisionRects = new Array<Rectangle>();
-	
 	public Array<Rectangle> getCollisionRects() {
 		return collisionRects;
 	}
@@ -74,7 +73,7 @@ public class World {
      * Metodo que coloca objetos en el mundo
      */
 	private void createDemoWorld() {
-		hero = new Hero(new Vector2(7,2));
+		hero = new Hero(new Vector2(4,26));
 		
 		level = new Level();
 	}

@@ -25,7 +25,7 @@ public class WorldController {
 	private static final float GRAVITY 			= -20f;
 	private static final float MAX_JUMP_SPEED	= 7f;
 	private static final float DAMP 			= 0.90f;
-	private static final float MAX_VEL 			= 4f;
+	private static final float MAX_VEL 			= 50f;
 	
 	private World world;
 	private Hero hero;
@@ -215,6 +215,7 @@ public class WorldController {
 		}
 	}
 
+	/** Change hero's state and parameters based on input controls **/
 	/** Change hero's state and parameters based on input controls **/
 	private boolean processInput() {
 		if (keys.get(Keys.JUMP)) {
