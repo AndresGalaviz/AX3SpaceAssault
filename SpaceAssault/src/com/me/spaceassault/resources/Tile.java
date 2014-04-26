@@ -12,12 +12,14 @@ public class Tile {
 	
 	public Tile(Vector2 position) {
 		this.pos = position;
+		this.bounds.setX(pos.x);
+		this.bounds.setY(pos.y);
 		this.bounds.height = SIZE;
 		this.bounds.width = SIZE;
 	}
 
 	/**
-	 * Regresa la posición del cuadro
+	 * Regresa la posicion del cuadro
 	 * @return pos
 	 */
 	public Vector2 getPosition() {
@@ -31,6 +33,9 @@ public class Tile {
 	public Rectangle getBounds() {
 		return bounds;
 	}
+	
+	
+	
 
 
 }

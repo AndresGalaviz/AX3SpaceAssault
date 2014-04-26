@@ -16,7 +16,7 @@ public class Hero {
 	
 	public static final float SPEED = 4f; // character velocity
 	public final float JUMP_SPEED = 1f; // jumping speed
-	public final float SIZE = 1f; // character size
+	public final float SIZE = .8f; // character size
 	
 	Vector2 pos = new Vector2(); 
 	Vector2 accel = new Vector2(); 
@@ -28,6 +28,8 @@ public class Hero {
 	
 	public Hero(Vector2 position) {
 		this.pos = position;
+		this.bounds.x = position.x;
+		this.bounds.y = position.y;
 		this.bounds.height = SIZE;
 		this.bounds.width = SIZE;
 	}
@@ -82,7 +84,6 @@ public class Hero {
 	 */
 	public void update(float delta) {
 		stateTime += delta;
-		pos.add(vel.cpy().scl(delta));
 	}
 	
 	/**
@@ -118,6 +119,8 @@ public class Hero {
 	
 	public void setPosition(Vector2 position) {
 		pos = position;
+		this.bounds.setX(position.x);
+		this.bounds.setY(position.y);
 	}
 	
 

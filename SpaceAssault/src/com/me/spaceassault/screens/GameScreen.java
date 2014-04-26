@@ -114,10 +114,12 @@ public class GameScreen implements Screen, InputProcessor {
 		if (!Gdx.app.getType().equals(ApplicationType.Android)){
 			return false;
 		}		
-		if (x < height / 2) {
-			controller.leftPressed();
-		}
-		if (x > width / 2) {
+		if (x < width / 3) {
+			if(!controller.isRightOn())
+				controller.leftPressed();
+		} else if (x > width / 3 && x < 2*width/3 ) {
+			controller.firePressed();
+		} else{
 			controller.rightPressed();
 		}
 		if(y < height / 2){
@@ -131,10 +133,12 @@ public class GameScreen implements Screen, InputProcessor {
 		if (!Gdx.app.getType().equals(ApplicationType.Android)){
 			return false;
 		}
-		if (x < height / 2) {
+		if (x < width / 3) {
+			
 			controller.leftReleased();
-		}
-		if (x > width / 2) {
+		} else if (x > width / 3 && x < 2*width/3 ) {
+			controller.fireReleased();
+		} else{
 			controller.rightReleased();
 		}
 		if(y < height / 2){

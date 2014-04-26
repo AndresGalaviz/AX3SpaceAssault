@@ -76,8 +76,8 @@ public class WorldRenderer {
 		this.debug = debug;
 		spriteBatch = new SpriteBatch();
 		loadTextures();
-		
 	}
+
 	
 	/**
 	 * Carga las texturas para las imagenes
@@ -120,17 +120,26 @@ public class WorldRenderer {
 	 * Dibuja las imagenes en la pantalla
 	 */
 	public void render() {
-		// render blocks
 		spriteBatch.begin();
 			drawTiles();
 			drawHero();
 		spriteBatch.end();
-		drawCollisionBlocks();
-		if(debug) {
+		//drawCollisionBlocks();
+		if (debug)
 			drawDebug();
-		}
-			
 	}
+	
+	private void drawCollisionBlocks() {
+		debugRenderer.setProjectionMatrix(cam.combined);
+		debugRenderer.begin(ShapeType.Filled);
+		debugRenderer.setColor(new Color(1, 1, 1, 1));
+		for (Rectangle rect : world.getCollisionRects()) {
+			debugRenderer.rect(rect.x, rect.y, rect.width, rect.height);
+		}
+		debugRenderer.end();
+
+	}
+
 	
 	/**
 	 * Dibuja si el renderer esta en modo debug
@@ -138,7 +147,7 @@ public class WorldRenderer {
 	public void drawDebug() {
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Line);
-		for (Tile tile : world.getTiles()) {
+		for (Tile tile : world.getDrawableBlocks((int)CAMERA_WIDTH, (int)CAMERA_HEIGHT)) {
 			Rectangle rect = tile.getBounds();
 			float x1 = tile.getPosition().x + rect.x;
 			float y1 = tile.getPosition().y + rect.y;
@@ -157,23 +166,13 @@ public class WorldRenderer {
 	
 	/**
 	 * Dibuja los bloques que delimitan el mapa
-	 */
+	 */	
+	
 	private void drawTiles() {
-		for(Tile tile : world.getTiles()) {
+		for (Tile tile : world.getDrawableBlocks((int)CAMERA_WIDTH, (int)CAMERA_HEIGHT)) {
 			spriteBatch.draw(tileTexture, tile.getPosition().x*ppuX, tile.getPosition().y*ppuY, tile.SIZE*ppuX, tile.SIZE*ppuY);
 		}
 	}
-	
-	private void drawCollisionBlocks() {
-		debugRenderer.setProjectionMatrix(cam.combined);
-		debugRenderer.begin(ShapeType.Filled);
-		debugRenderer.setColor(new Color(1, 1, 1, 1));
-		for (Rectangle rect : world.getCollisionRects()) {
-			debugRenderer.rect(rect.x, rect.y, rect.width, rect.height);
-		}
-		debugRenderer.end();
-	}
-	
 	/**
 	 * Dibuja el personaje principal
 	 */
@@ -182,7 +181,8 @@ public class WorldRenderer {
 		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
 		if(hero.getState().equals(Hero.State.WALK)) {
 			heroFrame = hero.isFacingLeft() ? walkLeftAnimation.getKeyFrame(hero.getStateTime(), true) : walkRightAnimation.getKeyFrame(hero.getStateTime(), true);
-		} else if (hero.getState().equals(Hero.State.JUMP)) {
+		} else 
+			if (hero.getState().equals(Hero.State.JUMP)) {
 			if (hero.getVelocity().y > 0) {
 				heroFrame = hero.isFacingLeft() ? heroJumpLeft : heroJumpRight;
 			} else {
