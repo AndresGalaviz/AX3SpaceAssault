@@ -69,13 +69,15 @@ public class WorldRenderer {
 	 * @param debug, si esta en modo debug o no
 	 */
 	public WorldRenderer(World world, boolean debug) {
-		this.world = world;
-		this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
-		this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
-		this.cam.update();
-		this.debug = debug;
-		spriteBatch = new SpriteBatch();
-		loadTextures();
+	    
+	    this.world = world;
+	    this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
+	    this.cam.setToOrtho(false,CAMERA_WIDTH,CAMERA_HEIGHT);
+	    this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
+	    this.cam.update();
+	    this.debug = debug;
+	    spriteBatch = new SpriteBatch();
+	    loadTextures();
 	}
 
 	
@@ -120,13 +122,14 @@ public class WorldRenderer {
 	 * Dibuja las imagenes en la pantalla
 	 */
 	public void render() {
-		spriteBatch.begin();
-			drawTiles();
-			drawHero();
-		spriteBatch.end();
-		//drawCollisionBlocks();
-		if (debug)
-			drawDebug();
+		Hero hero = world.getHero();
+	    moveCamera(hero.getPosition().x, hero.getPosition().y);
+	    spriteBatch.setProjectionMatrix(cam.combined);
+	    spriteBatch.begin();
+	        drawTiles();
+	        drawHero();
+	    spriteBatch.end();
+	    //if (debug) drawDebug();
 	}
 	
 	private void drawCollisionBlocks() {
@@ -140,7 +143,14 @@ public class WorldRenderer {
 
 	}
 
-	
+	public void moveCamera(float x,float y){
+		Hero hero = world.getHero();
+	    
+	    cam.position.set(x, y, 0);
+	    cam.update();
+	    
+
+	}
 	/**
 	 * Dibuja si el renderer esta en modo debug
 	 */
@@ -170,7 +180,7 @@ public class WorldRenderer {
 	
 	private void drawTiles() {
 		for (Tile tile : world.getDrawableBlocks((int)CAMERA_WIDTH, (int)CAMERA_HEIGHT)) {
-			spriteBatch.draw(tileTexture, tile.getPosition().x*ppuX, tile.getPosition().y*ppuY, tile.SIZE*ppuX, tile.SIZE*ppuY);
+			spriteBatch.draw(tileTexture, tile.getPosition().x, tile.getPosition().y, tile.SIZE, tile.SIZE);
 		}
 	}
 	/**
@@ -189,6 +199,6 @@ public class WorldRenderer {
 				heroFrame = hero.isFacingLeft() ? heroFallLeft : heroFallRight;
 			}
 		}
-		spriteBatch.draw(heroFrame, hero.getPosition().x * ppuX, hero.getPosition().y * ppuY, hero.SIZE * ppuX, hero.SIZE * ppuY);
+		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.SIZE , hero.SIZE);
 	}
 }

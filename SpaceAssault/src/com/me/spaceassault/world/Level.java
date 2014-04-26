@@ -42,8 +42,8 @@ public class Level {
 	}
 
 	private void loadDemoLevel() {
-		width = 10;
-		height = 7;
+		width = 107;
+		height = 32;
 		tiles = new Tile[width][height];
 		for (int col = 0; col < width; col++) {
 			for (int row = 0; row < height; row++) {
@@ -58,6 +58,8 @@ public class Level {
 				tiles[col][1] = new Tile(new Vector2(col, 1));
 			}
 		}
+		
+		
 		tiles[9][2] = new Tile(new Vector2(9, 2));
 		tiles[9][3] = new Tile(new Vector2(9, 3));
 		tiles[9][4] = new Tile(new Vector2(9, 4));
