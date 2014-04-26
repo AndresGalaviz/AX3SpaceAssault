@@ -158,14 +158,10 @@ public class WorldRenderer {
 	/**
 	 * Dibuja los bloques que delimitan el mapa
 	 */
-	private void drawCollisionBlocks() {
-		debugRenderer.setProjectionMatrix(cam.combined);
-		debugRenderer.begin(ShapeType.FilledRectangle);
-		debugRenderer.setColor(new Color(1, 1, 1, 1));
-		for (Rectangle rect : world.getCollisionRects()) {
-			debugRenderer.filledRect(rect.x, rect.y, rect.width, rect.height);
+	private void drawTiles() {
+		for(Tile tile : world.getTiles()) {
+			spriteBatch.draw(tileTexture, tile.getPosition().x*ppuX, tile.getPosition().y*ppuY, tile.SIZE*ppuX, tile.SIZE*ppuY);
 		}
-		debugRenderer.end();
 	}
 	
 	/**

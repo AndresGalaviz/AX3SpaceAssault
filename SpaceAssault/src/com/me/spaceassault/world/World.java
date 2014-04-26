@@ -68,11 +68,15 @@ public class World {
 	}
 
 	// --------------------
+	Array<Tile> tiles = new Array<Tile>();
+	Hero Pyro;
+	
 	public World() {
 		createDemoWorld();
 	}
-	
-	
+    public Array<Tile> getTiles() {
+    	return tiles;
+    }
 
 	private void createDemoWorld() {
 		pyro = new Hero(new Vector2(7, 2));

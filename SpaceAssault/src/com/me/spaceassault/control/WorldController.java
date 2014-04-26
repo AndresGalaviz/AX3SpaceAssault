@@ -3,7 +3,9 @@ package com.me.spaceassault.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.utils.Array;
 import com.me.spaceassault.resources.Hero;
+import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
 
 /**
@@ -28,7 +30,8 @@ public class WorldController {
 	private long jumpPressedTime;
 	private boolean jumpingPressed;
 	private static final float WIDTH = 10f;
-
+	private Array<Tile> collidable = new Array<Tile>();
+	
 	
     static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
     static {
@@ -81,40 +84,21 @@ public class WorldController {
 	/** The main update method **/
 	public void update(float delta) {
 		processInput();
-		
+		if (grounded && hero.getState().equals(Hero.State.JUMPING)) {
+			hero.setState(Hero.State.IDLE);
+		}
 		hero.getAcceleration().y = GRAVITY;
-		hero.getAcceleration().scl(delta);
+		hero.getAcceleration().mul(delta);
 		hero.getVelocity().add(hero.getAcceleration().x, hero.getAcceleration().y);
-		if (hero.getAcceleration().x == 0) hero.getVelocity().x *= DAMP;
+		checkCollisionWithBlocks(delta);
+		hero.getVelocity().x *= DAMP;
 		if (hero.getVelocity().x > MAX_VEL) {
 			hero.getVelocity().x = MAX_VEL;
 		}
 		if (hero.getVelocity().x < -MAX_VEL) {
 			hero.getVelocity().x = -MAX_VEL;
 		}
-		
 		hero.update(delta);
-		if (hero.getPosition().y < 0) {
-			hero.getPosition().y = 0f;
-			hero.setPosition(hero.getPosition());
-			if (hero.getState().equals(Hero.State.JUMP)) {
-					hero.setState(Hero.State.IDLE);
-			}
-		}
-		if (hero.getPosition().x < 0) {
-			hero.getPosition().x = 0;
-			hero.setPosition(hero.getPosition());
-			if (!hero.getState().equals(Hero.State.JUMP)) {
-				hero.setState(Hero.State.IDLE);
-			}
-		}
-		if (hero.getPosition().x > WIDTH - hero.getBounds().width ) {
-			hero.getPosition().x = WIDTH - hero.getBounds().width;
-			hero.setPosition(hero.getPosition());
-			if (!hero.getState().equals(Hero.State.JUMP)) {
-				hero.setState(Hero.State.IDLE);
-			}
-		}
 	}
 
 	/** Change hero's state and parameters based on input controls **/
