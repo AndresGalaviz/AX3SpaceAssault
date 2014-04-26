@@ -84,9 +84,9 @@ public class WorldRenderer {
 	 */
 	public void loadTextures(){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
-		heroIdleRight = atlas.findRegion("1");
-		heroIdleLeft = new TextureRegion(heroIdleRight);
-		heroIdleRight.flip(true, false);
+		heroIdleLeft = atlas.findRegion("1");
+		heroIdleRight = new TextureRegion(heroIdleLeft);
+		heroIdleLeft.flip(true, false);
 		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
 		
 		TextureRegion[] walkRightFrames = new TextureRegion[17];
@@ -101,12 +101,17 @@ public class WorldRenderer {
 			walkLeftFrames[i] = new TextureRegion(walkRightFrames[i]);
 			walkLeftFrames[i].flip(true, false);
 		}
+		
 		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
-		heroJumpLeft = atlas.findRegion(""); //TODO
+		
+		
+		TextureAtlas jump = new TextureAtlas(Gdx.files.internal("images/characterpng/jump/jump.pack"));
+		
+		heroJumpLeft = atlas.findRegion("1"); //TODO
 		heroJumpRight = new TextureRegion(heroJumpLeft);
 		heroJumpRight.flip(true, false);
 		
-		heroFallLeft = atlas.findRegion("hero-down");
+		heroFallLeft = atlas.findRegion("1");
 		heroFallRight = new TextureRegion(heroFallLeft);
 		heroFallRight.flip(true, false);
 	}
@@ -153,10 +158,14 @@ public class WorldRenderer {
 	/**
 	 * Dibuja los bloques que delimitan el mapa
 	 */
-	private void drawTiles() {
-		for(Tile tile : world.getTiles()) {
-			spriteBatch.draw(tileTexture, tile.getPosition().x*ppuX, tile.getPosition().y*ppuY, tile.SIZE*ppuX, tile.SIZE*ppuY);
+	private void drawCollisionBlocks() {
+		debugRenderer.setProjectionMatrix(cam.combined);
+		debugRenderer.begin(ShapeType.FilledRectangle);
+		debugRenderer.setColor(new Color(1, 1, 1, 1));
+		for (Rectangle rect : world.getCollisionRects()) {
+			debugRenderer.filledRect(rect.x, rect.y, rect.width, rect.height);
 		}
+		debugRenderer.end();
 	}
 	
 	/**

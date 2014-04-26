@@ -83,7 +83,7 @@ public class WorldController {
 		processInput();
 		
 		hero.getAcceleration().y = GRAVITY;
-		hero.getAcceleration().mul(delta);
+		hero.getAcceleration().scl(delta);
 		hero.getVelocity().add(hero.getAcceleration().x, hero.getAcceleration().y);
 		if (hero.getAcceleration().x == 0) hero.getVelocity().x *= DAMP;
 		if (hero.getVelocity().x > MAX_VEL) {

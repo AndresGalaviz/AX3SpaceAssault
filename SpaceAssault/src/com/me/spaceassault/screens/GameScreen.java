@@ -1,5 +1,6 @@
 package com.me.spaceassault.screens;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -110,22 +111,34 @@ public class GameScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
-		if (x < width / 2 && y > height / 2) {
+		if (!Gdx.app.getType().equals(ApplicationType.Android)){
+			return false;
+		}		
+		if (x < height / 2) {
 			controller.leftPressed();
 		}
-		if (x > width / 2 && y > height / 2) {
+		if (x > width / 2) {
 			controller.rightPressed();
+		}
+		if(y < height / 2){
+			controller.jumpPressed();
 		}
 		return true;
 	}
 
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
-		if (x < width / 2 && y > height / 2) {
+		if (!Gdx.app.getType().equals(ApplicationType.Android)){
+			return false;
+		}
+		if (x < height / 2) {
 			controller.leftReleased();
 		}
-		if (x > width / 2 && y > height / 2) {
+		if (x > width / 2) {
 			controller.rightReleased();
+		}
+		if(y < height / 2){
+			controller.jumpReleased();
 		}
 		return true;
 	}
