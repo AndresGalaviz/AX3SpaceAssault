@@ -177,6 +177,7 @@ public class WorldRenderer {
 	 * Dibuja el personaje principal
 	 */
 	private void drawHero() {
+		
 		Hero hero = world.getHero();
 		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
 		if(hero.getState().equals(Hero.State.WALK)) {

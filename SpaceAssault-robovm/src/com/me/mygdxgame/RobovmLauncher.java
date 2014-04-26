@@ -5,7 +5,6 @@ import org.robovm.cocoatouch.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.me.spaceassault.SpaceAssault;
 
 
 public class RobovmLauncher extends IOSApplication.Delegate {
