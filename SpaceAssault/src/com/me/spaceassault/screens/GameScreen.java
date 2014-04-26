@@ -111,15 +111,15 @@ public class GameScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
-		if (!Gdx.app.getType().equals(ApplicationType.Android)){
+		if (!Gdx.app.getType().equals(ApplicationType.Android)) {
 			return false;
 		}		
 		if (x < width / 3) {
 			if(!controller.isRightOn())
 				controller.leftPressed();
-		} else if (x > width / 3 && x < 2*width/3 ) {
+		} else if (x < 2*width/3 ) {
 			controller.firePressed();
-		} else{
+		} else {
 			controller.rightPressed();
 		}
 		if(y < height / 2){
@@ -130,13 +130,13 @@ public class GameScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
-		if (!Gdx.app.getType().equals(ApplicationType.Android)){
+		if (!Gdx.app.getType().equals(ApplicationType.Android)) {
 			return false;
 		}
 		if (x < width / 3) {
 			if(!controller.isRightOn())
-			controller.leftReleased();
-		} else if (x > width / 3 && x < 2*width/3 ) {
+				controller.leftReleased();
+		} else if (x < 2*width/3 ) {
 			controller.fireReleased();
 		} else{
 			controller.rightReleased();
@@ -155,12 +155,14 @@ public class GameScreen implements Screen, InputProcessor {
 		if (x < width / 3) {
 			if(!controller.isRightOn())
 				controller.leftPressed();
-		} else if (x > width / 3 && x < 2*width/3 ) {
+		} else if (x < 2*width/3 ) {
+			controller.leftReleased();
+			controller.rightReleased();
 			controller.firePressed();
-		} else{
+		} else {
 			controller.rightPressed();
 		}
-		if(y < height / 2){
+		if (y < height / 2) {
 			controller.jumpPressed();
 		}
 		return false;
