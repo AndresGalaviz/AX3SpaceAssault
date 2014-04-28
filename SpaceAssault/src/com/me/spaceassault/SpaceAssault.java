@@ -12,6 +12,6 @@ public class SpaceAssault extends Game {
 	@Override
 	public void create() {
 		setScreen(new SplashScreen());
-		setScreen(new GameScreen());
+		//setScreen(new GameScreen());
 	}
 }
