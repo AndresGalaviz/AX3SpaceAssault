@@ -73,7 +73,7 @@ public class World {
      * Metodo que coloca objetos en el mundo
      */
 	private void createDemoWorld() {
-		hero = new Hero(new Vector2(6,26));
+		hero = new Hero(new Vector2(4,26));
 		
 		level = new Level();
 	}
