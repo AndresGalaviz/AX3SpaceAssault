@@ -38,6 +38,7 @@ public class WorldRenderer {
     private Texture tileTexture;
     private TextureRegion heroFrame;
 
+    private boolean first;
     /** Animations **/
     private Animation walkLeftAnimation;
     private Animation walkRightAnimation;
@@ -69,7 +70,7 @@ public class WorldRenderer {
 	 * @param debug, si esta en modo debug o no
 	 */
 	public WorldRenderer(World world, boolean debug) {
-	    
+	    this.first = true;
 	    this.world = world;
 	    this.cam = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
 	    this.cam.setToOrtho(false,CAMERA_WIDTH,CAMERA_HEIGHT);
@@ -145,8 +146,12 @@ public class WorldRenderer {
 
 	public void moveCamera(float x,float y){
 		Hero hero = world.getHero();
-	    
-	    cam.position.set(x, y, 0);
+		if (hero.getPosition().x > CAMERA_WIDTH / 2 &&  hero.getPosition().x < world.getLevel().getWidth() - CAMERA_WIDTH/2){
+	    	cam.position.x = x;
+		} 
+		if (hero.getPosition().y > CAMERA_HEIGHT/2 &&  hero.getPosition().y < world.getLevel().getHeight() - CAMERA_HEIGHT/2 ){
+	    	cam.position.y = y;
+		} 
 	    cam.update();
 	    
 
