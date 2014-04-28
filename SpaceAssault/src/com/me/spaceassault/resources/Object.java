@@ -3,9 +3,8 @@ package com.me.spaceassault.resources;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+public class Object {
 
-public class Hero {
-	
 	// character states
 	public enum State {
 		IDLE,
@@ -26,7 +25,7 @@ public class Hero {
 	State state = State.IDLE;
 	float stateTime = 0;
 	
-	public Hero(Vector2 position) {
+	public Object(Vector2 position) {
 		this.pos = position;
 		this.bounds.x = position.x;
 		this.bounds.y = position.y;
@@ -34,7 +33,7 @@ public class Hero {
 		this.bounds.width = SIZE;
 	}
 	
-	public Hero getHero() {
+	public Object getObject() {
 		return this;
 	}
 	
@@ -123,8 +122,4 @@ public class Hero {
 		this.bounds.setY(position.y);
 	}
 	
-
-	
-	
-
 }
