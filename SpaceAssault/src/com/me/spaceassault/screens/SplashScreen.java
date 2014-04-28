@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class SplashScreen implements Screen{
 	
 	private Sprite splash;
 	private SpriteBatch batch;
+	private Texture SplashTexture;
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
@@ -30,7 +32,9 @@ public class SplashScreen implements Screen{
 	public void show() {
 		// TODO Auto-generated method stub
 		batch = new SpriteBatch();
-		Texture SplashTexture = new Texture(Gdx.files.internal("/images/splashScreens/AX3GameStudios.png"));
+		SplashTexture = new Texture(Gdx.files.internal("/images/splashScreens/AX3.png"));
+		
+		
 		splash = new Sprite(SplashTexture);
 		splash.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 	}
