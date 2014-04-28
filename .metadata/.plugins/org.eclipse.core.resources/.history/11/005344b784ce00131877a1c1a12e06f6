@@ -1,7 +1,7 @@
 package com.me.spaceassault.tween;
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-//COMMENT INNECESARIO
+
 public class SpriteAccessor implements TweenAccessor<Sprite> {
 
 public static final int ALPHA = 0;
