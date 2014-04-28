@@ -24,6 +24,7 @@ public class Object {
 	boolean dir_left = true;
 	State state = State.IDLE;
 	float stateTime = 0;
+	protected int life;
 	
 	public Object(Vector2 position) {
 		this.pos = position;

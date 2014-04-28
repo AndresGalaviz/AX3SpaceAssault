@@ -6,6 +6,7 @@ import java.util.Map;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
+import com.me.spaceassault.resources.BadGuy;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
@@ -31,6 +32,7 @@ public class WorldController {
 	private Hero hero;
 	private long jumpPressedTime;
 	private boolean jumpingPressed;
+	private BadGuy badGuy;
 	private static final float WIDTH = 10f;
 	private Array<Tile> collidable = new Array<Tile>();
 	
@@ -54,6 +56,7 @@ public class WorldController {
     public WorldController(World world) {
     	this.world = world;
     	this.hero = world.getHero();
+    	this.badGuy = world.getBadGuy();
     }
     
 	public void leftPressed() {
@@ -120,6 +123,9 @@ public class WorldController {
 			hero.getVelocity().x = -MAX_VEL;
 		}
 		hero.update(delta);
+		
+		
+		
 	}
 	
 	/** Collision checking **/

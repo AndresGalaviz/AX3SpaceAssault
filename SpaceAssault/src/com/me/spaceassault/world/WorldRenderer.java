@@ -1,5 +1,6 @@
 package com.me.spaceassault.world;
 
+import com.me.spaceassault.resources.BadGuy;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
@@ -129,6 +130,7 @@ public class WorldRenderer {
 	    spriteBatch.begin();
 	        drawTiles();
 	        drawHero();
+	        drawBadGuy();
 	    spriteBatch.end();
 	    //if (debug) drawDebug();
 	}
@@ -205,5 +207,11 @@ public class WorldRenderer {
 			}
 		}
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.SIZE , hero.SIZE);
+	}
+	
+	private void drawBadGuy() {
+		BadGuy badGuy = world.getBadGuy();
+		spriteBatch.draw(heroIdleLeft, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.SIZE, badGuy.SIZE);
+			
 	}
 }
