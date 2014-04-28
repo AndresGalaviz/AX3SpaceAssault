@@ -10,7 +10,7 @@ public class SplashScreen implements Screen{
 	
 	private Sprite splash;
 	private SpriteBatch batch;
-	private Texture SplashTexture;
+	Texture SplashTexture;
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
@@ -32,7 +32,7 @@ public class SplashScreen implements Screen{
 	public void show() {
 		// TODO Auto-generated method stub
 		batch = new SpriteBatch();
-		SplashTexture = new Texture(Gdx.files.internal("/images/splashScreens/AX3.png"));
+		SplashTexture = new Texture(Gdx.files.internal("data/AX3GameStudios.png"));
 		
 		
 		splash = new Sprite(SplashTexture);
