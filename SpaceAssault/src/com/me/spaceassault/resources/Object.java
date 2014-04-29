@@ -24,7 +24,7 @@ public class Object {
 	Vector2 accel = new Vector2(); 
 	Vector2 vel = new Vector2(); 
 	Rectangle bounds = new Rectangle();
-	boolean dir_left = true;
+	private boolean dir_left = true;
 	State state = State.IDLE;
 	float stateTime = 0;
 	protected int life;

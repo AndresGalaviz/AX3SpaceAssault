@@ -146,6 +146,16 @@ public class WorldController {
 				}
 			}
 		}
+		
+		for (BadGuy badGuy : badGuys) {
+			badGuy.getAcceleration().y = GRAVITY;
+			badGuy.getAcceleration().scl(delta);
+			badGuy.getVelocity().add(0, badGuy.getAcceleration().y);
+			checkCollisionBadGuyTiles(badGuy, delta);
+			if (checkCollisionWithBadGuy(badGuy)) {
+				// TODO GAMEOVER
+			}
+		}
 	}
 	
 	/** Collision checking **/
@@ -286,6 +296,87 @@ public class WorldController {
 	
 	private boolean checkCollisionBulletBadGuy(Bullet bullet, BadGuy badGuy) {
 		return bullet.getBounds().overlaps(badGuy.getBounds());
+	}
+	
+	private boolean checkCollisionWithBadGuy(BadGuy badGuy) {
+		return hero.getBounds().overlaps(badGuy.getBounds());
+	}
+
+	private void checkCollisionBadGuyTiles(BadGuy badGuy, float delta) {
+		// scale velocity to frame units 
+		badGuy.getVelocity().scl(delta);
+
+		// Obtain the rectangle from the pool instead of instantiating it
+		Rectangle badGuyRect = rectPool.obtain();
+		// set the rectangle to badGuy's bounding box
+		badGuyRect.set(badGuy.getBounds().x, badGuy.getBounds().y, badGuy.getBounds().width, badGuy.getBounds().height);
+
+		// we first check the movement on the horizontal X axis
+		int startX, endX;
+		int startY = (int) badGuy.getBounds().y;
+		int endY = (int) (badGuy.getBounds().y + badGuy.getBounds().height);
+		// if badGuy is heading left then we check if he collides with the tile on his left
+		// we check the tile on his right otherwise
+		if (badGuy.getVelocity().x < 0) {
+			startX = endX = (int) Math.floor(badGuy.getBounds().x + badGuy.getVelocity().x);
+		} else {
+			startX = endX = (int) Math.floor(badGuy.getBounds().x + badGuy.getBounds().width + badGuy.getVelocity().x);
+		}
+
+		// get the tile(s) badGuy can collide with
+		populateCollidableTiles(startX, startY, endX, endY);
+
+		// simulate badGuy's movement on the X
+		badGuyRect.x += badGuy.getVelocity().x;
+
+		// clear collision boxes in world
+		world.getCollisionRects().clear();
+
+		// if badGuy collides, make his horizontal velocity 0
+		for (Tile tile : collidable) {
+			if (tile == null) continue;
+			if (badGuyRect.overlaps(tile.getBounds())) {
+				badGuy.getVelocity().x = -badGuy.getVelocity().x;
+				badGuy.setFacingLeft(!badGuy.isFacingLeft());
+				world.getCollisionRects().add(tile.getBounds());
+				break;
+			}
+		}
+
+		// reset the x position of the collision box
+		badGuyRect.x = badGuy.getPosition().x;
+
+		// the same thing but on the vertical Y axis
+		startX = (int) badGuy.getBounds().x;
+		endX = (int) (badGuy.getBounds().x + badGuy.getBounds().width);
+		if (badGuy.getVelocity().y < 0) {
+			startY = endY = (int) Math.floor(badGuy.getBounds().y + badGuy.getVelocity().y);
+		} else {
+			startY = endY = (int) Math.floor(badGuy.getBounds().y + badGuy.getBounds().height + badGuy.getVelocity().y);
+		}
+
+		populateCollidableTiles(startX, startY, endX, endY);
+
+		badGuyRect.y += badGuy.getVelocity().y;
+
+		for (Tile tile : collidable) {
+			if (tile == null) continue;
+			if (badGuyRect.overlaps(tile.getBounds())) {
+				badGuy.getVelocity().y = 0;
+				world.getCollisionRects().add(tile.getBounds());
+				break;
+			}
+		}
+		// reset the collision box's position on Y
+		badGuyRect.y = badGuy.getPosition().y;
+
+		// update badGuy's position
+		badGuy.getPosition().add(badGuy.getVelocity());
+		badGuy.getBounds().x = badGuy.getPosition().x;
+		badGuy.getBounds().y = badGuy.getPosition().y;
+
+		// un-scale velocity (not in frame time)
+		badGuy.getVelocity().scl(1 / delta);
 	}
 	
 	/** populate the collidable array with the blocks found in the enclosing coordinates **/

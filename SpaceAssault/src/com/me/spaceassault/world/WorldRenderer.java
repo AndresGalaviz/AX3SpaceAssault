@@ -217,8 +217,10 @@ public class WorldRenderer {
 	
 	private void drawBadGuys() {
 		Array<BadGuy> badGuys = world.getBadGuys();
+		TextureRegion badGuyFrame;
 		for (BadGuy badGuy : badGuys) {
-			spriteBatch.draw(heroIdleLeft, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
+			badGuyFrame = badGuy.isFacingLeft() ? walkLeftAnimation.getKeyFrame(world.getHero().getStateTime(), true) : walkRightAnimation.getKeyFrame(world.getHero().getStateTime(), true); 
+			spriteBatch.draw(badGuyFrame, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
 		}
 	}
 	

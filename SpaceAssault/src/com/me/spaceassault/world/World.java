@@ -88,9 +88,10 @@ public class World {
      */
 	private void createDemoWorld() {
 
-		hero = new Hero(new Vector2(4,24));
+		hero = new Hero(new Vector2(3,24)); // 4 24
 		badGuys.add(new BadGuy(new Vector2(10,1), 12));
-		badGuys.add(new BadGuy(new Vector2(10,26), 16));
+		badGuys.add(new BadGuy(new Vector2(5,24), 16));
+		badGuys.add(new BadGuy(new Vector2(15,24), 10));
 		level = new Level();
 	}
 }
