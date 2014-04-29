@@ -117,8 +117,9 @@ public class InstructionsScreen implements Screen {
 		table.getCell(heading).spaceBottom(60);
 		table.row();
 		table.add(buttonDesktop);
-		table.row();
+		table.getCell(buttonDesktop).spaceRight(0);
 		table.add(buttonAndroid);
+		table.getCell(buttonAndroid).spaceLeft(0);
 		table.row();
 		table.add(buttonBack);
 		table.debug(); //remove later

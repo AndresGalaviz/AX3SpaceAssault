@@ -30,6 +30,5 @@ INDEX VERSION 1.126+C:\Users\Andrés\Documents\GitHub\AX3SpaceAssault\.metadata\.
 2199686502.index
 3394746021.index
 3843445042.index
-1954242073.index
 1965605466.index
 3974580528.index

@@ -73,7 +73,7 @@ public class InstructionsScreen implements Screen {
 		textButtonStyle.font = black;
 	
 		
-		buttonDesktop = new TextButton("Desktop",textButtonStyle);
+		buttonDesktop = new TextButton("Back",textButtonStyle);
 		buttonDesktop.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
@@ -82,7 +82,7 @@ public class InstructionsScreen implements Screen {
 		});
 		buttonDesktop.pad(15);
 		
-		buttonAndroid = new TextButton("Android",textButtonStyle);
+		buttonAndroid = new TextButton("Back",textButtonStyle);
 		buttonAndroid.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
@@ -117,7 +117,6 @@ public class InstructionsScreen implements Screen {
 		table.getCell(heading).spaceBottom(60);
 		table.row();
 		table.add(buttonDesktop);
-		table.row();
 		table.add(buttonAndroid);
 		table.row();
 		table.add(buttonBack);

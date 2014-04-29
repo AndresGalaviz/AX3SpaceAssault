@@ -80,7 +80,7 @@ public class InstructionsScreen implements Screen {
 				((Game) Gdx.app.getApplicationListener()).setScreen(new InstructionsDesktopScreen());
 			}
 		});
-		buttonDesktop.pad(15);
+		buttonDesktop.pad(0);
 		
 		buttonAndroid = new TextButton("Android",textButtonStyle);
 		buttonAndroid.addListener(new ClickListener(){
@@ -117,7 +117,6 @@ public class InstructionsScreen implements Screen {
 		table.getCell(heading).spaceBottom(60);
 		table.row();
 		table.add(buttonDesktop);
-		table.row();
 		table.add(buttonAndroid);
 		table.row();
 		table.add(buttonBack);
