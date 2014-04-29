@@ -1,7 +1,6 @@
 package com.me.spaceassault.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -76,6 +75,7 @@ public class MenuScreen implements Screen {
 		
 		buttonExit = new TextButton("Exit", textButtonStyle);
 		buttonExit.addCaptureListener(new ClickListener(){
+			@Override
 			public void clicked(InputEvent event, float x, float y){
 				Gdx.app.exit();
 			}
@@ -84,6 +84,7 @@ public class MenuScreen implements Screen {
 		
 		buttonPlay = new TextButton("Play",textButtonStyle);
 		buttonPlay.addListener(new ClickListener(){
+			@Override
 			public void clicked(InputEvent event, float x, float y){
 				((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
 			}

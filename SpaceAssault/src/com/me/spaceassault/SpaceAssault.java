@@ -1,7 +1,5 @@
 package com.me.spaceassault;
 
-import com.me.spaceassault.screens.GameScreen;
-import com.me.spaceassault.screens.MenuScreen;
 import com.me.spaceassault.screens.SplashScreen;
 import com.badlogic.gdx.Game;
 

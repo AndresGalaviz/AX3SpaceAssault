@@ -47,7 +47,7 @@ public class Level {
 	private void loadDemoLevelFile(String fileName) {
 		FileHandle handle = Gdx.files.internal(fileName);
 		String fileContent = handle.readString();
-		fileContent = fileContent.replace("\n", "").replace("\r", " ");
+		
 		String[] splitResult = fileContent.split(" ");
 		
 		width = Integer.valueOf(splitResult[0]);
@@ -57,7 +57,9 @@ public class Level {
 		for (int i = 2; i < splitResult.length; i += 2) {
 			int a = Integer.valueOf(splitResult[i]);
 			int b = Integer.valueOf(splitResult[i+1]);
+			System.out.println(a);
 			tiles[a][b] = new Tile(new Vector2(a, b));
+			
 		}
 		System.out.println();
 	}

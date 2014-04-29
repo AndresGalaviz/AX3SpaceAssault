@@ -172,6 +172,8 @@ public class GameScreen implements Screen, InputProcessor {
 		if (y < height / 2) {
 
 			controller.jumpPressed();
+		} else {
+			controller.jumpReleased();
 		}
 		return false;
 	}

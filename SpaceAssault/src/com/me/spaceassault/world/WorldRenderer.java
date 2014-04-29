@@ -63,8 +63,8 @@ public class WorldRenderer {
 	public void setSize (int w, int h) {
 		this.width = w;
 		this.height = h;
-		ppuX = (float)width/CAMERA_WIDTH;
-		ppuY = (float)height/CAMERA_HEIGHT;
+		ppuX = width/CAMERA_WIDTH;
+		ppuY = height/CAMERA_HEIGHT;
 	}
 	
 

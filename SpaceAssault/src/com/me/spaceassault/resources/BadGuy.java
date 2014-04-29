@@ -16,6 +16,7 @@ public class BadGuy extends Object{
 		this.moving = moving;
 	}
 	
+	@Override
 	public void setFacingLeft(boolean facingLeft) {
 		this.facingLeft = facingLeft;
 	}
