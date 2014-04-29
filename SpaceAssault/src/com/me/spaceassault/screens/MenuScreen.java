@@ -22,7 +22,7 @@ public class MenuScreen implements Screen {
 	private TextureAtlas atlas;
 	private Skin skin;
 	private Table table;
-	private TextButton buttonPlay, buttonExit;
+	private TextButton buttonPlay, buttonExit, buttonCredits, buttonInstructions;
 	private BitmapFont white, black;
 	private Label heading;
 	
@@ -73,14 +73,6 @@ public class MenuScreen implements Screen {
 		textButtonStyle.font = black;
 	
 		
-		buttonExit = new TextButton("Exit", textButtonStyle);
-		buttonExit.addCaptureListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y){
-				Gdx.app.exit();
-			}
-		});
-		buttonExit.pad(20);
 		
 		buttonPlay = new TextButton("Play",textButtonStyle);
 		buttonPlay.addListener(new ClickListener(){
@@ -90,6 +82,34 @@ public class MenuScreen implements Screen {
 			}
 		});
 		buttonPlay.pad(15);
+		
+		buttonInstructions = new TextButton("Instructions",textButtonStyle);
+		buttonInstructions.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				((Game) Gdx.app.getApplicationListener()).setScreen(new InstructionsScreen());
+			}
+		});
+		buttonInstructions.pad(15);
+		
+		buttonCredits = new TextButton("Credits",textButtonStyle);
+		buttonCredits.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				((Game) Gdx.app.getApplicationListener()).setScreen(new CreditsScreen());
+			}
+		});
+		buttonCredits.pad(15);
+		
+		buttonExit = new TextButton("Exit", textButtonStyle);
+		buttonExit.addCaptureListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				Gdx.app.exit();
+			}
+		});
+		buttonExit.pad(20);
+		
 		
 		//creating heading
 		LabelStyle headingStyle = new LabelStyle(white, Color.WHITE);
@@ -104,6 +124,10 @@ public class MenuScreen implements Screen {
 		table.add(buttonPlay);
 		table.row();
 		table.add(buttonExit);
+		table.row();
+		table.add(buttonCredits);
+		table.row();
+		table.add(buttonInstructions);
 		table.debug(); //remove later
 		stage.addActor(table);
 		

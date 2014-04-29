@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="aurelienribon.tweenengine.TweenManager"/>
+<fullyQualifiedTypeName name="aurelienribon.tweenengine.Tween"/>
+<fullyQualifiedTypeName name="com.me.spaceassault.tween.SpriteAccessor"/>
+<fullyQualifiedTypeName name="aurelienribon.tweenengine.BaseTween"/>
+<fullyQualifiedTypeName name="aurelienribon.tweenengine.TweenCallback"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.Stage"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Table"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.TextButton"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Label"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Skin"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.g2d.BitmapFont"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.g2d.TextureAtlas"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.Gdx"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.GL20"/>
+<fullyQualifiedTypeName name="com.me.spaceassault.screens.MenuScreen"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.Color"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.InputEvent"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.scenes.scene2d.utils.ClickListener"/>
+</qualifiedTypeNameHistroy>
