@@ -6,6 +6,7 @@ public class Bullet extends Object {
 	private static final float SPEED = .2f;
 	
 	public Bullet(Hero hero) {
+		// useless comment
 		super(new Vector2(hero.getPosition()), .4f, .1f, SPEED);
 		setFacingLeft(hero.isFacingLeft());
 		getPosition().y += hero.HEIGHT/2 - HEIGHT;
