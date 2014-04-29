@@ -7,6 +7,11 @@ public class BadGuy extends Object{
 	private boolean moving;
 	private boolean facingLeft;
 	
+	/**
+	 * Metodo constructor para los enemigos del personaje
+	 * @param position
+	 * @param life
+	 */
 	public BadGuy(Vector2 position, int life) {
 		super (position, 0.8f, 0.8f, SPEED, life);
 		getVelocity().x = -SPEED;

@@ -44,6 +44,10 @@ public class Level {
 		return tiles[x][y];
 	}
 
+	/**
+	 * Lee el archivo que contiene informacion del mapa
+	 * @param fileName nombre del archivo
+	 */
 	private void loadDemoLevelFile(String fileName) {
 		FileHandle handle = Gdx.files.internal(fileName);
 		String fileContent = handle.readString();

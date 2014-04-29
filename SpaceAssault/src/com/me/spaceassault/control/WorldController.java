@@ -159,6 +159,11 @@ public class WorldController {
 	}
 	
 	/** Collision checking **/
+	
+	/**
+	 * Colision de Hero con Tiles
+	 * @param delta
+	 */
 	private void checkCollisionWithTiles(float delta) {
 		// scale velocity to frame units 
 		hero.getVelocity().scl(delta);
@@ -239,6 +244,12 @@ public class WorldController {
 
 	}
 	
+	/**
+	 * Colision de una bala con los tiles
+	 * @param bullet bala
+	 * @param delta
+	 * @return
+	 */
 	private boolean checkCollisionBulletTiles(Bullet bullet, float delta) {
 		boolean collides = false;
 		
@@ -294,14 +305,30 @@ public class WorldController {
 		return collides;
 	}
 	
+	/**
+	 * Colision de una bala del personaje con un enemigo
+	 * @param bullet
+	 * @param badGuy
+	 * @return
+	 */
 	private boolean checkCollisionBulletBadGuy(Bullet bullet, BadGuy badGuy) {
 		return bullet.getBounds().overlaps(badGuy.getBounds());
 	}
 	
+	/**
+	 * Colision de personaje con enemigos
+	 * @param badGuy enemigo
+	 * @return
+	 */
 	private boolean checkCollisionWithBadGuy(BadGuy badGuy) {
 		return hero.getBounds().overlaps(badGuy.getBounds());
 	}
 
+	/**
+	 * Colision de enemigos con los tiles
+	 * @param badGuy
+	 * @param delta
+	 */
 	private void checkCollisionBadGuyTiles(BadGuy badGuy, float delta) {
 		// scale velocity to frame units 
 		badGuy.getVelocity().scl(delta);
@@ -391,7 +418,6 @@ public class WorldController {
 		}
 	}
 
-	/** Change hero's state and parameters based on input controls **/
 	/** Change hero's state and parameters based on input controls **/
 	private boolean processInput() {
 		if (keys.get(Keys.JUMP)) {

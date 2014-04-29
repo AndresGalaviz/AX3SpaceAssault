@@ -126,16 +126,28 @@ public class Object {
 		return dir_left;
 	}
 	
+	/**
+	 * Actualiza el vector posicion
+	 * @param position
+	 */
 	public void setPosition(Vector2 position) {
 		pos = position;
 		this.bounds.setX(position.x);
 		this.bounds.setY(position.y);
 	}
 	
+	/**
+	 * Regresa cuanta vida tiene el objeto
+	 * @return
+	 */
 	public int getLife() {
 		return life;
 	}
 	
+	/**
+	 * Establece el valor de life
+	 * @param l
+	 */
 	public void setLife(int l) {
 		life = l;
 	}

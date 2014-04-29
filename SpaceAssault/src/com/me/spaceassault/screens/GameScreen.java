@@ -78,6 +78,9 @@ public class GameScreen implements Screen, InputProcessor {
         Gdx.input.setInputProcessor(null);
 	}
 
+	/**
+	 * Lo que se hace cuando se presiona una tecla
+	 */
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.LEFT)
@@ -91,6 +94,9 @@ public class GameScreen implements Screen, InputProcessor {
 		return true;
 	}
 
+	/**
+	 * Lo que hace al liberar una tecla
+	 */
 	@Override
 	public boolean keyUp(int keycode) {
 		if (keycode == Keys.LEFT)
@@ -110,6 +116,9 @@ public class GameScreen implements Screen, InputProcessor {
 		return false;
 	}
 
+	/**
+	 * Lo que hace al tocar la pantalla
+	 */
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) {
 		if (!Gdx.app.getType().equals(ApplicationType.Android)) {
@@ -129,6 +138,9 @@ public class GameScreen implements Screen, InputProcessor {
 		return true;
 	}
 
+	/**
+	 * Lo que hace al dejar de tocar la pantalla
+	 */
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
 		if (!Gdx.app.getType().equals(ApplicationType.Android)) {
@@ -147,7 +159,11 @@ public class GameScreen implements Screen, InputProcessor {
 		}
 		return true;
 	}
-
+	
+	
+	/**
+	 * Lo que hace cuando se arrastra el dedo en la pantalla
+	 */
 	@Override
 	public boolean touchDragged(int x, int y, int pointer) {
 		if (!Gdx.app.getType().equals(ApplicationType.Android)){

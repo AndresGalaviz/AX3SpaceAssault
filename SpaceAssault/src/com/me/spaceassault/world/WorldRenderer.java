@@ -141,6 +141,9 @@ public class WorldRenderer {
 	    //if (debug) drawDebug();
 	}
 	
+	/**
+	 * Sirve para modo debug
+	 */
 	private void drawCollisionBlocks() {
 		debugRenderer.setProjectionMatrix(cam.combined);
 		debugRenderer.begin(ShapeType.Filled);
@@ -152,6 +155,11 @@ public class WorldRenderer {
 
 	}
 
+	/**
+	 * Mueve la camara para que siga al personaje, y la limita al tamaño del mundo
+	 * @param x
+	 * @param y
+	 */
 	public void moveCamera(float x,float y){
 		Hero hero = world.getHero();
 		if (hero.getPosition().x > CAMERA_WIDTH / 2 &&  hero.getPosition().x < world.getLevel().getWidth() - CAMERA_WIDTH/2){
@@ -215,6 +223,9 @@ public class WorldRenderer {
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
 	}
 	
+	/**
+	 * Dibuja el arreglo de enemigos
+	 */
 	private void drawBadGuys() {
 		Array<BadGuy> badGuys = world.getBadGuys();
 		TextureRegion badGuyFrame;
@@ -224,6 +235,9 @@ public class WorldRenderer {
 		}
 	}
 	
+	/**
+	 * Dibuja las balas
+	 */
 	private void drawBullets() {
 		Array<Bullet> bullets = world.getBullets();
 		for (Bullet bullet : bullets) {
