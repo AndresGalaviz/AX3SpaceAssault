@@ -135,7 +135,7 @@ public class WorldRenderer {
 	    spriteBatch.begin();
 	        drawTiles();
 	        drawHero();
-	        drawBadGuy();
+	        drawBadGuys();
 	        drawBullets();
 	    spriteBatch.end();
 	    //if (debug) drawDebug();
@@ -215,10 +215,11 @@ public class WorldRenderer {
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
 	}
 	
-	private void drawBadGuy() {
-		BadGuy badGuy = world.getBadGuy();
-		spriteBatch.draw(heroIdleLeft, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
-			
+	private void drawBadGuys() {
+		Array<BadGuy> badGuys = world.getBadGuys();
+		for (BadGuy badGuy : badGuys) {
+			spriteBatch.draw(heroIdleLeft, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
+		}
 	}
 	
 	private void drawBullets() {
