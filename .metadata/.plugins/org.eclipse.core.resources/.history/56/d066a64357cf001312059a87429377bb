@@ -16,9 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-public class InstructionsAndroidScreen implements Screen {
+public class InstructionsDesktopScreen implements Screen {
 
-	//comment innecesario
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin;
@@ -104,9 +103,9 @@ public class InstructionsAndroidScreen implements Screen {
 		heading.setFontScale(2);
 		
 		
-		name1 = new Label("Touch upper screen - Jumping",nameStyle);
-		name2 = new Label("Touch sides - Movement",nameStyle);
-		name3 = new Label("Touch middle down screen - Shooting",nameStyle);
+		name1 = new Label("Z - Jumping",nameStyle);
+		name2 = new Label("Arrows - Movement",nameStyle);
+		name3 = new Label("X - Shooting",nameStyle);
 		name1.setFontScale((float) .5);
 		name2.setFontScale((float) .5);
 		name3.setFontScale((float) .5);

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class InstructionsDesktopScreen implements Screen {
 
+	//comment innecesario
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin;
