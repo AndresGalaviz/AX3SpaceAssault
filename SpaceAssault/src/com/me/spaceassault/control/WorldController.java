@@ -241,12 +241,11 @@ public class WorldController {
 		}
 
 		// get the tile(s) bullet can collide with
-		//populateCollidableTiles(startX, startY, endX, endY);
+		populateCollidableTiles(startX, startY, endX, endY);
 
 		// simulate bullet's movement on the X
 		bulletRect.x += bullet.getVelocity().x;
 
-		/*
 		
 		// clear collision boxes in world
 		world.getCollisionRects().clear();
@@ -261,8 +260,6 @@ public class WorldController {
 			}
 		}
 
-		*/
-
 		// reset the x position of the collision box
 		bulletRect.x = bullet.getPosition().x;
 		
@@ -271,7 +268,7 @@ public class WorldController {
 		// update bullet's position
 		bullet.getPosition().add(bullet.getVelocity());
 		bullet.getBounds().x = bullet.getPosition().x;
-		
+	
 		return collides;
 	}
 	
