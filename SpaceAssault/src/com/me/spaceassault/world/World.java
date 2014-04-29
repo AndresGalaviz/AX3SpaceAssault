@@ -86,8 +86,8 @@ public class World {
      */
 	private void createDemoWorld() {
 
-		hero = new Hero(new Vector2(6,26));
-		badGuy = new BadGuy(new Vector2(10,2), 12);
+		hero = new Hero(new Vector2(4,26));
+		badGuy = new BadGuy(new Vector2(10,1), 12);
 
 		level = new Level();
 	}
