@@ -33,7 +33,7 @@ public class WorldController {
 	private Hero hero;
 	private long jumpPressedTime;
 	private boolean jumpingPressed;
-	private BadGuy badGuy;
+	private Array<BadGuy> badGuys;
 	private static final float WIDTH = 10f;
 	private Array<Bullet> bullets;
 	private Array<Tile> collidable = new Array<Tile>();
@@ -58,7 +58,7 @@ public class WorldController {
     public WorldController(World world) {
     	this.world = world;
     	this.hero = world.getHero();
-    	this.badGuy = world.getBadGuy();
+    	this.badGuys = world.getBadGuys();
     	this.bullets = world.getBullets();
     }
     
@@ -132,6 +132,18 @@ public class WorldController {
 				bullets.removeValue(bullet, true);
 			} else {
 				bullet.update(delta);
+			}
+		}
+		
+		for (Bullet bullet : bullets) {
+			for (BadGuy badGuy : badGuys) {
+				if (checkCollisionBulletBadGuy(bullet, badGuy)) {
+					badGuy.setLife(badGuy.getLife() - 5);
+					bullets.removeValue(bullet, true);
+					if (badGuy.getLife() <= 0) {
+						badGuys.removeValue(badGuy, true);
+					}
+				}
 			}
 		}
 	}
@@ -241,12 +253,11 @@ public class WorldController {
 		}
 
 		// get the tile(s) bullet can collide with
-		//populateCollidableTiles(startX, startY, endX, endY);
+		populateCollidableTiles(startX, startY, endX, endY);
 
 		// simulate bullet's movement on the X
 		bulletRect.x += bullet.getVelocity().x;
 
-		/*
 		
 		// clear collision boxes in world
 		world.getCollisionRects().clear();
@@ -261,8 +272,6 @@ public class WorldController {
 			}
 		}
 
-		*/
-
 		// reset the x position of the collision box
 		bulletRect.x = bullet.getPosition().x;
 		
@@ -271,8 +280,12 @@ public class WorldController {
 		// update bullet's position
 		bullet.getPosition().add(bullet.getVelocity());
 		bullet.getBounds().x = bullet.getPosition().x;
-		
+	
 		return collides;
+	}
+	
+	private boolean checkCollisionBulletBadGuy(Bullet bullet, BadGuy badGuy) {
+		return bullet.getBounds().overlaps(badGuy.getBounds());
 	}
 	
 	/** populate the collidable array with the blocks found in the enclosing coordinates **/

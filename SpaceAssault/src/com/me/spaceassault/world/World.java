@@ -21,7 +21,6 @@ public class World {
 	
 	Hero hero;
 	Level level;
-	BadGuy badGuy;
 	/*Cajas de colision*/
 	
 	Array<Rectangle> collisionRects = new Array<Rectangle>();
@@ -41,11 +40,8 @@ public class World {
     	return level;
     }
     
-    public Array<BadGuy> getBdadGuys() {
+    public Array<BadGuy> getBadGuys() {
     	return badGuys;
-    }
-    public BadGuy getBadGuy() {
-    	return badGuy;
     }
     
     public Array<Bullet> getBullets() {
@@ -92,9 +88,9 @@ public class World {
      */
 	private void createDemoWorld() {
 
-		hero = new Hero(new Vector2(4,26));
-		badGuy = new BadGuy(new Vector2(10,1), 12);
-
+		hero = new Hero(new Vector2(4,24));
+		badGuys.add(new BadGuy(new Vector2(10,1), 12));
+		badGuys.add(new BadGuy(new Vector2(10,26), 16));
 		level = new Level();
 	}
 }

@@ -29,13 +29,18 @@ public class Object {
 	float stateTime = 0;
 	protected int life;
 	
-	public Object(Vector2 position, float W, float H, float SPEED) {
+	public Object(Vector2 position, float W, float H, float SPEED, int life) {
 		this.pos = position;
 		this.bounds.x = position.x;
 		this.bounds.y = position.y;
 		this.bounds.height = this.HEIGHT = H;
 		this.bounds.width = this.WIDTH = W;
 		this.SPEED = SPEED;
+		this.life = life;
+	}
+	
+	public Object(Vector2 position, float W, float H, float SPEED) {
+		this(position, W, H, SPEED, 0);
 	}
 	
 	public Object getObject() {
@@ -125,6 +130,14 @@ public class Object {
 		pos = position;
 		this.bounds.setX(position.x);
 		this.bounds.setY(position.y);
+	}
+	
+	public int getLife() {
+		return life;
+	}
+	
+	public void setLife(int l) {
+		life = l;
 	}
 	
 }

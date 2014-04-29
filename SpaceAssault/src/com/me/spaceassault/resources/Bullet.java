@@ -12,7 +12,7 @@ public class Bullet extends Object {
 		getPosition().y += hero.HEIGHT/2 - HEIGHT;
 		if (isFacingLeft()) {
 			getVelocity().x = -SPEED;
-			getPosition().x -= hero.WIDTH/2;
+			getPosition().x -= WIDTH;
 		} else {
 			getVelocity().x = SPEED;
 			getPosition().x += hero.WIDTH;
