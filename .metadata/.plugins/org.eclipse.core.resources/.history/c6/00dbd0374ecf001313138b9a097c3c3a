@@ -24,7 +24,7 @@ public class InstructionsScreen implements Screen {
 	private Table table;
 	private TextButton buttonBack;
 	private BitmapFont white, black;
-	private Label heading, name1,name2,name3;
+	private Label heading, name1,name2,name3,name4;
 	
 	@Override
 	public void render(float delta) {

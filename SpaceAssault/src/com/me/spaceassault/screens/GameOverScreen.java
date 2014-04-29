@@ -16,15 +16,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-public class InstructionsScreen implements Screen {
+public class GameOverScreen implements Screen {
 
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin;
 	private Table table;
-	private TextButton buttonBack;
+	private TextButton buttonMainMenu, buttonExit;
 	private BitmapFont white, black;
-	private Label heading, name1,name2,name3;
+	private Label heading;
 	
 	@Override
 	public void render(float delta) {
@@ -75,47 +75,43 @@ public class InstructionsScreen implements Screen {
 		
 
 		
-		buttonBack = new TextButton("Back",textButtonStyle);
-		buttonBack.addListener(new ClickListener(){
+		buttonMainMenu = new TextButton("Back",textButtonStyle);
+		buttonMainMenu.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
 				((Game) Gdx.app.getApplicationListener()).setScreen(new MenuScreen());
 			}
 		});
-		buttonBack.pad(15);
+		buttonMainMenu.pad(15);
+		
+		buttonExit = new TextButton("Back",textButtonStyle);
+		buttonExit.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				Gdx.app.exit();
+			}
+		});
+		buttonExit.pad(15);
 		
 		//creating heading
 		LabelStyle headingStyle = new LabelStyle(white, Color.RED);
 		
-		LabelStyle nameStyle = new LabelStyle(white,Color.WHITE);
 		
 		
-		heading = new Label("Instructions", headingStyle);
+		
+		heading = new Label("GAME OVER", headingStyle);
 		heading.setFontScale(2);
 		
 		
-		name1 = new Label("Z - Jumping",nameStyle);
-		name2 = new Label("Arrows - Movement",nameStyle);
-		name3 = new Label("X - Shooting",nameStyle);
-		name1.setFontScale((float) .5);
-		name2.setFontScale((float) .5);
-		name3.setFontScale((float) .5);
-		
+
 		
 		//table manipulation
 		table.add(heading);
 		table.getCell(heading).spaceBottom(60);
 		table.row();
-		table.add(name1);
-		table.getCell(name1).spaceBottom(20);
+		table.add(buttonMainMenu);
 		table.row();
-		table.add(name2);
-		table.getCell(name2).spaceBottom(20);
-		table.row();
-		table.add(name3);
-		table.getCell(name3).spaceBottom(20);
-		table.row();
-		table.add(buttonBack);
+		table.add(buttonExit);
 		table.debug(); //remove later
 		stage.addActor(table);
 		

@@ -24,7 +24,7 @@ public class InstructionsScreen implements Screen {
 	private Table table;
 	private TextButton buttonBack;
 	private BitmapFont white, black;
-	private Label heading, name1,name2,name3;
+	private Label heading, name1,name2,name3,name4;
 	
 	@Override
 	public void render(float delta) {
@@ -97,9 +97,6 @@ public class InstructionsScreen implements Screen {
 		name1 = new Label("Z - Jumping",nameStyle);
 		name2 = new Label("Arrows - Movement",nameStyle);
 		name3 = new Label("X - Shooting",nameStyle);
-		name1.setFontScale((float) .5);
-		name2.setFontScale((float) .5);
-		name3.setFontScale((float) .5);
 		
 		
 		//table manipulation
