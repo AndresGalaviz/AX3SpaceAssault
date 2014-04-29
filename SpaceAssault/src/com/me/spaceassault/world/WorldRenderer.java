@@ -1,6 +1,7 @@
 package com.me.spaceassault.world;
 
 import com.me.spaceassault.resources.BadGuy;
+import com.me.spaceassault.resources.Bullet;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Metodo que dibuja el mundo en la pantalla del juego
@@ -49,6 +51,7 @@ public class WorldRenderer {
 	private TextureRegion heroJumpRight;
 	private TextureRegion heroFallRight;
 	
+	private Texture redBullet;
 
     private SpriteBatch spriteBatch;
 	private boolean debug = false;
@@ -118,6 +121,8 @@ public class WorldRenderer {
 		heroFallRight = jump.findRegion("1");
 		heroFallLeft = new TextureRegion(heroFallRight);
 		heroFallLeft.flip(true, false);
+		
+		redBullet = new Texture(Gdx.files.internal("images/bullets/redbullet.png"));
 	}
 
 	/**
@@ -131,6 +136,7 @@ public class WorldRenderer {
 	        drawTiles();
 	        drawHero();
 	        drawBadGuy();
+	        drawBullets();
 	    spriteBatch.end();
 	    //if (debug) drawDebug();
 	}
@@ -206,12 +212,19 @@ public class WorldRenderer {
 				heroFrame = hero.isFacingLeft() ? heroFallLeft : heroFallRight;
 			}
 		}
-		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.SIZE , hero.SIZE);
+		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
 	}
 	
 	private void drawBadGuy() {
 		BadGuy badGuy = world.getBadGuy();
-		spriteBatch.draw(heroIdleLeft, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.SIZE, badGuy.SIZE);
+		spriteBatch.draw(heroIdleLeft, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
 			
+	}
+	
+	private void drawBullets() {
+		Array<Bullet> bullets = world.getBullets();
+		for (Bullet bullet : bullets) {
+			spriteBatch.draw(redBullet, bullet.getPosition().x, bullet.getPosition().y, bullet.WIDTH, bullet.HEIGHT);
+		}
 	}
 }

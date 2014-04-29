@@ -7,7 +7,7 @@ public class Hero extends Object {
 
 	
 	public Hero(Vector2 position) {
-		super (position);
+		super (position, 0.8f, 0.8f, 50f);
 		life = 100;
 	}
 	

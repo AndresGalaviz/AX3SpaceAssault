@@ -8,7 +8,7 @@ public class BadGuy extends Object{
 	private boolean facingLeft;
 	
 	public BadGuy(Vector2 position, int life) {
-		super (position);
+		super (position, 0.8f, 0.8f, 50f);
 		this.life = life;
 	}
 	

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 import com.me.spaceassault.resources.BadGuy;
+import com.me.spaceassault.resources.Bullet;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
@@ -34,6 +35,7 @@ public class WorldController {
 	private boolean jumpingPressed;
 	private BadGuy badGuy;
 	private static final float WIDTH = 10f;
+	private Array<Bullet> bullets;
 	private Array<Tile> collidable = new Array<Tile>();
 	
 	private Pool<Rectangle> rectPool = new Pool<Rectangle>() {
@@ -57,6 +59,7 @@ public class WorldController {
     	this.world = world;
     	this.hero = world.getHero();
     	this.badGuy = world.getBadGuy();
+    	this.bullets = world.getBullets();
     }
     
 	public void leftPressed() {
@@ -72,7 +75,7 @@ public class WorldController {
 	}
 
 	public void firePressed() {
-		keys.get(keys.put(Keys.FIRE, false));
+		keys.get(keys.put(Keys.FIRE, true));
 	}
 
 	public void leftReleased() {
@@ -124,8 +127,13 @@ public class WorldController {
 		}
 		hero.update(delta);
 		
-		
-		
+		for (Bullet bullet : bullets) {
+			if (checkCollisionBulletTiles(bullet, delta)) {
+				bullets.removeValue(bullet, true);
+			} else {
+				bullet.update(delta);
+			}
+		}
 	}
 	
 	/** Collision checking **/
@@ -209,6 +217,64 @@ public class WorldController {
 
 	}
 	
+	private boolean checkCollisionBulletTiles(Bullet bullet, float delta) {
+		boolean collides = false;
+		
+		// scale velocity to frame units 
+		bullet.getVelocity().scl(delta);
+
+		// Obtain the rectangle from the pool instead of instantiating it
+		Rectangle bulletRect = rectPool.obtain();
+		// set the rectangle to bullet's bounding box
+		bulletRect.set(bullet.getBounds().x, bullet.getBounds().y, bullet.getBounds().width, bullet.getBounds().height);
+
+		// we first check the movement on the horizontal X axis
+		int startX, endX;
+		int startY = (int) bullet.getBounds().y;
+		int endY = (int) (bullet.getBounds().y + bullet.getBounds().height);
+		// if bullet is heading left then we check if he collides with the tile on his left
+		// we check the tile on his right otherwise
+		if (bullet.getVelocity().x < 0) {
+			startX = endX = (int) Math.floor(bullet.getBounds().x + bullet.getVelocity().x);
+		} else {
+			startX = endX = (int) Math.floor(bullet.getBounds().x + bullet.getBounds().width + bullet.getVelocity().x);
+		}
+
+		// get the tile(s) bullet can collide with
+		//populateCollidableTiles(startX, startY, endX, endY);
+
+		// simulate bullet's movement on the X
+		bulletRect.x += bullet.getVelocity().x;
+
+		/*
+		
+		// clear collision boxes in world
+		world.getCollisionRects().clear();
+
+		// if bullet collides, make his horizontal velocity 0
+		for (Tile tile : collidable) {
+			if (tile == null) continue;
+			if (bulletRect.overlaps(tile.getBounds())) {
+				collides = true;
+				world.getCollisionRects().add(tile.getBounds());
+				break;
+			}
+		}
+
+		*/
+
+		// reset the x position of the collision box
+		bulletRect.x = bullet.getPosition().x;
+		
+		bullet.getVelocity().scl(1 / delta);
+		
+		// update bullet's position
+		bullet.getPosition().add(bullet.getVelocity());
+		bullet.getBounds().x = bullet.getPosition().x;
+		
+		return collides;
+	}
+	
 	/** populate the collidable array with the blocks found in the enclosing coordinates **/
 	private void populateCollidableTiles(int startX, int startY, int endX, int endY) {
 		collidable.clear();
@@ -261,6 +327,10 @@ public class WorldController {
 			}
 			hero.getAcceleration().x = 0;
 
+		}
+		if (keys.get(Keys.FIRE)) {
+			bullets.add(new Bullet(hero));
+			fireReleased();
 		}
 		return false;
 	}

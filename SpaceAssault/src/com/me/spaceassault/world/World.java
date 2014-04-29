@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.me.spaceassault.resources.BadGuy;
+import com.me.spaceassault.resources.Bullet;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 
@@ -25,6 +26,7 @@ public class World {
 	
 	Array<Rectangle> collisionRects = new Array<Rectangle>();
 	Array<BadGuy> badGuys = new Array<BadGuy>();
+	Array<Bullet> bullets = new Array<Bullet>();
 	
 	
 	public Array<Rectangle> getCollisionRects() {
@@ -44,6 +46,10 @@ public class World {
     }
     public BadGuy getBadGuy() {
     	return badGuy;
+    }
+    
+    public Array<Bullet> getBullets() {
+    	return bullets;
     }
     
     public List<Tile> getDrawableBlocks(int width, int height) {

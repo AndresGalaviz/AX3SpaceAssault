@@ -13,9 +13,12 @@ public class Object {
 		JUMP
 	}
 	
-	public static final float SPEED = 50f; // character velocity
+	//public static final float SPEED = 50f; // character velocity
+	public final float SPEED;
 	public final float JUMP_SPEED = 4f; // jumping speed
-	public final float SIZE = .8f; // character size
+	//public final float SIZE = .8f; // character size
+	public final float WIDTH;
+	public final float HEIGHT;
 	
 	Vector2 pos = new Vector2(); 
 	Vector2 accel = new Vector2(); 
@@ -26,12 +29,13 @@ public class Object {
 	float stateTime = 0;
 	protected int life;
 	
-	public Object(Vector2 position) {
+	public Object(Vector2 position, float W, float H, float SPEED) {
 		this.pos = position;
 		this.bounds.x = position.x;
 		this.bounds.y = position.y;
-		this.bounds.height = SIZE;
-		this.bounds.width = SIZE;
+		this.bounds.height = this.HEIGHT = H;
+		this.bounds.width = this.WIDTH = W;
+		this.SPEED = SPEED;
 	}
 	
 	public Object getObject() {
