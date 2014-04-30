@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 public class BadGuy extends Object{
 	private static final float SPEED = 1f;
 	private boolean moving;
-	private boolean facingLeft;
 	
 	/**
 	 * Metodo constructor para los enemigos del personaje
@@ -15,23 +14,21 @@ public class BadGuy extends Object{
 	public BadGuy(Vector2 position, int life) {
 		super (position, 0.8f, 0.8f, SPEED, life);
 		getVelocity().x = -SPEED;
+		moving = false;
 	}
 	
-	public void setMovingTime(boolean moving) {
+	public void setMoving(boolean moving) {
 		this.moving = moving;
 	}
-	
-	@Override
-	public void setFacingLeft(boolean facingLeft) {
-		this.facingLeft = facingLeft;
-	}
-	
-	public boolean getMoving() {
+		
+	public boolean isMoving() {
 		return moving;
 	}
 	
-	public boolean getFacingLeft() {
-		return facingLeft;
+	public void startMoving(Hero hero, int w, int h) {
+		moving = (getPosition().x < hero.getPosition().x + w/2 && 
+				getPosition().x > hero.getPosition().x - w/2 - getBounds().width && 
+				getPosition().y < hero.getPosition().y + h/2 && 
+				getPosition().y > hero.getPosition().y - h/2 - getBounds().height);
 	}
-	
 }

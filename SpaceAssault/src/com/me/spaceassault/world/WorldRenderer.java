@@ -244,4 +244,12 @@ public class WorldRenderer {
 			spriteBatch.draw(redBullet, bullet.getPosition().x, bullet.getPosition().y, bullet.WIDTH, bullet.HEIGHT);
 		}
 	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
 }

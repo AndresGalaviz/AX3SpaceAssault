@@ -29,6 +29,8 @@ public class WorldController {
 	private static final float DAMP 			= 0.90f;
 	private static final float MAX_VEL 			= 50f;
 	
+	private final int W, H;
+	
 	private World world;
 	private Hero hero;
 	private long jumpPressedTime;
@@ -55,11 +57,13 @@ public class WorldController {
     	
     };
     
-    public WorldController(World world) {
+    public WorldController(World world, int W, int H) {
     	this.world = world;
     	this.hero = world.getHero();
     	this.badGuys = world.getBadGuys();
     	this.bullets = world.getBullets();
+    	this.W = W;
+    	this.H = H;
     }
     
 	public void leftPressed() {
@@ -151,7 +155,11 @@ public class WorldController {
 			badGuy.getAcceleration().y = GRAVITY;
 			badGuy.getAcceleration().scl(delta);
 			badGuy.getVelocity().add(0, badGuy.getAcceleration().y);
-			checkCollisionBadGuyTiles(badGuy, delta);
+			if (!badGuy.isMoving()) {
+				checkCollisionBadGuyTiles(badGuy, delta);
+			} else {
+				badGuy.startMoving(hero, W, H);
+			}
 			if (checkCollisionWithBadGuy(badGuy)) {
 				// TODO GAMEOVER
 			}

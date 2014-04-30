@@ -49,7 +49,7 @@ public class GameScreen implements Screen, InputProcessor {
 	public void show() {
 		world = new World();
 		renderer = new WorldRenderer(world, false);
-		controller = new WorldController(world);
+		controller = new WorldController(world, renderer.getWidth(), renderer.getHeight());
 		Gdx.input.setInputProcessor(this);
 
 		// TODO Auto-generated method stub
