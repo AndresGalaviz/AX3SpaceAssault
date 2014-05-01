@@ -23,7 +23,7 @@ public class InstructionsScreen implements Screen {
 	private Skin skin;
 	private Table table;
 	private TextButton buttonBack, buttonDesktop, buttonAndroid;
-	private BitmapFont white, black;
+	private BitmapFont white, black, text;
 	private Label heading;
 	
 	@Override
@@ -62,7 +62,7 @@ public class InstructionsScreen implements Screen {
 		//creating fonts
 		white = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"),false);
 		black = new BitmapFont(Gdx.files.internal("data/blackHigher.fnt"),false);
-		
+		text = new BitmapFont(Gdx.files.internal("data/SpaceRanger.fnt"),false);
 		
 		//creating button
 		TextButtonStyle textButtonStyle = new TextButtonStyle(); 
@@ -70,7 +70,7 @@ public class InstructionsScreen implements Screen {
 		textButtonStyle.down = skin.getDrawable("buttonPressed");
 		textButtonStyle.pressedOffsetX = 1;
 		textButtonStyle.pressedOffsetY = -1;
-		textButtonStyle.font = black;
+		textButtonStyle.font = text;
 	
 		
 		buttonDesktop = new TextButton("Desktop",textButtonStyle);
@@ -116,11 +116,11 @@ public class InstructionsScreen implements Screen {
 		table.add(heading);
 		table.getCell(heading).spaceBottom(60);
 		table.row();
-		table.add(buttonDesktop);
+		table.add(buttonDesktop).width(buttonAndroid.getWidth()+120);
 		table.row();
-		table.add(buttonAndroid);
+		table.add(buttonAndroid).width(buttonAndroid.getWidth()+120);
 		table.row();
-		table.add(buttonBack);
+		table.add(buttonBack).width(buttonAndroid.getWidth()+120);
 		table.debug(); //remove later
 		stage.addActor(table);
 		

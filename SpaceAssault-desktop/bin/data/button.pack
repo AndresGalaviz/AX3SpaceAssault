@@ -3,19 +3,33 @@ button.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-buttonUp
+buttonPressed
   rotate: false
-  xy: 0, 8
-  size: 9, 9
-  split: 1, 2, 1, 2
-  orig: 9, 9
+  xy: 0, 0
+  size: 45, 40
+  split: 11, 10, 9, 9
+  orig: 45, 40
   offset: 0, 0
   index: -1
 buttonPressed
   rotate: false
   xy: 0, 0
-  size: 8, 8
-  split: 2, 1, 2, 1
-  orig: 8, 8
+  size: 45, 40
+  orig: 45, 40
+  offset: 0, 0
+  index: -1
+buttonUp
+  rotate: false
+  xy: 45, 0
+  size: 45, 40
+  split: 5, 11, 4, 9
+  orig: 45, 40
+  offset: 0, 0
+  index: -1
+buttonUp
+  rotate: false
+  xy: 45, 0
+  size: 45, 40
+  orig: 45, 40
   offset: 0, 0
   index: -1

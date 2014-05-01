@@ -84,7 +84,7 @@ public class MenuScreen implements Screen {
 		});
 		buttonPlay.pad(15);
 		
-		buttonInstructions = new TextButton("Instructions",textButtonStyle);
+		buttonInstructions = new TextButton("Help",textButtonStyle);
 		buttonInstructions.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
@@ -123,13 +123,13 @@ public class MenuScreen implements Screen {
 		table.add(heading);
 		table.getCell(heading).spaceBottom(100);
 		table.row();
-		table.add(buttonPlay).width(buttonInstructions.getWidth()).fillX();
+		table.add(buttonPlay).width(buttonInstructions.getWidth()+150).fillX();
 		table.row();
-		table.add(buttonCredits).width(buttonInstructions.getWidth()).fillX();
+		table.add(buttonCredits).width(buttonInstructions.getWidth()+150).fillX();
 		table.row();
-		table.add(buttonInstructions).width(buttonInstructions.getWidth()).fillX();
+		table.add(buttonInstructions).width(buttonInstructions.getWidth()+150).fillX();
 		table.row();
-		table.add(buttonExit).width(buttonInstructions.getWidth()).fillX();
+		table.add(buttonExit).width(buttonInstructions.getWidth()+150).fillX();
 		stage.addActor(table);
 
 		

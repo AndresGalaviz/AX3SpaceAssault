@@ -24,7 +24,7 @@ public class InstructionsDesktopScreen implements Screen {
 	private Skin skin;
 	private Table table;
 	private TextButton buttonBack,buttonMainMenu;
-	private BitmapFont white, black;
+	private BitmapFont white, black, text, text2;
 	private Label heading, name1,name2,name3;
 	
 	@Override
@@ -63,7 +63,8 @@ public class InstructionsDesktopScreen implements Screen {
 		//creating fonts
 		white = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"),false);
 		black = new BitmapFont(Gdx.files.internal("data/blackHigher.fnt"),false);
-		
+		text = new BitmapFont(Gdx.files.internal("data/SpaceRanger.fnt"),false);
+		text2 = new BitmapFont(Gdx.files.internal("data/WhiteSpaceRanger.fnt"),false);
 		
 		//creating button
 		TextButtonStyle textButtonStyle = new TextButtonStyle(); 
@@ -71,7 +72,7 @@ public class InstructionsDesktopScreen implements Screen {
 		textButtonStyle.down = skin.getDrawable("buttonPressed");
 		textButtonStyle.pressedOffsetX = 1;
 		textButtonStyle.pressedOffsetY = -1;
-		textButtonStyle.font = black;
+		textButtonStyle.font = text;
 	
 		
 		buttonMainMenu = new TextButton("Main Menu",textButtonStyle);
@@ -97,7 +98,7 @@ public class InstructionsDesktopScreen implements Screen {
 		//creating heading
 		LabelStyle headingStyle = new LabelStyle(white, Color.RED);
 		
-		LabelStyle nameStyle = new LabelStyle(white,Color.WHITE);
+		LabelStyle nameStyle = new LabelStyle(text2,Color.WHITE);
 		
 		
 		heading = new Label("Instructions", headingStyle);
@@ -107,9 +108,7 @@ public class InstructionsDesktopScreen implements Screen {
 		name1 = new Label("Z - Jumping",nameStyle);
 		name2 = new Label("Arrows - Movement",nameStyle);
 		name3 = new Label("X - Shooting",nameStyle);
-		name1.setFontScale((float) .5);
-		name2.setFontScale((float) .5);
-		name3.setFontScale((float) .5);
+
 		
 		
 		//table manipulation
@@ -125,9 +124,9 @@ public class InstructionsDesktopScreen implements Screen {
 		table.add(name3);
 		table.getCell(name3).spaceBottom(20);
 		table.row();
-		table.add(buttonMainMenu);
+		table.add(buttonMainMenu).width(buttonMainMenu.getWidth()+120);
 		table.row();
-		table.add(buttonBack);
+		table.add(buttonBack).width(buttonMainMenu.getWidth()+120);
 		table.debug(); //remove later
 		stage.addActor(table);
 		

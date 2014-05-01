@@ -23,7 +23,7 @@ public class CreditsScreen implements Screen {
 	private Skin skin;
 	private Table table;
 	private TextButton buttonBack;
-	private BitmapFont white, black;
+	private BitmapFont white, black, text, text2;
 	private Label heading, name1,name2,name3,name4;
 	
 	@Override
@@ -62,6 +62,8 @@ public class CreditsScreen implements Screen {
 		//creating fonts
 		white = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"),false);
 		black = new BitmapFont(Gdx.files.internal("data/blackHigher.fnt"),false);
+		text = new BitmapFont(Gdx.files.internal("data/SpaceRanger.fnt"),false);
+		text2 = new BitmapFont(Gdx.files.internal("data/WhiteSpaceRanger.fnt"),false);
 		
 		
 		//creating button
@@ -70,7 +72,7 @@ public class CreditsScreen implements Screen {
 		textButtonStyle.down = skin.getDrawable("buttonPressed");
 		textButtonStyle.pressedOffsetX = 1;
 		textButtonStyle.pressedOffsetY = -1;
-		textButtonStyle.font = black;
+		textButtonStyle.font = text;
 	
 		
 
@@ -87,7 +89,7 @@ public class CreditsScreen implements Screen {
 		//creating heading
 		LabelStyle headingStyle = new LabelStyle(white, Color.RED);
 		
-		LabelStyle nameStyle = new LabelStyle(white,Color.WHITE);
+		LabelStyle nameStyle = new LabelStyle(text2,Color.WHITE);
 		
 		
 		heading = new Label("Credits", headingStyle);
