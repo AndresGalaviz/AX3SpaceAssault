@@ -23,7 +23,7 @@ public class MenuScreen implements Screen {
 	private Skin skin;
 	private Table table;
 	private TextButton buttonPlay, buttonExit, buttonCredits, buttonInstructions;
-	private BitmapFont white, black;
+	private BitmapFont white, black, text;
 	private Label heading;
 	
 	@Override
@@ -59,10 +59,11 @@ public class MenuScreen implements Screen {
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
+
 		//creating fonts
 		white = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"),false);
 		black = new BitmapFont(Gdx.files.internal("data/blackHigher.fnt"),false);
-		
+		text = new BitmapFont(Gdx.files.internal("data/SpaceRanger.fnt"),false);
 		
 		//creating button
 		TextButtonStyle textButtonStyle = new TextButtonStyle(); 
@@ -70,7 +71,7 @@ public class MenuScreen implements Screen {
 		textButtonStyle.down = skin.getDrawable("buttonPressed");
 		textButtonStyle.pressedOffsetX = 1;
 		textButtonStyle.pressedOffsetY = -1;
-		textButtonStyle.font = black;
+		textButtonStyle.font = text;
 	
 		
 		
@@ -117,23 +118,27 @@ public class MenuScreen implements Screen {
 		heading = new Label("Space Assault", headingStyle);
 		heading.setFontScale(2);
 		
+		
 		//table manipulation
 		table.add(heading);
 		table.getCell(heading).spaceBottom(100);
 		table.row();
-		table.add(buttonPlay);
+		table.add(buttonPlay).width(buttonInstructions.getWidth()).fillX();
 		table.row();
-		table.add(buttonExit);
+		table.add(buttonCredits).width(buttonInstructions.getWidth()).fillX();
 		table.row();
-		table.add(buttonCredits);
+		table.add(buttonInstructions).width(buttonInstructions.getWidth()).fillX();
 		table.row();
-		table.add(buttonInstructions);
-		table.debug(); //remove later
+		table.add(buttonExit).width(buttonInstructions.getWidth()).fillX();
 		stage.addActor(table);
+
 		
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.Screen#hide()
+	 */
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;arkitech&apos; in &apos;com.me.spaceassault.screens.MenuScreen&apos; to &apos;text&apos;&#x0D;&#x0A;- Original project: &apos;SpaceAssault&apos;&#x0D;&#x0A;- Original element: &apos;com.me.spaceassault.screens.MenuScreen.arkitech&apos;&#x0D;&#x0A;- Renamed element: &apos;com.me.spaceassault.screens.MenuScreen.text&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;arkitech&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;com.me.spaceassault.screens{MenuScreen.java[MenuScreen^arkitech" name="text" references="true" setter="false" stamp="1398984242965" textual="false" version="1.0"/>
+</session>
