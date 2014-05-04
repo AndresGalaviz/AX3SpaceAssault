@@ -37,7 +37,7 @@ public class Level {
 
 	public Level() {
 		//loadDemoLevel();
-		loadDemoLevelFile("levels/level1.txt");
+		loadDemoLevelFile("levels/level2.txt");
 	}
 
 	public Tile get(int x, int y) {

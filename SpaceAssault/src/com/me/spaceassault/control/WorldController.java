@@ -115,6 +115,7 @@ public class WorldController {
 	/** The main update method **/
 	public void update(float delta) {
 		processInput();
+		
 		if (grounded && hero.getState().equals(Hero.State.JUMP)) {
 			hero.setState(Hero.State.IDLE);
 		}
