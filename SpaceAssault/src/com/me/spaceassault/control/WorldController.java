@@ -32,6 +32,7 @@ public class WorldController {
 	private static final float ACCELERATION 	= 20f;
 	private static final float GRAVITY 			= -20f;
 	private static final float MAX_JUMP_SPEED	= 7f;
+	private static final float MAX_BADGUY_JUMP  = 14f;
 	private static final float DAMP 			= 0.90f;
 	private static final float MAX_VEL 			= 50f;
 	
@@ -53,8 +54,7 @@ public class WorldController {
 		}
 	};
 	
-	private boolean grounded = false;
-    static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
+	static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
     static {
     	keys.put(Keys.LEFT,  false);
     	keys.put(Keys.RIGHT, false);
@@ -122,7 +122,7 @@ public class WorldController {
 	public void update(float delta) {
 		processInput();
 		
-		if (grounded && hero.getState().equals(Hero.State.JUMP)) {
+		if (hero.isGrounded() && hero.getState().equals(Hero.State.JUMP)) {
 			hero.setState(Hero.State.IDLE);
 		}
 		hero.getAcceleration().y = GRAVITY;
@@ -164,6 +164,7 @@ public class WorldController {
 			badGuy.getAcceleration().scl(delta);
 			badGuy.getVelocity().add(0, badGuy.getAcceleration().y);
 			if (!badGuy.isMoving()) {
+				badGuyDirection(badGuy);
 				checkCollisionBadGuyTiles(badGuy, delta);
 			} else {
 				badGuy.startMoving(hero, W, H);
@@ -251,7 +252,7 @@ public class WorldController {
 			if (tile == null) continue;
 			if (heroRect.overlaps(tile.getBounds())) {
 				if (hero.getVelocity().y < 0) {
-					grounded = true;
+					hero.setGrounded(true);
 				}
 				hero.getVelocity().y = 0;
 				world.getCollisionRects().add(tile.getBounds());
@@ -370,6 +371,8 @@ public class WorldController {
 		// set the rectangle to badGuy's bounding box
 		badGuyRect.set(badGuy.getBounds().x, badGuy.getBounds().y, badGuy.getBounds().width, badGuy.getBounds().height);
 
+		
+		
 		// we first check the movement on the horizontal X axis
 		int startX, endX;
 		int startY = (int) badGuy.getBounds().y;
@@ -391,19 +394,32 @@ public class WorldController {
 		// clear collision boxes in world
 		world.getCollisionRects().clear();
 
+		boolean jump = false;
+		
 		// if badGuy collides, make his horizontal velocity 0
 		for (Tile tile : collidable) {
 			if (tile == null) continue;
 			if (badGuyRect.overlaps(tile.getBounds())) {
-				badGuy.getVelocity().x = -badGuy.getVelocity().x;
-				badGuy.setFacingLeft(!badGuy.isFacingLeft());
+				//badGuy.getVelocity().x = -badGuy.getVelocity().x;
+				//badGuy.setFacingLeft(!badGuy.isFacingLeft());
+				badGuy.getVelocity().x = 0;
 				world.getCollisionRects().add(tile.getBounds());
+				jump = true;
 				break;
 			}
 		}
 
 		// reset the x position of the collision box
 		badGuyRect.x = badGuy.getPosition().x;
+		
+		if (!jump) {
+			badGuy.getVelocity().x = BadGuy.getSpeed() * (badGuy.isFacingLeft() ? -1 : 1);
+		}
+		
+		if (jump && badGuy.isGrounded()) {
+			badGuy.getVelocity().y = MAX_BADGUY_JUMP;
+			badGuy.setGrounded(false);
+		}
 
 		// the same thing but on the vertical Y axis
 		startX = (int) badGuy.getBounds().x;
@@ -418,14 +434,26 @@ public class WorldController {
 
 		badGuyRect.y += badGuy.getVelocity().y;
 
+		jump = (badGuy.getVelocity().y < 0 && badGuy.isGrounded());
+		
 		for (Tile tile : collidable) {
 			if (tile == null) continue;
 			if (badGuyRect.overlaps(tile.getBounds())) {
+				if (badGuy.getVelocity().y < 0) {
+					jump = false;
+					badGuy.setGrounded(true);
+				}
 				badGuy.getVelocity().y = 0;
 				world.getCollisionRects().add(tile.getBounds());
 				break;
 			}
 		}
+		
+		if (jump && !badGuy.isGrounded()) {
+			badGuy.getVelocity().y = MAX_BADGUY_JUMP;
+			badGuy.setGrounded(false);
+		}
+		
 		// reset the collision box's position on Y
 		badGuyRect.y = badGuy.getPosition().y;
 
@@ -436,6 +464,14 @@ public class WorldController {
 
 		// un-scale velocity (not in frame time)
 		badGuy.getVelocity().scl(1 / delta);
+	}
+
+	private void badGuyDirection(BadGuy badGuy) {
+		if (badGuy.getPosition().x < hero.getPosition().x) {
+			badGuy.getVelocity().x = BadGuy.getSpeed();
+		} else {
+			badGuy.getVelocity().x = -BadGuy.getSpeed();
+		}
 	}
 	
 	/** populate the collidable array with the blocks found in the enclosing coordinates **/
@@ -458,7 +494,7 @@ public class WorldController {
 				jumpPressedTime = System.currentTimeMillis();
 				hero.setState(Hero.State.JUMP);
 				hero.getVelocity().y = MAX_JUMP_SPEED; 
-				grounded = false;
+				hero.setGrounded(false);
 			} else {
 				if (jumpingPressed && ((System.currentTimeMillis() - jumpPressedTime) >= LONG_JUMP_PRESS)) {
 					jumpingPressed = false;

@@ -36,4 +36,8 @@ public class BadGuy extends Object{
 				getPosition().y < hero.getPosition().y + h/2 && 
 				getPosition().y > hero.getPosition().y - h/2 - getBounds().height);
 	}
+	
+	public static float getSpeed() {
+		return SPEED;
+	}
 }
