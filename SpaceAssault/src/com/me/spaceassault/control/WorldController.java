@@ -32,11 +32,11 @@ public class WorldController {
 	private static final float ACCELERATION 	= 20f;
 	private static final float GRAVITY 			= -20f;
 	private static final float MAX_JUMP_SPEED	= 7f;
-	private static final float MAX_BADGUY_JUMP  = 14f;
+	private static final float MAX_BADGUY_JUMP  = .05f;
 	private static final float DAMP 			= 0.90f;
 	private static final float MAX_VEL 			= 50f;
 	
-	private float W, H;
+	private final float W, H;
 	
 	private World world;
 	private Hero hero;
@@ -63,16 +63,11 @@ public class WorldController {
     	
     };
     
-    public WorldController(World world) {
+    public WorldController(World world, float W, float H) {
     	this.world = world;
     	this.hero = world.getHero();
     	this.badGuys = world.getBadGuys();
     	this.bullets = world.getBullets();
-    	this.W = 0;
-    	this.H = 0;
-    }
-    
-    public void setSize (float W, float H) {
     	this.W = W;
     	this.H = H;
     }
@@ -370,7 +365,7 @@ public class WorldController {
 	private void checkCollisionBadGuyTiles(BadGuy badGuy, float delta) {
 		// scale velocity to frame units 
 		badGuy.getVelocity().scl(delta);
-
+		
 		// Obtain the rectangle from the pool instead of instantiating it
 		Rectangle badGuyRect = rectPool.obtain();
 		// set the rectangle to badGuy's bounding box
@@ -454,7 +449,10 @@ public class WorldController {
 			}
 		}
 		
-		if (jump && !badGuy.isGrounded()) {
+		
+		if (jump && badGuy.isGrounded()) {
+			System.out.println("JUMP!");
+			System.out.println(badGuy.getPosition().x + " " + badGuy.getPosition().y);
 			badGuy.getVelocity().y = MAX_BADGUY_JUMP;
 			badGuy.setGrounded(false);
 		}
@@ -472,10 +470,14 @@ public class WorldController {
 	}
 
 	private void badGuyDirection(BadGuy badGuy) {
-		if (badGuy.getPosition().x < hero.getPosition().x) {
-			badGuy.getVelocity().x = BadGuy.getSpeed();
-		} else {
-			badGuy.getVelocity().x = -BadGuy.getSpeed();
+		if (badGuy.getPosition().x < hero.getPosition().x && badGuy.isFacingLeft()) {
+			badGuy.getVelocity().x = -badGuy.getVelocity().x;
+			badGuy.setFacingLeft(false);
+		} 
+		
+		if (badGuy.getPosition().x > hero.getPosition().x && !badGuy.isFacingLeft()) {
+			badGuy.getVelocity().x = -badGuy.getVelocity().x;
+			badGuy.setFacingLeft(true);
 		}
 	}
 	

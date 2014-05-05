@@ -3,7 +3,7 @@ package com.me.spaceassault.resources;
 import com.badlogic.gdx.math.Vector2;
 
 public class BadGuy extends Object{
-	private static final float SPEED = 1f;
+	private static final float SPEED = .01f;
 	private boolean moving;
 	private int strength;
 	
@@ -17,6 +17,7 @@ public class BadGuy extends Object{
 		getVelocity().x = -SPEED;
 		moving = false;
 		this.strength = strength;
+		setGrounded(true);
 	}
 	
 	public void setMoving(boolean moving) {
