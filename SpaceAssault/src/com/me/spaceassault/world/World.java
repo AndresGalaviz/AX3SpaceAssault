@@ -88,10 +88,18 @@ public class World {
      */
 	private void createDemoWorld() {
 
+<<<<<<< HEAD
 		hero = new Hero(new Vector2(3,24)); // 4 24
 		badGuys.add(new BadGuy(new Vector2(10,1), 12, 30));
 		badGuys.add(new BadGuy(new Vector2(5,24), 16, 20));
 		badGuys.add(new BadGuy(new Vector2(15,24), 10, 50));
+=======
+		//hero = new Hero(new Vector2(3,24));
+		//badGuys.add(new BadGuy(new Vector2(10,1), 12));
+		//badGuys.add(new BadGuy(new Vector2(5,24), 16));
+		//badGuys.add(new BadGuy(new Vector2(15,24), 10));
+		hero = new Hero(new Vector2(1,4));
+>>>>>>> FETCH_HEAD
 		level = new Level();
 	}
 }
