@@ -3,6 +3,8 @@ package com.me.spaceassault.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
@@ -10,6 +12,10 @@ import com.me.spaceassault.resources.BadGuy;
 import com.me.spaceassault.resources.Bullet;
 import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
+import com.me.spaceassault.screens.GameOverScreen;
+import com.me.spaceassault.screens.GameScreen;
+import com.me.spaceassault.screens.InstructionsScreen;
+import com.me.spaceassault.screens.MenuScreen;
 import com.me.spaceassault.world.World;
 
 /**
@@ -151,6 +157,7 @@ public class WorldController {
 			}
 		}
 		
+		
 		for (BadGuy badGuy : badGuys) {
 			badGuy.getAcceleration().y = GRAVITY;
 			badGuy.getAcceleration().scl(delta);
@@ -161,7 +168,18 @@ public class WorldController {
 				badGuy.startMoving(hero, W, H);
 			}
 			if (checkCollisionWithBadGuy(badGuy)) {
-				// TODO GAMEOVER
+				hero.setLife(hero.getLife()-badGuy.getStrength());
+				if(hero.getLife() == 0) {
+					keys.get(keys.put(Keys.LEFT, false));
+					keys.get(keys.put(Keys.RIGHT, false));
+					keys.get(keys.put(Keys.FIRE, false));
+					keys.get(keys.put(Keys.JUMP, false));
+					((Game) Gdx.app.getApplicationListener()).setScreen(new MenuScreen());
+					
+
+	
+					
+				}
 			}
 		}
 	}
@@ -300,6 +318,8 @@ public class WorldController {
 				break;
 			}
 		}
+		
+		
 
 		// reset the x position of the collision box
 		bulletRect.x = bullet.getPosition().x;
@@ -312,6 +332,9 @@ public class WorldController {
 	
 		return collides;
 	}
+	
+	
+	
 	
 	/**
 	 * Colision de una bala del personaje con un enemigo
@@ -471,5 +494,9 @@ public class WorldController {
 			fireReleased();
 		}
 		return false;
+	}
+	
+	private void dispose() {
+		
 	}
 }

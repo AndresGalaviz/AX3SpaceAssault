@@ -18,6 +18,13 @@ public class GameScreen implements Screen, InputProcessor {
 	private WorldController controller;
 
 	private int width, height;
+	
+	public GameScreen() {
+		world = new World();
+		renderer = new WorldRenderer(world, false);
+		controller = new WorldController(world, renderer.getWidth(), renderer.getHeight());
+		Gdx.input.setInputProcessor(this);
+	}
 
 	/**
 	 * Render de la pantalla del juego
@@ -47,10 +54,7 @@ public class GameScreen implements Screen, InputProcessor {
 	 */
 	@Override
 	public void show() {
-		world = new World();
-		renderer = new WorldRenderer(world, false);
-		controller = new WorldController(world, renderer.getWidth(), renderer.getHeight());
-		Gdx.input.setInputProcessor(this);
+
 
 		// TODO Auto-generated method stub
 	}

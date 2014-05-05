@@ -79,7 +79,9 @@ public class MenuScreen implements Screen {
 		buttonPlay.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
+				dispose();
 				((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen());
+				
 			}
 		});
 		buttonPlay.pad(15);
@@ -88,6 +90,7 @@ public class MenuScreen implements Screen {
 		buttonInstructions.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
+				dispose();
 				((Game) Gdx.app.getApplicationListener()).setScreen(new InstructionsScreen());
 			}
 		});
@@ -97,6 +100,7 @@ public class MenuScreen implements Screen {
 		buttonCredits.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
+				dispose();
 				((Game) Gdx.app.getApplicationListener()).setScreen(new CreditsScreen());
 			}
 		});
@@ -165,6 +169,7 @@ public class MenuScreen implements Screen {
 		skin.dispose();
 		white.dispose();
 		black.dispose();
+		
 		
 	}
 
