@@ -93,7 +93,8 @@ public class World {
 		//badGuys.add(new BadGuy(new Vector2(10,1), 12, 30));
 		//badGuys.add(new BadGuy(new Vector2(5,24), 16, 20));
 		//badGuys.add(new BadGuy(new Vector2(15,24), 10, 50));
-		hero = new Hero(new Vector2(2,1));
+		hero = new Hero(new Vector2(1,4));
+		badGuys.add(new BadGuy(new Vector2(11, 4), 12, 30));
 		level = new Level();
 	}
 }
