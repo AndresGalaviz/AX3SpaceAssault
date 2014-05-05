@@ -25,6 +25,7 @@ public class Object {
 	Vector2 vel = new Vector2(); 
 	Rectangle bounds = new Rectangle();
 	private boolean dir_left = true;
+	private boolean grounded;
 	State state = State.IDLE;
 	float stateTime = 0;
 	protected int life;
@@ -37,6 +38,7 @@ public class Object {
 		this.bounds.width = this.WIDTH = W;
 		this.SPEED = SPEED;
 		this.life = life;
+		grounded = false;
 	}
 	
 	public Object(Vector2 position, float W, float H, float SPEED) {
@@ -150,6 +152,14 @@ public class Object {
 	 */
 	public void setLife(int l) {
 		life = l;
+	}
+	
+	public void setGrounded(boolean g) {
+		grounded = g;
+	}
+	
+	public boolean isGrounded() {
+		return grounded;
 	}
 	
 }
