@@ -163,7 +163,7 @@ public class WorldController {
 			badGuy.getAcceleration().y = GRAVITY;
 			badGuy.getAcceleration().scl(delta);
 			badGuy.getVelocity().add(0, badGuy.getAcceleration().y);
-			if (!badGuy.isMoving()) {
+			if (badGuy.isMoving()) {
 				badGuyDirection(badGuy);
 				checkCollisionBadGuyTiles(badGuy, delta);
 			} else {
