@@ -122,7 +122,7 @@ public class WorldRenderer {
 		heroFallLeft = new TextureRegion(heroFallRight);
 		heroFallLeft.flip(true, false);
 		
-		redBullet = new Texture(Gdx.files.internal("images/bullets/redbullet.png"));
+		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class WorldRenderer {
 	}
 
 	/**
-	 * Mueve la camara para que siga al personaje, y la limita al tamaño del mundo
+	 * Mueve la camara para que siga al personaje, y la limita al tamano del mundo
 	 * @param x
 	 * @param y
 	 */
