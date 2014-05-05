@@ -61,6 +61,7 @@ public class Level {
 		for (int i = 2; i < splitResult.length; i += 2) {
 			int a = Integer.valueOf(splitResult[i]);
 			int b = Integer.valueOf(splitResult[i+1]);
+			
 			tiles[a][b] = new Tile(new Vector2(a, b));
 			
 		}
