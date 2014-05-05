@@ -30,7 +30,7 @@ public class BadGuy extends Object{
 	public int getStrength() {
 		return strength;
 	}
-	public void startMoving(Hero hero, int w, int h) {
+	public void startMoving(Hero hero, float w, float h) {
 		moving = (getPosition().x < hero.getPosition().x + w/2 && 
 				getPosition().x > hero.getPosition().x - w/2 - getBounds().width && 
 				getPosition().y < hero.getPosition().y + h/2 && 

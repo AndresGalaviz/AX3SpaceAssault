@@ -22,7 +22,7 @@ public class GameScreen implements Screen, InputProcessor {
 	public GameScreen() {
 		world = new World();
 		renderer = new WorldRenderer(world, false);
-		controller = new WorldController(world, renderer.getWidth(), renderer.getHeight());
+		controller = new WorldController(world);
 		Gdx.input.setInputProcessor(this);
 	}
 
@@ -43,7 +43,7 @@ public class GameScreen implements Screen, InputProcessor {
 	@Override
 	public void resize(int width, int height) {
 		renderer.setSize(width, height);
-		
+		controller.setSize(width, height);
 		this.width = width;
 		this.height = height;
 

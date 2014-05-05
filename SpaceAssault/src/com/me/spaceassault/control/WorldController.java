@@ -36,7 +36,7 @@ public class WorldController {
 	private static final float DAMP 			= 0.90f;
 	private static final float MAX_VEL 			= 50f;
 	
-	private final int W, H;
+	private float W, H;
 	
 	private World world;
 	private Hero hero;
@@ -63,11 +63,16 @@ public class WorldController {
     	
     };
     
-    public WorldController(World world, int W, int H) {
+    public WorldController(World world) {
     	this.world = world;
     	this.hero = world.getHero();
     	this.badGuys = world.getBadGuys();
     	this.bullets = world.getBullets();
+    	this.W = 0;
+    	this.H = 0;
+    }
+    
+    public void setSize (float W, float H) {
     	this.W = W;
     	this.H = H;
     }
