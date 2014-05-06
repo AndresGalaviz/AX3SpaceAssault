@@ -32,11 +32,11 @@ public class WorldController {
 	private static final float ACCELERATION 	= 20f;
 	private static final float GRAVITY 			= -20f;
 	private static final float MAX_JUMP_SPEED	= 7f;
-	private static final float MAX_BADGUY_JUMP  = 14f;
+	private static final float MAX_BADGUY_JUMP  = 9f;
 	private static final float DAMP 			= 0.90f;
 	private static final float MAX_VEL 			= 50f;
 	
-	private final int W, H;
+	private final float W, H;
 	
 	private World world;
 	private Hero hero;
@@ -63,7 +63,7 @@ public class WorldController {
     	
     };
     
-    public WorldController(World world, int W, int H) {
+    public WorldController(World world, float W, float H) {
     	this.world = world;
     	this.hero = world.getHero();
     	this.badGuys = world.getBadGuys();
@@ -365,7 +365,7 @@ public class WorldController {
 	private void checkCollisionBadGuyTiles(BadGuy badGuy, float delta) {
 		// scale velocity to frame units 
 		badGuy.getVelocity().scl(delta);
-
+		
 		// Obtain the rectangle from the pool instead of instantiating it
 		Rectangle badGuyRect = rectPool.obtain();
 		// set the rectangle to badGuy's bounding box
@@ -400,8 +400,6 @@ public class WorldController {
 		for (Tile tile : collidable) {
 			if (tile == null) continue;
 			if (badGuyRect.overlaps(tile.getBounds())) {
-				//badGuy.getVelocity().x = -badGuy.getVelocity().x;
-				//badGuy.setFacingLeft(!badGuy.isFacingLeft());
 				badGuy.getVelocity().x = 0;
 				world.getCollisionRects().add(tile.getBounds());
 				jump = true;
@@ -413,11 +411,11 @@ public class WorldController {
 		badGuyRect.x = badGuy.getPosition().x;
 		
 		if (!jump) {
-			badGuy.getVelocity().x = BadGuy.getSpeed() * (badGuy.isFacingLeft() ? -1 : 1);
+			badGuy.move(badGuy.isFacingLeft(), delta);
 		}
 		
 		if (jump && badGuy.isGrounded()) {
-			badGuy.getVelocity().y = MAX_BADGUY_JUMP;
+			badGuy.jump(delta);
 			badGuy.setGrounded(false);
 		}
 
@@ -434,13 +432,14 @@ public class WorldController {
 
 		badGuyRect.y += badGuy.getVelocity().y;
 
-		jump = (badGuy.getVelocity().y < 0 && badGuy.isGrounded());
+		badGuy.setGrounded(false);
 		
+//		jump = (badGuy.getVelocity().y < badGuy.getAcceleration().y && badGuy.isGrounded());
 		for (Tile tile : collidable) {
 			if (tile == null) continue;
 			if (badGuyRect.overlaps(tile.getBounds())) {
+//				jump = false;
 				if (badGuy.getVelocity().y < 0) {
-					jump = false;
 					badGuy.setGrounded(true);
 				}
 				badGuy.getVelocity().y = 0;
@@ -449,10 +448,12 @@ public class WorldController {
 			}
 		}
 		
-		if (jump && !badGuy.isGrounded()) {
-			badGuy.getVelocity().y = MAX_BADGUY_JUMP;
-			badGuy.setGrounded(false);
-		}
+		
+//		if (jump && badGuy.isGrounded()) {
+//			System.out.println("Jump2");
+//			badGuy.jump(delta);
+//			badGuy.setGrounded(false);
+//		}
 		
 		// reset the collision box's position on Y
 		badGuyRect.y = badGuy.getPosition().y;
@@ -469,8 +470,12 @@ public class WorldController {
 	private void badGuyDirection(BadGuy badGuy) {
 		if (badGuy.getPosition().x < hero.getPosition().x) {
 			badGuy.getVelocity().x = BadGuy.getSpeed();
-		} else {
+			badGuy.setFacingLeft(false);
+		} 
+		
+		if (badGuy.getPosition().x > hero.getPosition().x) {
 			badGuy.getVelocity().x = -BadGuy.getSpeed();
+			badGuy.setFacingLeft(true);
 		}
 	}
 	

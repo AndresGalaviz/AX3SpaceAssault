@@ -245,11 +245,11 @@ public class WorldRenderer {
 		}
 	}
 	
-	public int getWidth() {
-		return width;
+	public float getCameraWidth() {
+		return CAMERA_WIDTH;
 	}
 	
-	public int getHeight() {
-		return height;
+	public float getCameraHeight() {
+		return CAMERA_HEIGHT;
 	}
 }
