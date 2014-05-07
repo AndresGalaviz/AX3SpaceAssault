@@ -61,6 +61,7 @@ public class WorldRenderer {
     private boolean first;
     
 	private Texture redBullet;
+	private Texture blueBullet;
 	private Texture textureFont;
 
     private SpriteBatch spriteBatch;
@@ -116,6 +117,7 @@ public class WorldRenderer {
 	public void loadTextures(){
 		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
 		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
+		blueBullet = new Texture(Gdx.files.internal("images/bullets/bullet2.png"));
 		
 		
 		/** CARGAR PERSONAJE AZUL **/
@@ -323,6 +325,10 @@ public class WorldRenderer {
 		Array<Bullet> bullets = world.getBullets();
 		for (Bullet bullet : bullets) {
 			spriteBatch.draw(redBullet, bullet.getPosition().x, bullet.getPosition().y, bullet.WIDTH, bullet.HEIGHT);
+		}
+		Array<Bullet> badBullets = world.getBadBullets();
+		for (Bullet badBullet : badBullets) {
+			spriteBatch.draw(blueBullet, badBullet.getPosition().x, badBullet.getPosition().y, badBullet.WIDTH, badBullet.HEIGHT);
 		}
 	}
 	

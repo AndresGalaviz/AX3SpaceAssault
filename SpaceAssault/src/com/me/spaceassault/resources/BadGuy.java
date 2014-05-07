@@ -1,6 +1,7 @@
 package com.me.spaceassault.resources;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 /**
  * Clase para el control de los enemigos
  * @author AndresG
@@ -9,8 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 public class BadGuy extends Object{
 	private static final float SPEED = 1.5f;
 	private static final float JUMP_VEL = 9f;
+	private static final long SHOOT_SLEEP = 200;
 	private boolean moving;
 	private int strength;
+	private long lastShoot;
 	
 	/**
 	 * Metodo constructor para los enemigos del personaje
@@ -23,6 +26,7 @@ public class BadGuy extends Object{
 		moving = false;
 		this.strength = strength;
 		setGrounded(true);
+		lastShoot = 0;
 	}
 	/**
 	 * Metodo para activar el movimiento
@@ -84,6 +88,16 @@ public class BadGuy extends Object{
 	 */
 	public static float getSpeed() {
 		return SPEED;
+	}
+	
+	public void shoot(Array<Bullet> badBullets, Hero hero) {
+		if (hero.getPosition().y < this.getPosition().y + this.HEIGHT && 
+				hero.getPosition().y + hero.HEIGHT > this.getPosition().y) {
+			if (System.currentTimeMillis() - lastShoot > SHOOT_SLEEP) {
+				lastShoot = System.currentTimeMillis();
+				badBullets.add(new Bullet(this, strength));
+		}
+		}
 	}
 	
 }

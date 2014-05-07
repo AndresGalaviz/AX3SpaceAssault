@@ -46,6 +46,7 @@ public class WorldController {
 	private Array<BadGuy> badGuys;
 	private static final float WIDTH = 10f;
 	private Array<Bullet> bullets;
+	private Array<Bullet> badBullets;
 	private Array<Tile> collidable = new Array<Tile>();
 	
 	private Pool<Rectangle> rectPool = new Pool<Rectangle>() {
@@ -75,6 +76,7 @@ public class WorldController {
     	this.hero = world.getHero();
     	this.badGuys = world.getBadGuys();
     	this.bullets = world.getBullets();
+    	this.badBullets = world.getBadBullets();
     	this.W = W;
     	this.H = H;
     }
@@ -194,6 +196,15 @@ public class WorldController {
 				bullet.update(delta);
 			}
 		}
+		
+		for (Bullet badBullet : badBullets) {
+			if (checkCollisionBulletTiles(badBullet, delta)) {
+				bullets.removeValue(badBullet, true);
+			} else {
+				badBullet.update(delta);
+			}
+		}
+		
 		//  Verifica las colisiones entre los enemigos y las balas
 		for (Bullet bullet : bullets) {
 			for (BadGuy badGuy : badGuys) {
@@ -211,6 +222,23 @@ public class WorldController {
 			}
 		}
 		
+		//  Verifica colisiones entre balas enemigas y heroes
+		for (Bullet badBullet : badBullets) {
+			if (checkCollisionBulletHero(badBullet, hero)) {
+				hero.setLife(hero.getLife()-5*badBullet.getStrength());
+				if(hero.getLife() <= 0) {
+					keys.get(keys.put(Keys.LEFT, false));
+					keys.get(keys.put(Keys.RIGHT, false));
+					keys.get(keys.put(Keys.FIRE, false));
+					keys.get(keys.put(Keys.JUMP, false));
+					
+					((Game) Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
+					
+				}
+				badBullets.removeValue(badBullet, true);
+			}
+		}
+		
 		//  Verifica que no haya colision entre los enemigos y las paredes
 		for (BadGuy badGuy : badGuys) {
 			badGuy.getAcceleration().y = GRAVITY;
@@ -219,12 +247,12 @@ public class WorldController {
 			if (badGuy.isMoving()) {
 				badGuyDirection(badGuy);
 				checkCollisionBadGuyTiles(badGuy, delta);
+				badGuy.shoot(badBullets, hero);
 			} else {
 				badGuy.startMoving(hero, W, H);
 			}
 			if (checkCollisionWithBadGuy(badGuy)) {
-				System.out.println("Collision" +hero.getLife());
-				hero.setLife(hero.getLife()-badGuy.getStrength());
+				hero.setLife(hero.getLife()-5*badGuy.getStrength());
 				if(hero.getLife() <= 0) {
 					keys.get(keys.put(Keys.LEFT, false));
 					keys.get(keys.put(Keys.RIGHT, false));
@@ -399,6 +427,10 @@ public class WorldController {
 	 */
 	private boolean checkCollisionBulletBadGuy(Bullet bullet, BadGuy badGuy) {
 		return bullet.getBounds().overlaps(badGuy.getBounds());
+	}
+	
+	private boolean checkCollisionBulletHero(Bullet badBullet, Hero hero) {
+		return badBullet.getBounds().overlaps(hero.getBounds());
 	}
 	
 	/**
@@ -598,7 +630,7 @@ public class WorldController {
 
 		}
 		if (keys.get(Keys.FIRE)) {
-			bullets.add(new Bullet(hero));
+			bullets.add(new Bullet(hero, 1));
 			fireReleased();
 		}
 		return false;

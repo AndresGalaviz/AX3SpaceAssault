@@ -28,6 +28,7 @@ public class World {
 	Array<Rectangle> collisionRects = new Array<Rectangle>();
 	Array<BadGuy> badGuys = new Array<BadGuy>();
 	Array<Bullet> bullets = new Array<Bullet>();
+	Array<Bullet> badBullets = new Array<Bullet>();
 	
 	
 	public Array<Rectangle> getCollisionRects() {
@@ -48,6 +49,10 @@ public class World {
     
     public Array<Bullet> getBullets() {
     	return bullets;
+    }
+    
+    public Array<Bullet> getBadBullets() {
+    	return badBullets;
     }
     
     public List<Tile> getDrawableBlocks(int width, int height) {
