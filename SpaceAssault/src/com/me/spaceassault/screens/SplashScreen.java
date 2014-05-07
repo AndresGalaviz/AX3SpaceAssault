@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.spaceassault.tween.SpriteAccessor;
 /**
- * Clase que se utiliza para cargar las splash screen
+ * Clase <code> SplashScreen</code> que se utiliza para cargar las splash screen
  * @author AndresG
  *
  */
@@ -96,7 +96,7 @@ public class SplashScreen implements Screen{
 	}
 
 	/**
-	 * Metodoo que se llama 
+	 * Metodoo que se llama cuando la aplicacion se pausa
 	 */
 	@Override
 	public void pause() {
@@ -104,6 +104,9 @@ public class SplashScreen implements Screen{
 		
 	}
 
+	/**
+	 * Metodo que se llama cuando se resume la aplicacion
+	 */
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub

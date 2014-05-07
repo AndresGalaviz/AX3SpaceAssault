@@ -16,6 +16,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+/**
+ * Clase principal para desplegar las instrucciones de desktop
+ * 
+ * @author AndresG
+ *
+ */
 public class InstructionsDesktopScreen implements Screen {
 
 	//comment innecesario

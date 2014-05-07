@@ -10,7 +10,12 @@ import com.me.spaceassault.world.World;
 import com.me.spaceassault.world.WorldRenderer;
 import com.me.spaceassault.control.WorldController;
 
-
+/**
+ * Metodo principal para el manejo de los inputs en el sistema
+ * 
+ * @author AndresG
+ *
+ */
 public class GameScreen implements Screen, InputProcessor {
 
 	private World world;
@@ -167,6 +172,7 @@ public class GameScreen implements Screen, InputProcessor {
 	}
 
 	/**
+	 * Metodo <I>touchUp</I> de la clase <code>GameScreen</code>
 	 * Lo que hace al dejar de tocar la pantalla
 	 */
 	@Override
@@ -190,7 +196,8 @@ public class GameScreen implements Screen, InputProcessor {
 	
 	
 	/**
-	 * Lo que hace cuando se arrastra el dedo en la pantalla
+	 * Metodo <I>touchDragged</I> de la clase <code>GameScreen</code> 
+	 * Se manda llamar cuando el dedo se arrastra en la pantalla de android
 	 */
 	@Override
 	public boolean touchDragged(int x, int y, int pointer) {
@@ -221,6 +228,9 @@ public class GameScreen implements Screen, InputProcessor {
 		return false;
 	}
 
+	/**
+	 * Metdo <I>mouseMoved</I> de la clase <code>GameScreen</code> que detecta el movimiento del mouse
+	 */
 	@Override
 	public boolean mouseMoved(int x, int y) {
 		// TODO Auto-generated method stub

@@ -2,7 +2,7 @@ package com.me.spaceassault.tween;
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 /**
- * Clase para modificar y accesar los Sprites
+ * Clase <code>SpriteAccesor</code> que se utiliza para modificar y accesar los Sprites
  * @author AndresG
  *
  */

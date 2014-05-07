@@ -1,6 +1,7 @@
 package com.me.spaceassault.screens;
 
 import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -16,9 +17,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+/**
+ * Clase principal para desplegar las pantallas
+ * 
+ * @author AndresG
+ *
+ */
 public class InstructionsAndroidScreen implements Screen {
 
-	//comment innecesario
+	
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin;

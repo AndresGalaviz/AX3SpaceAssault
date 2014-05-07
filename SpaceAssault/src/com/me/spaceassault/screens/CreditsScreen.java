@@ -16,6 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+/**
+ * Clase para desplegar la pantalla de creditos
+ * @author AndresG
+ *
+ */
 public class CreditsScreen implements Screen {
 
 	private Stage stage;
