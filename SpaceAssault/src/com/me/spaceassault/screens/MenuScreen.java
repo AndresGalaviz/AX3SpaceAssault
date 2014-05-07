@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.me.spaceassault.resources.HighScore;
 public class MenuScreen implements Screen {
 
 	private Stage stage;
@@ -50,7 +51,7 @@ public class MenuScreen implements Screen {
 		 spriteBatch.begin();
 		 	font.setColor(Color.WHITE);
 		 	font.draw(spriteBatch, "Highscore: ", 30, 30);
-		 
+		 	font.draw(spriteBatch,String.valueOf(HighScore.getHighScore()), 180, 30);
 		 spriteBatch.end();
 		
 		stage.draw();

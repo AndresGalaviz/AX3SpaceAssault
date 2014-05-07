@@ -65,6 +65,8 @@ public class WorldRenderer {
 	private Texture blueBullet;
 	private Texture textureFont;
 	private Texture heart;
+	
+	private TextureRegion[] numbers = new TextureRegion[10];
 
     private SpriteBatch spriteBatch;
 	private boolean debug = false;
@@ -121,6 +123,11 @@ public class WorldRenderer {
 		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
 		blueBullet = new Texture(Gdx.files.internal("images/bullets/bullet2.png"));
 		heart = new Texture(Gdx.files.internal("images/heart.png"));
+		
+		TextureAtlas numAtlas = new TextureAtlas(Gdx.files.internal("images/numbers/numbers.pack"));
+		for (int i = 0; i < 10; i++) {
+			numbers[i] = numAtlas.findRegion("" + i);
+		}
 		
 		/** CARGAR PERSONAJE AZUL **/
 		
@@ -200,6 +207,7 @@ public class WorldRenderer {
 	        drawBadGuys();
 	        drawBullets();
 	        drawLife();
+	        drawHighScore(hero.getScore());
 
 	    spriteBatch.end();
 	    spriteBatch.begin();
@@ -306,9 +314,14 @@ public class WorldRenderer {
 			spriteBatch.draw(heart,cam.position.x + i - 5, cam.position.y -3, 0.4f,0.4f);
 		}
 	}
-	private void drawScore() {
-		Hero hero = world.getHero();
-		
+
+	private void drawHighScore(int hs)
+	{
+		String high = String.valueOf(hs);
+		float startX = cam.position.x - 3, startY = cam.position.y  + 2, difX = .2f, w = .4f, h = .4f;
+		for (int i = 0; i < high.length(); i++) {
+			spriteBatch.draw(numbers[(int)(high.charAt(i) - '0')], startX + i*difX, startY, w, h);
+		}
 	}
 	
 	/**

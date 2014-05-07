@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.me.spaceassault.resources.BadGuy;
 import com.me.spaceassault.resources.Bullet;
 import com.me.spaceassault.resources.Hero;
+import com.me.spaceassault.resources.HighScore;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.screens.GameOverScreen;
 import com.me.spaceassault.screens.GameScreen;
@@ -231,7 +232,8 @@ public class WorldController {
 					keys.get(keys.put(Keys.RIGHT, false));
 					keys.get(keys.put(Keys.FIRE, false));
 					keys.get(keys.put(Keys.JUMP, false));
-					
+					HighScore.setHighScore(hero.getScore());
+					System.out.println(hero.getScore() + "-----" + HighScore.getHighScore());
 					((Game) Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
 					
 				}
@@ -258,7 +260,7 @@ public class WorldController {
 					keys.get(keys.put(Keys.RIGHT, false));
 					keys.get(keys.put(Keys.FIRE, false));
 					keys.get(keys.put(Keys.JUMP, false));
-					
+					HighScore.setHighScore(hero.getScore());
 					((Game) Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
 					
 				}
