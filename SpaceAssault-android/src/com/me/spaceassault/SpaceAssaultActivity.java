@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.me.spaceassault.SpaceAssault;
 
 public class SpaceAssaultActivity extends AndroidApplication {
     /** Called when the activity is first created. */

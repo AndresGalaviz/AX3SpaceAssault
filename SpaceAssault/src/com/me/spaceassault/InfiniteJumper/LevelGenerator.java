@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.me.spaceassault.InfiniteJumper;
 
 
 
@@ -19,7 +19,7 @@ public class LevelGenerator {
     	
         /**
          * Metodo <I>LevelGenerator</I>, constructor de la clase <code>LevelGenerator</code>, En este
-         * metodo se reciben parametros para diseñar las posiciones de las plataformas.
+         * metodo se reciben parametros para disenar las posiciones de las plataformas.
          * @paramenvironment tipo de dato <code>Body</code> es el objeto utilizado
          * para incluir las fixtures del nivel.
          * @paramleftEdge tipo de dato <code>float</code> es el valor utilizado para

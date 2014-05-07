@@ -1,5 +1,4 @@
-package com.me.mygdxgame;
-
+package com.me.spaceassault.InfiniteJumper;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;

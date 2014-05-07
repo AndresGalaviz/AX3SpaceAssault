@@ -1,8 +1,7 @@
-package com.me.mygdxgame;
+package com.me.spaceassault.InfiniteJumper;
 
 
-
-import com.me.mygdxgame.Play;
+import com.me.spaceassault.InfiniteJumper.Play;
 import com.badlogic.gdx.Game;
 
 public class InfiniteJumper extends Game {

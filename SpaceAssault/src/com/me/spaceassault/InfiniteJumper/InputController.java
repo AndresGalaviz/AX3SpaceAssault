@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.me.spaceassault.InfiniteJumper;
 
 import com.badlogic.gdx.InputProcessor;
 
