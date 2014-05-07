@@ -10,11 +10,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
@@ -60,6 +63,9 @@ public class WorldRenderer {
 	private float ppuX;
 	private float ppuY;
 	
+	
+	private BitmapFont font;
+	
 	public void setSize (int w, int h) {
 		this.width = w;
 		this.height = h;
@@ -73,6 +79,7 @@ public class WorldRenderer {
 	 * @param world, el mundo que se usar
 	 * @param debug, si esta en modo debug o no
 	 */
+	
 	public WorldRenderer(World world, boolean debug) {
 	    this.first = true;
 	    this.world = world;
@@ -82,6 +89,9 @@ public class WorldRenderer {
 	    this.cam.update();
 	    this.debug = debug;
 	    spriteBatch = new SpriteBatch();
+	  
+	    
+	    font = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"));
 	    loadTextures();
 	}
 
@@ -131,13 +141,21 @@ public class WorldRenderer {
 	public void render() {
 		Hero hero = world.getHero();
 	    moveCamera(hero.getPosition().x, hero.getPosition().y);
+	    //spriteBatch.setProjectionMatrix(cam.combined);
+//	    Matrix4 normalProjection = new Matrix4().setToOrtho2D(0, 0, Gdx.graphics.getWidth(),  Gdx.graphics.getHeight());
+
 	    spriteBatch.setProjectionMatrix(cam.combined);
+	    spriteBatch.setColor(1, 1, 1, 1);
 	    spriteBatch.begin();
 	        drawTiles();
 	        drawHero();
 	        drawBadGuys();
 	        drawBullets();
+	        
+	        
+	        font.draw(spriteBatch, Integer.toString(hero.getScore()), cam.position.x, cam.position.y);
 	    spriteBatch.end();
+	    
 	    //if (debug) drawDebug();
 	}
 	
@@ -162,8 +180,11 @@ public class WorldRenderer {
 	 */
 	public void moveCamera(float x,float y){
 		Hero hero = world.getHero();
+
 		if (hero.getPosition().x > CAMERA_WIDTH / 2 &&  hero.getPosition().x < world.getLevel().getWidth() - CAMERA_WIDTH/2){
 	    	cam.position.x = x;
+
+			
 		} 
 		if (hero.getPosition().y > CAMERA_HEIGHT/2 &&  hero.getPosition().y < world.getLevel().getHeight() - CAMERA_HEIGHT/2 ){
 	    	cam.position.y = y;
@@ -209,6 +230,7 @@ public class WorldRenderer {
 	 */
 	private void drawHero() {
 		
+		
 		Hero hero = world.getHero();
 		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
 		if(hero.getState().equals(Hero.State.WALK)) {
@@ -221,6 +243,7 @@ public class WorldRenderer {
 			}
 		}
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
+
 	}
 	
 	/**

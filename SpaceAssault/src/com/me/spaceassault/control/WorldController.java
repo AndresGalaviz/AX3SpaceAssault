@@ -149,10 +149,12 @@ public class WorldController {
 		for (Bullet bullet : bullets) {
 			for (BadGuy badGuy : badGuys) {
 				if (checkCollisionBulletBadGuy(bullet, badGuy)) {
-					badGuy.setLife(badGuy.getLife() - 5);
+					badGuy.setLife(badGuy.getLife() - 1);
 					bullets.removeValue(bullet, true);
 					if (badGuy.getLife() <= 0) {
 						badGuys.removeValue(badGuy, true);
+						hero.addScore(hero.getScore() + badGuy.getStrength());
+						
 					}
 				}
 			}
@@ -170,16 +172,14 @@ public class WorldController {
 				badGuy.startMoving(hero, W, H);
 			}
 			if (checkCollisionWithBadGuy(badGuy)) {
+				System.out.println("Collision" +hero.getLife());
 				hero.setLife(hero.getLife()-badGuy.getStrength());
-				if(hero.getLife() == 0) {
+				if(hero.getLife() <= 0) {
 					keys.get(keys.put(Keys.LEFT, false));
 					keys.get(keys.put(Keys.RIGHT, false));
 					keys.get(keys.put(Keys.FIRE, false));
 					keys.get(keys.put(Keys.JUMP, false));
-					((Game) Gdx.app.getApplicationListener()).setScreen(new MenuScreen());
-					
-
-	
+					((Game) Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
 					
 				}
 			}
