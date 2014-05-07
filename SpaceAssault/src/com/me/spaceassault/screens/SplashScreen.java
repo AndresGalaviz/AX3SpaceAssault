@@ -12,7 +12,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.spaceassault.tween.SpriteAccessor;
-//COMMENT INNECESARIO
+/**
+ * Clase que se utiliza para cargar las splash screen
+ * @author AndresG
+ *
+ */
 public class SplashScreen implements Screen{
 	
 	private Sprite splash;
@@ -82,12 +86,18 @@ public class SplashScreen implements Screen{
 	
 	
 
+	/**
+	 * Metodo que se llama cuando se esconde la aplicaion
+	 */
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Metodoo que se llama 
+	 */
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub

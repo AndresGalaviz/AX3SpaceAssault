@@ -160,8 +160,8 @@ public class MenuScreen implements Screen {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.badlogic.gdx.Screen#hide()
+	/**
+	 * Metodo que se utiliza paa esconder la aplicacion
 	 */
 	@Override
 	public void hide() {
@@ -169,12 +169,18 @@ public class MenuScreen implements Screen {
 		
 	}
 
+	/**
+	 * Metodo que se llama cuando se pausa la aplicacion
+	 */
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Metodo que se llama cuando se resume la aplicacion
+	 */
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub

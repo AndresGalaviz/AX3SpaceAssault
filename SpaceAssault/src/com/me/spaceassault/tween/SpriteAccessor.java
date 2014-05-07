@@ -1,11 +1,19 @@
 package com.me.spaceassault.tween;
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-//COMMENT INNECESARIO
+/**
+ * Clase para modificar y accesar los Sprites
+ * @author AndresG
+ *
+ */
 public class SpriteAccessor implements TweenAccessor<Sprite> {
 
 public static final int ALPHA = 0;
 
+	
+	/**
+	 * Obtiene los valores para accesar el sprite
+	 */
 	@Override
 	public int getValues(Sprite target, int tweenType, float[] returnValues) {
 		switch(tweenType){
@@ -18,6 +26,9 @@ public static final int ALPHA = 0;
 		}
 	}
 
+	/**
+	 * Actaliza los valores de los sprites
+	 */
 	@Override
 	public void setValues(Sprite target, int tweenType, float[] newValues) {
 		// TODO Auto-generated method stub
