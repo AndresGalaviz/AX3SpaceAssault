@@ -7,6 +7,7 @@ public class SpaceAssault extends Game {
 
 	/**
 	 * Juego principal.
+	 * Llama la primera pantalla
 	 */
 	@Override
 	public void create() {

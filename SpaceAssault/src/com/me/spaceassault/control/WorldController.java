@@ -20,6 +20,7 @@ import com.me.spaceassault.world.World;
 
 /**
  * Clase que controla el input durante la pantalla del juego
+ * Maneja tambien las vidas y el score
  *
  */
 
@@ -38,8 +39,8 @@ public class WorldController {
 	
 	private final float W, H;
 	
-	private World world;
-	private Hero hero;
+	private World world;  // Mundo en el que el heroe se mueve
+	private Hero hero;  // Instancia del heroe principal
 	private long jumpPressedTime;
 	private boolean jumpingPressed;
 	private Array<BadGuy> badGuys;
@@ -62,7 +63,13 @@ public class WorldController {
     	keys.put(Keys.FIRE, false);
     	
     };
-    
+
+    /**
+     * Constructor de la clase
+     * @param world es el mundo que se va a controlar
+     * @param W ancho del mundo
+     * @param H alto del mundo
+     */
     public WorldController(World world, float W, float H) {
     	this.world = world;
     	this.hero = world.getHero();
@@ -71,54 +78,95 @@ public class WorldController {
     	this.W = W;
     	this.H = H;
     }
-    
+    /**
+     * Se activa cuando se presiona la tecla izquierda
+     */
 	public void leftPressed() {
 		keys.get(keys.put(Keys.LEFT, true));
 	}
-
+	/**
+	 * Se activa cuando se presiona la tecla derecha
+	 */
 	public void rightPressed() {
 		keys.get(keys.put(Keys.RIGHT, true));
 	}
 
+	/**
+	 * Se activa cuando se presiona la tecla de brincar
+	 */
 	public void jumpPressed() {
 		keys.get(keys.put(Keys.JUMP, true));
 	}
 
+	/**
+	 * Se activa cuando se presiona la tecla de disparar
+	 */
 	public void firePressed() {
 		keys.get(keys.put(Keys.FIRE, true));
 	}
 
+	/**
+	 * Se activa cuando se libera la tecla izquierda
+	 */
 	public void leftReleased() {
 		keys.get(keys.put(Keys.LEFT, false));
 	}
 
+	/**
+	 * Se activa cuando se libera la tecla derecha
+	 */
 	public void rightReleased() {
 		keys.get(keys.put(Keys.RIGHT, false));
 	}
 
+	/**
+	 * Se activa cuando se libera la tecla de brinco
+	 */
 	public void jumpReleased() {
 		keys.get(keys.put(Keys.JUMP, false));
 	}
 
+	/**
+	 * Se activa cuando se libera la tecla de disparar
+	 */
 	public void fireReleased() {
 		keys.get(keys.put(Keys.FIRE, false));
 	}
 
+	/**
+	 * Se utiliza para revisar si se esta presionando la tecla izquierda
+	 * @return el valor booleano de esta pregunta
+	 */
 	public boolean isLeftOn() {
 		return keys.get(Keys.LEFT);
 	}
+	/**
+	 * Se utiliza para revisar si se esta presionando la tecla derecha
+	 * @return el valor booleano de esta pregunta
+	 */
 	public boolean isRightOn() {
 		return keys.get(Keys.RIGHT);
 	}
+	/**
+	 * Se utiliza para revisr si se esta presionando la tecla de disparo
+	 * @return el valor booleano de esta pregunta
+	 */
 	public boolean isFireOn() {
 		return keys.get(Keys.FIRE);
 	}
+	/**
+	 * Se utiliza para revisar si se esta presionando la tecla para brncar
+	 * @return el valor booleano de esta pregunta
+	 */
 	public boolean isJumpOn() {
 		return keys.get(Keys.JUMP);
 	}
 
 	
-	/** The main update method **/
+	/** 
+	 * The main update method 
+	 **
+	 */
 	public void update(float delta) {
 		processInput();
 		
@@ -138,6 +186,7 @@ public class WorldController {
 		}
 		hero.update(delta);
 		
+		//  Verifica que las balas no colisionen con las paredes
 		for (Bullet bullet : bullets) {
 			if (checkCollisionBulletTiles(bullet, delta)) {
 				bullets.removeValue(bullet, true);
@@ -145,7 +194,7 @@ public class WorldController {
 				bullet.update(delta);
 			}
 		}
-		
+		//  Verifica las colisiones entre los enemigos y las balas
 		for (Bullet bullet : bullets) {
 			for (BadGuy badGuy : badGuys) {
 				if (checkCollisionBulletBadGuy(bullet, badGuy)) {
@@ -162,7 +211,7 @@ public class WorldController {
 			}
 		}
 		
-		
+		//  Verifica que no haya colision entre los enemigos y las paredes
 		for (BadGuy badGuy : badGuys) {
 			badGuy.getAcceleration().y = GRAVITY;
 			badGuy.getAcceleration().scl(delta);
@@ -181,8 +230,8 @@ public class WorldController {
 					keys.get(keys.put(Keys.RIGHT, false));
 					keys.get(keys.put(Keys.FIRE, false));
 					keys.get(keys.put(Keys.JUMP, false));
-					WorldController.this.dispose();
-					((Game) Gdx.app.getApplicationListener()).setScreen(new Game());
+					
+					((Game) Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
 					
 				}
 			}
@@ -251,6 +300,7 @@ public class WorldController {
 
 		heroRect.y += hero.getVelocity().y;
 
+		// Verifica si existe overlap entre los cuadros con los que se puede chocar y el personaje principal
 		for (Tile tile : collidable) {
 			if (tile == null) continue;
 			if (heroRect.overlaps(tile.getBounds())) {
@@ -470,6 +520,10 @@ public class WorldController {
 		badGuy.getVelocity().scl(1 / delta);
 	}
 
+	/**
+	 * Cambia la direccion de los enemigos
+	 * @param badGuy enemigo
+	 */
 	private void badGuyDirection(BadGuy badGuy) {
 		if (badGuy.getPosition().x < hero.getPosition().x) {
 			badGuy.getVelocity().x = BadGuy.getSpeed();
@@ -482,7 +536,13 @@ public class WorldController {
 		}
 	}
 	
-	/** populate the collidable array with the blocks found in the enclosing coordinates **/
+	/**
+	 * Populate the collidable array with the blocks found in the enclosing coordinates
+	 * @param startX  Direccion inicio X
+	 * @param startY  Direccion inicio Y
+	 * @param endX  Direccion final X
+	 * @param endY  Direccion final Y
+	 */
 	private void populateCollidableTiles(int startX, int startY, int endX, int endY) {
 		collidable.clear();
 		for (int x = startX; x <= endX; x++) {
@@ -494,7 +554,10 @@ public class WorldController {
 		}
 	}
 
-	/** Change hero's state and parameters based on input controls **/
+	/**
+	 * Change hero's state and parameters based on input controls
+	 * @return
+	 */
 	private boolean processInput() {
 		if (keys.get(Keys.JUMP)) {
 			if (!hero.getState().equals(Hero.State.JUMP)) {
@@ -540,8 +603,5 @@ public class WorldController {
 		}
 		return false;
 	}
-	
-	private void dispose() {
-		
-	}
+
 }

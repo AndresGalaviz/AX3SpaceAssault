@@ -1,7 +1,11 @@
 package com.me.spaceassault.resources;
 
 import com.badlogic.gdx.math.Vector2;
-
+/**
+ * Clase para el control de los enemigos
+ * @author AndresG
+ *
+ */
 public class BadGuy extends Object{
 	private static final float SPEED = 1.5f;
 	private static final float JUMP_VEL = 9f;
@@ -20,18 +24,33 @@ public class BadGuy extends Object{
 		this.strength = strength;
 		setGrounded(true);
 	}
-	
+	/**
+	 * Metodo para activar el movimiento
+	 * @param moving
+	 */
 	public void setMoving(boolean moving) {
 		this.moving = moving;
 	}
-		
+	/**
+	 * Metodo para verificar si se esta moviendo
+	 * @return el valor de esta variable
+	 */
 	public boolean isMoving() {
 		return moving;
 	}
-	
+	/**
+	 * Metodo para obtener la fuerza de los enemigos
+	 * @return
+	 */
 	public int getStrength() {
 		return strength;
 	}
+	/**
+	 * metodo para activar el movimiento
+	 * @param hero el heroe principal
+	 * @param w ancho
+	 * @param h alto
+	 */
 	public void startMoving(Hero hero, float w, float h) {
 		moving = (getPosition().x < hero.getPosition().x + w/2 && 
 				getPosition().x > hero.getPosition().x - w/2 - getBounds().width && 
@@ -39,18 +58,30 @@ public class BadGuy extends Object{
 				getPosition().y > hero.getPosition().y - h/2 - getBounds().height);
 	}
 	
+	/**
+	 * Hacer que el enemigo brinque
+	 * @param delta
+	 */
 	public void jump (float delta) {
 		getVelocity().scl(1/delta);
 		getVelocity().y = JUMP_VEL;
 		getVelocity().scl(delta);
 	}
-	
+	/**
+	 * Hacer que el enemigo se mueva
+	 * @param left
+	 * @param delta
+	 */
 	public void move (boolean left, float delta) {
 		getVelocity().scl(1/delta);
 		getVelocity().x = (left ? -1 : 1)*SPEED;
 		getVelocity().scl(delta);
 	}
 	
+	/**
+	 * Metodo para obtener el valor de la velocidad
+	 * @return
+	 */
 	public static float getSpeed() {
 		return SPEED;
 	}
