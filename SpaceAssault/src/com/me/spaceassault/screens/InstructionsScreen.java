@@ -48,12 +48,12 @@ public class InstructionsScreen implements Screen {
 
     /**
      * Metodo <I>resize</I> de la clase <code>InstructionsScreen</code>, En este
-     * metodo se redefine el tamaño de la pantalla
+     * metodo se redefine el tamano de la pantalla
      *
      * @paramwidth tipo de dato <code>Entero</code> es el valor utilizado para
-     * manejar el tamaño en x.
+     * manejar el tamano en x.
      * @paramheight tipo de dato <code>Entero</code> es el valor utilizado para
-     * manejar el tamaño en y.
+     * manejar el tamano en y.
      */
 	@Override
 	public void resize(int width, int height) {
