@@ -9,6 +9,6 @@ import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 public class TexturePacket {
 
 	public static void main(String[] args) {
-		TexturePacker2.process("C:/Users/Alberto/Documents/Tec/4 Semestre/Proyecto de desarrollo de videojuegos/AX3SpaceAssault/SpaceAssault-android/assets/images/sprites", "C:/Users/Alberto/Documents/Tec/4 Semestre/Proyecto de desarrollo de videojuegos/AX3SpaceAssault/SpaceAssault-android/assets/images/sprites", "monito.pack");
+		TexturePacker2.process("C:/Users/Alberto/Documents/Tec/4 Semestre/Proyecto de desarrollo de videojuegos/AX3SpaceAssault/SpaceAssault-android/assets/images/numbers", "C:/Users/Alberto/Documents/Tec/4 Semestre/Proyecto de desarrollo de videojuegos/AX3SpaceAssault/SpaceAssault-android/assets/images/numbers", "numbers.pack");
 	}
 }
