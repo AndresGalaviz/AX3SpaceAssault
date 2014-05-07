@@ -91,7 +91,10 @@ public class WorldRenderer {
 	    spriteBatch = new SpriteBatch();
 	  
 	    
-	    font = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"));
+	    font = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"), false);
+	    Texture textureFont = new Texture(Gdx.files.internal("myfont.png"));
+	    texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+	    font.setScale(-.95f);
 	    loadTextures();
 	}
 
@@ -143,17 +146,18 @@ public class WorldRenderer {
 	    moveCamera(hero.getPosition().x, hero.getPosition().y);
 	    //spriteBatch.setProjectionMatrix(cam.combined);
 //	    Matrix4 normalProjection = new Matrix4().setToOrtho2D(0, 0, Gdx.graphics.getWidth(),  Gdx.graphics.getHeight());
-
+	   
 	    spriteBatch.setProjectionMatrix(cam.combined);
-	    spriteBatch.setColor(1, 1, 1, 1);
+	    
 	    spriteBatch.begin();
 	        drawTiles();
 	        drawHero();
 	        drawBadGuys();
 	        drawBullets();
 	        
-	        
-	        font.draw(spriteBatch, Integer.toString(hero.getScore()), cam.position.x, cam.position.y);
+	        font.draw(spriteBatch, String.valueOf(hero.getScore()), hero.getPosition().x , hero.getPosition().y );
+	        System.out.println(hero.getPosition().x + " ---- " + hero.getPosition().y );
+
 	    spriteBatch.end();
 	    
 	    //if (debug) drawDebug();
@@ -243,6 +247,7 @@ public class WorldRenderer {
 			}
 		}
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
+		
 
 	}
 	
