@@ -1,3 +1,9 @@
+/*
+ *Class Game
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.main;
 
 import com.badlogic.gdx.*;
@@ -17,6 +23,9 @@ public class Game implements ApplicationListener{
 	
 	private GameStateManager gsm;
 	
+	/* Metodo <I>create</I> de la clase <code>Game</code>
+	* Crea el juego.
+	*/
 	public void create() {
 		
 		WIDTH = Gdx.graphics.getWidth();
@@ -44,6 +53,9 @@ public class Game implements ApplicationListener{
 		gsm = new GameStateManager();
 	}
 	
+	/* Metodo <I>render</I> de la clase <code>Game</code>
+	* Hace un render.
+	*/
 	public void render() {
 		
 		//set screen to black
@@ -56,18 +68,35 @@ public class Game implements ApplicationListener{
 		GameKeys.update();
 	}
 	
+	/* Metodo <I>resize</I> de la clase <code>Game</code>
+	* Cambia el tamaño de la pantalla dependiendo de 
+	* <code>width</code> y <code>height</code>
+	*
+	* @paramwidth valor para el nuevo ancho.
+	*
+	* @paramheight valor para la nueva altura.
+	*/
 	public void resize(int width, int height) {
 		
 	}
 	
+	/* Metodo <I>pausa</I> de la clase <code>Game</code>
+	* Hace pausa.
+	*/
 	public void pause() {
 		
 	}
 	
+	/* Metodo <I>resume</I> de la clase <code>Game</code>
+	* Quita la pausa.
+	*/
 	public void resume() {
 		
 	}
 	
+	/* Metodo <I>dispose</I> de la clase <code>Game</code>
+	* Tira el juego.
+	*/
 	public void dispose() {
 		
 	}

@@ -1,3 +1,9 @@
+/*
+ *Class GameInputProcessor
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.managers;
 
 import com.badlogic.gdx.Input.Keys;
@@ -6,6 +12,9 @@ import com.badlogic.gdx.InputAdapter;
 
 public class GameInputProcessor extends InputAdapter{
 
+	/* Metodo <I>keyDown</I> de la clase <code>GameInputProcessor</code>
+	* Recibe el numero <code>k</code> y activa la tecla correspondiente.
+	*/
 	public boolean keyDown(int k) {
 		if(k == Keys.UP || k == Keys.W) {
 			GameKeys.setKey(GameKeys.UP,  true);
@@ -34,6 +43,9 @@ public class GameInputProcessor extends InputAdapter{
 		return true;
 	}
 	
+	/* Metodo <I>keyUp</I> de la clase <code>GameInputProcessor</code>
+	* Recibe el numero <code>k</code> y desactiva la tecla correspondiente.
+	*/
 	public boolean keyUp(int k) {
 		if(k == Keys.UP || k == Keys.W) {
 			GameKeys.setKey(GameKeys.UP,  false);

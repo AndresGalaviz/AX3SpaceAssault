@@ -60,7 +60,7 @@ public class SpaceObject {
 	 * @paramx tipo de dato <code>float</code> que modifica la posicion
 	 * del objeto en x.
 	 * 
-	 * * @paramy tipo de dato <code>float</code> que modifica la posicion
+	 * @paramy tipo de dato <code>float</code> que modifica la posicion
 	 * del objeto en y.
 	 */
 	public void setPosition(float x, float y) {

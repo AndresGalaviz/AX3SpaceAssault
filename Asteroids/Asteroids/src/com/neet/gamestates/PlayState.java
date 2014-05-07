@@ -1,3 +1,9 @@
+/*
+ *Class PlayState
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.gamestates;
 
 import java.util.ArrayList;
