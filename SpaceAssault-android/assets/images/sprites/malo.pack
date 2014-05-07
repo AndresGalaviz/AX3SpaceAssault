@@ -1,0 +1,152 @@
+
+malo.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+fall
+  rotate: false
+  xy: 638, 422
+  size: 149, 199
+  orig: 149, 199
+  offset: 0, 0
+  index: -1
+hurt
+  rotate: false
+  xy: 164, 410
+  size: 152, 202
+  orig: 152, 202
+  offset: 0, 0
+  index: -1
+idle
+  rotate: false
+  xy: 323, 236
+  size: 152, 188
+  orig: 152, 188
+  offset: 0, 0
+  index: -1
+jump
+  rotate: false
+  xy: 167, 825
+  size: 168, 194
+  orig: 168, 194
+  offset: 0, 0
+  index: -1
+run01
+  rotate: false
+  xy: 337, 823
+  size: 163, 196
+  orig: 163, 196
+  offset: 0, 0
+  index: -1
+run02
+  rotate: false
+  xy: 478, 425
+  size: 158, 196
+  orig: 158, 196
+  offset: 0, 0
+  index: -1
+run03
+  rotate: false
+  xy: 656, 623
+  size: 159, 196
+  orig: 159, 196
+  offset: 0, 0
+  index: -1
+run04
+  rotate: false
+  xy: 332, 625
+  size: 160, 196
+  orig: 160, 196
+  offset: 0, 0
+  index: -1
+run05
+  rotate: false
+  xy: 167, 625
+  size: 163, 198
+  orig: 163, 198
+  offset: 0, 0
+  index: -1
+run06
+  rotate: false
+  xy: 163, 210
+  size: 158, 198
+  orig: 158, 198
+  offset: 0, 0
+  index: -1
+run07
+  rotate: false
+  xy: 829, 821
+  size: 159, 198
+  orig: 159, 198
+  offset: 0, 0
+  index: -1
+run08
+  rotate: false
+  xy: 667, 821
+  size: 160, 198
+  orig: 160, 198
+  offset: 0, 0
+  index: -1
+run09
+  rotate: false
+  xy: 2, 817
+  size: 163, 202
+  orig: 163, 202
+  offset: 0, 0
+  index: -1
+run10
+  rotate: false
+  xy: 2, 2
+  size: 158, 202
+  orig: 158, 202
+  offset: 0, 0
+  index: -1
+run11
+  rotate: false
+  xy: 2, 206
+  size: 159, 202
+  orig: 159, 202
+  offset: 0, 0
+  index: -1
+run12
+  rotate: false
+  xy: 2, 410
+  size: 160, 202
+  orig: 160, 202
+  offset: 0, 0
+  index: -1
+run13
+  rotate: false
+  xy: 502, 822
+  size: 163, 197
+  orig: 163, 197
+  offset: 0, 0
+  index: -1
+run14
+  rotate: false
+  xy: 318, 426
+  size: 158, 197
+  orig: 158, 197
+  offset: 0, 0
+  index: -1
+run15
+  rotate: false
+  xy: 817, 622
+  size: 159, 197
+  orig: 159, 197
+  offset: 0, 0
+  index: -1
+run16
+  rotate: false
+  xy: 494, 623
+  size: 160, 197
+  orig: 160, 197
+  offset: 0, 0
+  index: -1
+run17
+  rotate: false
+  xy: 2, 614
+  size: 163, 201
+  orig: 163, 201
+  offset: 0, 0
+  index: -1

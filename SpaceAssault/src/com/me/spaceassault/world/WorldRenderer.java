@@ -39,22 +39,27 @@ public class WorldRenderer {
     /** for debug rendering **/
 	ShapeRenderer debugRenderer = new ShapeRenderer();
 	
-	/** Textures **/
-    private TextureRegion heroIdleLeft;
-    private TextureRegion heroIdleRight;
-    private Texture tileTexture;
-    private TextureRegion heroFrame;
-
-    private boolean first;
-    /** Animations **/
-    private Animation walkLeftAnimation;
-    private Animation walkRightAnimation;
-
-	private TextureRegion heroJumpLeft;
-	private TextureRegion heroFallLeft;
-	private TextureRegion heroJumpRight;
-	private TextureRegion heroFallRight;
+	/** equipo del jugador 0/1 **/
+	private int team;
 	
+	/** Textures **/
+    private TextureRegion[] heroIdleLeft = new TextureRegion[2];
+    private TextureRegion[] heroIdleRight = new TextureRegion[2];
+    private TextureRegion[] heroJumpLeft = new TextureRegion[2];
+	private TextureRegion[] heroFallLeft = new TextureRegion[2];
+	private TextureRegion[] heroJumpRight = new TextureRegion[2];
+	private TextureRegion[] heroFallRight = new TextureRegion[2];
+	
+	private Texture tileTexture;
+    private TextureRegion heroFrame;
+    private TextureRegion badGuyFrame;
+
+    /** Animations **/
+    private Animation[] walkLeftAnimation = new Animation[2];
+    private Animation[] walkRightAnimation = new Animation[2];
+	
+    private boolean first;
+    
 	private Texture redBullet;
 	private Texture textureFont;
 
@@ -90,6 +95,7 @@ public class WorldRenderer {
 	    this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
 	    this.cam.update();
 	    this.debug = debug;
+	    this.team = 0;
 	    spriteBatch = new SpriteBatch();
 	  
 	    
@@ -108,69 +114,69 @@ public class WorldRenderer {
 	 * Carga las texturas para las imagenes
 	 */
 	public void loadTextures(){
+		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
+		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
+		
+		
+		/** CARGAR PERSONAJE AZUL **/
+		
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/sprites/monito.pack"));
 		
-		heroIdleRight = atlas.findRegion("idle");
-		heroIdleLeft = new TextureRegion(heroIdleRight);
-		heroIdleLeft.flip(true, false);
-		
-		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
+		heroIdleRight[0] = atlas.findRegion("idle");
+		heroIdleLeft[0] = new TextureRegion(heroIdleRight[0]);
+		heroIdleLeft[0].flip(true, false);
 		
 		TextureRegion[] walkRightFrames = new TextureRegion[17];
 		for (int i = 1; i <= 17; i++) {
 			walkRightFrames[i-1] = atlas.findRegion("run" + (i < 10 ? "0" : "") + i);
 		}
-		walkRightAnimation = new Animation(RUNNING_FRAME_DURATION, walkRightFrames);
+		walkRightAnimation[0] = new Animation(RUNNING_FRAME_DURATION, walkRightFrames);
 		
 		TextureRegion[] walkLeftFrames = new TextureRegion[17];
 		for (int i = 0; i < 17; i++) {
 			walkLeftFrames[i] = new TextureRegion(walkRightFrames[i]);
 			walkLeftFrames[i].flip(true, false);
 		}
-		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
+		walkLeftAnimation[0] = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
 		
-		heroJumpRight = atlas.findRegion("jump");
-		heroJumpLeft = new TextureRegion(heroJumpRight);
-		heroJumpLeft.flip(true, false);
+		heroJumpRight[0] = atlas.findRegion("jump");
+		heroJumpLeft[0] = new TextureRegion(heroJumpRight[0]);
+		heroJumpLeft[0].flip(true, false);
 		
-		heroFallRight = atlas.findRegion("fall");
-		heroFallLeft = new TextureRegion(heroFallRight);
-		heroFallLeft.flip(true, false);
+		heroFallRight[0] = atlas.findRegion("fall");
+		heroFallLeft[0] = new TextureRegion(heroFallRight[0]);
+		heroFallLeft[0].flip(true, false);
 		
-		/*
-		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
-		heroIdleLeft = atlas.findRegion("1");
-		heroIdleRight = new TextureRegion(heroIdleLeft);
-		heroIdleLeft.flip(true, false);
-		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
+		/** CARGAR PERSONAJE ROJO **/
 		
-		TextureRegion[] walkRightFrames = new TextureRegion[17];
-		for (int i = 0; i < 17; i++) {
-			walkRightFrames[i] = atlas.findRegion("" + i);
+		TextureAtlas atlas2 = new TextureAtlas(Gdx.files.internal("images/sprites/malo.pack"));
+		
+		heroIdleRight[1] = atlas2.findRegion("idle");
+		heroIdleLeft[1] = new TextureRegion(heroIdleRight[1]);
+		heroIdleLeft[1].flip(true, false);
+		
+		TextureRegion[] walkRightFrames2 = new TextureRegion[17];
+		for (int i = 1; i <= 17; i++) {
+			walkRightFrames2[i-1] = atlas2.findRegion("run" + (i < 10 ? "0" : "") + i);
 		}
-		walkRightAnimation = new Animation(RUNNING_FRAME_DURATION, walkRightFrames);
-
-		TextureRegion[] walkLeftFrames = new TextureRegion[17];
-
+		walkRightAnimation[1] = new Animation(RUNNING_FRAME_DURATION, walkRightFrames2);
+		
+		TextureRegion[] walkLeftFrames2 = new TextureRegion[17];
 		for (int i = 0; i < 17; i++) {
-			walkLeftFrames[i] = new TextureRegion(walkRightFrames[i]);
-			walkLeftFrames[i].flip(true, false);
+			walkLeftFrames2[i] = new TextureRegion(walkRightFrames2[i]);
+			walkLeftFrames2[i].flip(true, false);
 		}
+		walkLeftAnimation[1] = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames2);
 		
-		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
+		heroJumpRight[1] = atlas2.findRegion("jump");
+		heroJumpLeft[1] = new TextureRegion(heroJumpRight[1]);
+		heroJumpLeft[1].flip(true, false);
+		
+		heroFallRight[1] = atlas2.findRegion("fall");
+		heroFallLeft[1] = new TextureRegion(heroFallRight[1]);
+		heroFallLeft[1].flip(true, false);
 		
 		
-		TextureAtlas jump = new TextureAtlas(Gdx.files.internal("images/characterpng/jump/jump.pack"));
-		
-		heroJumpRight = jump.findRegion("1");
-		heroJumpLeft = new TextureRegion(heroJumpRight);
-		heroJumpLeft.flip(true, false);
-		
-		heroFallRight = jump.findRegion("1");
-		heroFallLeft = new TextureRegion(heroFallRight);
-		heroFallLeft.flip(true, false);*/
-		
-		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
 	}
 
 	/**
@@ -273,14 +279,14 @@ public class WorldRenderer {
 		
 		
 		Hero hero = world.getHero();
-		heroFrame = hero.isFacingLeft() ? heroIdleLeft : heroIdleRight;
+		heroFrame = hero.isFacingLeft() ? heroIdleLeft[team] : heroIdleRight[team];
 		if(hero.getState().equals(Hero.State.WALK)) {
-			heroFrame = hero.isFacingLeft() ? walkLeftAnimation.getKeyFrame(hero.getStateTime(), true) : walkRightAnimation.getKeyFrame(hero.getStateTime(), true);
+			heroFrame = hero.isFacingLeft() ? walkLeftAnimation[team].getKeyFrame(hero.getStateTime(), true) : walkRightAnimation[team].getKeyFrame(hero.getStateTime(), true);
 		} else if (hero.getState().equals(Hero.State.JUMP)) {
 			if (hero.getVelocity().y > 0) {
-				heroFrame = hero.isFacingLeft() ? heroJumpLeft : heroJumpRight;
+				heroFrame = hero.isFacingLeft() ? heroJumpLeft[team] : heroJumpRight[team];
 			} else {
-				heroFrame = hero.isFacingLeft() ? heroFallLeft : heroFallRight;
+				heroFrame = hero.isFacingLeft() ? heroFallLeft[team] : heroFallRight[team];
 			}
 		}
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
@@ -295,7 +301,17 @@ public class WorldRenderer {
 		Array<BadGuy> badGuys = world.getBadGuys();
 		TextureRegion badGuyFrame;
 		for (BadGuy badGuy : badGuys) {
-			badGuyFrame = badGuy.isFacingLeft() ? walkLeftAnimation.getKeyFrame(world.getHero().getStateTime(), true) : walkRightAnimation.getKeyFrame(world.getHero().getStateTime(), true); 
+			if (badGuy.isGrounded()) {
+				if (badGuy.getVelocity().x == 0) {
+					badGuyFrame = badGuy.isFacingLeft() ? heroIdleLeft[1-team] : heroIdleRight[1-team];
+				} else {
+					badGuyFrame = badGuy.isFacingLeft() ? walkLeftAnimation[1-team].getKeyFrame(world.getHero().getStateTime(), true) : walkRightAnimation[1-team].getKeyFrame(world.getHero().getStateTime(), true); 
+				}
+			} else if (badGuy.getVelocity().y > 0) {
+				badGuyFrame = badGuy.isFacingLeft() ? heroJumpLeft[1-team] : heroJumpRight[1-team];
+			} else {
+				badGuyFrame = badGuy.isFacingLeft() ? heroFallLeft[1-team] : heroFallRight[1-team];
+			}
 			spriteBatch.draw(badGuyFrame, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
 		}
 	}
