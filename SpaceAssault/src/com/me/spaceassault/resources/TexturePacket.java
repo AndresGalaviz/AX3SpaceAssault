@@ -2,7 +2,7 @@ package com.me.spaceassault.resources;
 
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 /**
- * Clase <I>TexturePacket</I> que se 
+ * Clase <I>TexturePacket</I> que se utiliza para crear textures
  * @author AndresG
  *
  */
