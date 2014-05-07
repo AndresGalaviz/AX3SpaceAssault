@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.me.spaceassault.world.World;
 import com.me.spaceassault.world.WorldRenderer;
@@ -21,7 +22,7 @@ public class GameScreen implements Screen, InputProcessor {
 	private World world;
 	private WorldRenderer renderer;
 	private WorldController controller;
-
+	private Music music = Gdx.audio.newMusic(Gdx.files.internal("data/music.mp3"));;
 	private int width, height;
 	
 	public GameScreen() {
@@ -29,6 +30,8 @@ public class GameScreen implements Screen, InputProcessor {
 		renderer = new WorldRenderer(world, false);
 		controller = new WorldController(world, renderer.getCameraWidth(), renderer.getCameraHeight());
 		Gdx.input.setInputProcessor(this);
+		music.play();
+		
 	}
 
     /**
