@@ -211,7 +211,6 @@ public class WorldRenderer {
 
 	    spriteBatch.end();
 	    spriteBatch.begin();
-        font.draw(spriteBatch, String.valueOf(hero.getScore()), cam.position.x - 5, cam.position.y + 3);
 
         spriteBatch.end();
 	    
@@ -318,7 +317,7 @@ public class WorldRenderer {
 	private void drawHighScore(int hs)
 	{
 		String high = String.valueOf(hs);
-		float startX = cam.position.x - 3, startY = cam.position.y  + 2, difX = .2f, w = .4f, h = .4f;
+		float startX = cam.position.x - 5, startY = cam.position.y  + 3, difX = 2f, w = .4f, h = .4f;
 		for (int i = 0; i < high.length(); i++) {
 			spriteBatch.draw(numbers[(int)(high.charAt(i) - '0')], startX + i*difX, startY, w, h);
 		}

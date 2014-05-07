@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 public class BadGuy extends Object{
 	private static final float SPEED = 1.5f;
 	private static final float JUMP_VEL = 9f;
-	private static final long SHOOT_SLEEP = 400;
+	private static final long SHOOT_SLEEP = 2000;
 	private boolean moving;
 	private int strength;
 	private long lastShoot;
