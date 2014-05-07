@@ -149,9 +149,9 @@ public class MenuScreen implements Screen {
 		table.row();
 		table.add(buttonPlay).width(buttonInstructions.getWidth()+150).fillX();
 		table.row();
-		table.add(buttonCredits).width(buttonInstructions.getWidth()+150).fillX();
-		table.row();
 		table.add(buttonInstructions).width(buttonInstructions.getWidth()+150).fillX();
+		table.row();
+		table.add(buttonCredits).width(buttonInstructions.getWidth()+150).fillX();
 		table.row();
 		table.add(buttonExit).width(buttonInstructions.getWidth()+150).fillX();
 		stage.addActor(table);
