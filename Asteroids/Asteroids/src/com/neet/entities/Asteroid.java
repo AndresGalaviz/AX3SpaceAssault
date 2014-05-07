@@ -1,3 +1,9 @@
+/*
+ *Class Asteroid
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.entities;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -18,6 +24,18 @@ public class Asteroid extends SpaceObject{
 	
 	private boolean remove;
 	
+	/*
+	 * Metodo <I>constructor</I> de la clase <code>Asteroid</code>
+	 *
+	 * @paramx tipo de dato <code>float</code> que define la posicion
+	 * en x del objeto.
+	 *
+	 * @paramy tipo de dato <code>float</code> que define la posicion
+	 * en y del objeto.
+	 *
+	 * @paramtype tipo de dato <code>int</code> que define el tipo de
+	 * asteroide.
+	 */
 	public Asteroid(float x, float y, int type) {
 		this.x = x;
 		this.y = y;
@@ -62,6 +80,10 @@ public class Asteroid extends SpaceObject{
 		setShape();
 	}
 	
+	/*
+	 * Metodo <I>setShape</I> de la clase <code>Asteroid</code>.
+	 * Define la forma del asteroide.
+	 */
 	private void setShape() {
 		float angle = 0;
 		for(int i = 0; i < numPoints; i++) {
@@ -71,10 +93,32 @@ public class Asteroid extends SpaceObject{
 		}
 	}
 	
+	/*
+	 *  Metodo <I>getType</I> de la clase <code>Asteroid</code>. 
+	 *  Regresa el tipo de asteroide.
+	 */
 	public int getType() { return type; }
+
+	/*
+	* Metodo <I>shouldRemove()</I> de la clase <code>Asteroid</code>.
+	* Regresa un tipo de dato <code>boolean</code> que dice si se 
+	* debe de borrar el objeto.
+	*/
 	public boolean shouldRemove() { return remove; }
+
+	/*
+	 *  Metodo <I>getScore</I> de la clase <code>Asteroid</code>. 
+	 *  Regresa el puntaje que da el asteroide.
+	 */
 	public int getScore() { return score; }
 	
+	/*
+	 * Metodo <I>update</I> de la clase <code>Asteroide</code>.
+	 * Actualiza el objeto dependiendo del valor de dt que reciba.
+	 * 
+	 * @paramdt tipo de dato <code>float</code> que modifica la posicion
+	 * del objeto dependiendo de dt.
+	 */
 	public void update(float dt) {
 		
 		x += dx * dt;
@@ -87,6 +131,13 @@ public class Asteroid extends SpaceObject{
 		
 	}
 	
+	/*
+	 * Metodo <I>draw</I> de la clase <code>Asteroide</code>.
+	 * Pinta el objeto usando ShapeRenderer sr
+	 * 
+	 * @paramsr tipo de dato <code>ShapeRenderer</code> que es
+	 * lo que se pinta.
+	 */
 	public void draw(ShapeRenderer sr) {
 		sr.setColor(.66f, .42f, .23f, 1);
 		sr.begin(ShapeType.Line);

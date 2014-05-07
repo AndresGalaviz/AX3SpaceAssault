@@ -1,3 +1,9 @@
+/*
+ *Class Player
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.entities;
 
 import java.awt.geom.Line2D;
@@ -42,9 +48,12 @@ public class Player extends SpaceObject{
 	
 	private long score;
 	private int extraLives;
-	
+
 	/*
-	 * Metodo <I>constructor</I> que recib
+	 * Metodo <I>constructor</I> de la clase <code>Player</code>
+	 *
+	 * @parambullets tipo de dato <code>ArrayList<Bullet></code> que
+	 * es el arreglo de balas del jugador.
 	 */
 	public Player(ArrayList<Bullet> bullets) {
 		
@@ -75,6 +84,9 @@ public class Player extends SpaceObject{
 		
 	}
 	
+	/* Metodo <I>hit</I> de la clase <code>Player</code>
+	* Usado cuando el jugador es golpeado y destruido.
+	*/
 	public void hit() {
 		
 		if(hit) return;
@@ -110,6 +122,10 @@ public class Player extends SpaceObject{
 			);
 	}
 	
+	/*
+	 * Metodo <I>setFlame</I> de la clase <code>Player</code>.
+	 * Define la forma del fuego.
+	 */
 	private void setFlame() {
 		flamex[0] = x + MathUtils.cos(radians - 5 * 3.1416f / 6) * 5;
 		flamey[0] = y + MathUtils.sin(radians - 5 * 3.1416f / 6) * 5;
@@ -122,7 +138,11 @@ public class Player extends SpaceObject{
 		flamex[2] = x + MathUtils.cos(radians + 5 * 3.1416f / 6) * 5;
 		flamey[2] = y + MathUtils.sin(radians + 5 * 3.1416f / 6) * 5;
 	}
-	
+
+	/*
+	 * Metodo <I>setShape</I> de la clase <code>Player</code>.
+	 * Define la forma del jugador.
+	 */
 	private void setShape() {
 		shapex[0] = x + MathUtils.cos(radians) * 8;
 		shapey[0] = y + MathUtils.sin(radians) * 8;
@@ -137,8 +157,31 @@ public class Player extends SpaceObject{
 		shapey[3] = y + MathUtils.sin(radians + 4 * 3.1416f / 5) * 8;
 	}
 	
+	/*
+	 * Metodo <I>setLeft</I> de la clase <code>Player</code>.
+	 * Define si la tecla de la izquierda esta presionada.
+	 * 
+	 * @paramdb tipo de dato <code>boolean</code> que define
+	 * si la tecla esta presionada.
+	 */
 	public void setLeft(boolean b) { left = b; }
+
+	/*
+	 * Metodo <I>setRight</I> de la clase <code>Player</code>.
+	 * Define si la tecla de la derecha esta presionada.
+	 * 
+	 * @paramdb tipo de dato <code>boolean</code> que define
+	 * si la tecla esta presionada.
+	 */
 	public void setRight(boolean b) { right = b; }
+
+	/*
+	 * Metodo <I>setUp</I> de la clase <code>Player</code>.
+	 * Define si la tecla de arriba esta presionada.
+	 * 
+	 * @paramdb tipo de dato <code>boolean</code> que define
+	 * si la tecla esta presionada.
+	 */
 	public void setUp(boolean b) { 
 		if(b && !up && !hit) {
 			Jukebox.loop("thruster");
@@ -153,8 +196,25 @@ public class Player extends SpaceObject{
 		setShape();
 	}
 	
+	/*
+	* Metodo <I>isHit()</I> de la clase <code>Player</code>.
+	* Regresa un tipo de dato <code>boolean</code> que dice si
+	* el jugador fue golpeado.
+	*/
 	public boolean isHit() { return hit; }
+
+	/*
+	* Metodo <I>isDead()</I> de la clase <code>Player</code>.
+	* Regresa un tipo de dato <code>boolean</code> que dice si el
+	* jugador esta muerto.
+	*/
 	public boolean isDead() {return dead; }
+	
+	/*
+	* Metodo <I>reset</I> de la clase <code>Player</code>.
+	* Reinicia todos los valores de posicion del jugador
+	* y lo vuelve a dibujar.
+	*/
 	public void reset() {
 		color = 1;
 		x = Game.WIDTH / 2;
@@ -162,12 +222,38 @@ public class Player extends SpaceObject{
 		setShape();
 		hit = dead = false;
 	}
+
+	/*
+	 *  Metodo <I>getScore</I> de la clase <code>Player</code>. 
+	 *  Regresa el puntaje acumulado.
+	 */
 	public long getScore() { return score; }
+
+	/*
+	 *  Metodo <I>getLives</I> de la clase <code>Player</code>. 
+	 *  Regresa la cantidad de vidas restantes.
+	 */
 	public int getLives() { return extraLives; }
 	
+	/*
+	* Metodo <I>loseLife</I> de la clase <code>Player</code>.
+	* Reduce la vida del jugador en uno.
+	*/
 	public void loseLife() { extraLives--; }
+
+	/*
+	 * Metodo <I>incrementScore</I> de la clase <code>Player</code>.
+	 * Incrementa el puntaje dependiendo del numero l que reciba.
+	 * 
+	 * @paraml tipo de dato <code>long</code> con el cual se 
+	 * incrementa el puntaje.
+	 */
 	public void incrementScore(long l) { score += l; }
 	
+	/* Metodo <I>incrementScore</I> de la clase <code>Player</code>
+	* Dispara una bala del personaje en la direccion en que este 
+	* apuntando el jugador.
+	*/
 	public void shoot() {
 		if(this.hit) return;
 		if(bullets.size() == MAX_BULLETS) return;
@@ -175,6 +261,13 @@ public class Player extends SpaceObject{
 		bullets.add(new Bullet(x, y, radians));		
 	}
 	
+	/*
+	 * Metodo <I>update</I> de la clase <code>Player</code>.
+	 * Actualiza el objeto dependiendo del valor de dt que reciba.
+	 * 
+	 * @paramdt tipo de dato <code>float</code> que modifica la posicion
+	 * del objeto dependiendo de dt.
+	 */
 	public void update(float dt) {
 		
 		// check if hit
@@ -245,6 +338,13 @@ public class Player extends SpaceObject{
 		
 	}
 	
+	/*
+	 * Metodo <I>draw</I> de la clase <code>Asteroide</code>.
+	 * Pinta el objeto usando ShapeRenderer sr
+	 * 
+	 * @paramsr tipo de dato <code>ShapeRenderer</code> que es
+	 * lo que se pinta.
+	 */
 	public void draw(ShapeRenderer sr) {
 		
 		sr.setColor(0, 1, 1, 1);

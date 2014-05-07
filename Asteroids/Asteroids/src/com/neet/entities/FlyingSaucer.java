@@ -1,3 +1,9 @@
+/*
+ *Class FlyingSaucer
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.entities;
 
 import java.util.ArrayList;
@@ -36,6 +42,18 @@ public class FlyingSaucer extends SpaceObject {
 
 	private boolean remove;
 
+	/*
+	 * Metodo <I>constructor</I> de la clase <code>FlyingSaucer</code>
+	 *
+	 * @paramtype tipo de dato <code>int</code> que define el tipo de
+	 * ovni que es.
+	 *
+	 * @paramdirection tipo de dato <code>int</code> que define la ruta
+	 * que tomara el ovni.
+	 *
+	 * @paramplayer tipo de dato <code>Player</code> que es el jugador 
+	 * para poder dispararle a el.
+	 */
 	public FlyingSaucer(int type, int direction, Player player,
 			ArrayList<Bullet> bullets) {
 
@@ -75,6 +93,10 @@ public class FlyingSaucer extends SpaceObject {
 		pathTime2 = pathTime1 + 2;
 	}
 
+	/*
+	 * Metodo <I>setShape</I> de la clase <code>FlyingSaucer</code>.
+	 * Define la forma del ovni.
+	 */
 	private void setShape() {
 		if (type == LARGE) {
 			shapex[0] = x - 10;
@@ -116,9 +138,26 @@ public class FlyingSaucer extends SpaceObject {
 		}
 	}
 	
+	/*
+	 *  Metodo <I>getScore</I> de la clase <code>FlyingSaucer</code>. 
+	 *  Regresa la cantidad de puntos que otorga el ovni.
+	 */
 	public int getScore() { return score; }
+
+	/*
+	* Metodo <I>shouldRemove()</I> de la clase <code>FlyingSaucer</code>.
+	* Regresa un tipo de dato <code>boolean</code> que dice si se 
+	* debe de borrar el objeto.
+	*/
 	public boolean shouldRemove() { return remove; }
 	
+	/*
+	 * Metodo <I>update</I> de la clase <code>FlyingSaucer</code>.
+	 * Actualiza el objeto dependiendo del valor de dt que reciba.
+	 * 
+	 * @paramdt tipo de dato <code>float</code> que modifica la posicion
+	 * del objeto dependiendo de dt.
+	 */
 	public void update(float dt) {
 		
 		// fire
@@ -175,6 +214,13 @@ public class FlyingSaucer extends SpaceObject {
 		
 	}
 	
+	/*
+	 * Metodo <I>draw</I> de la clase <code>Asteroide</code>.
+	 * Pinta el objeto usando ShapeRenderer sr
+	 * 
+	 * @paramsr tipo de dato <code>ShapeRenderer</code> que es
+	 * lo que se pinta.
+	 */
 	public void draw(ShapeRenderer sr) {
 		
 		sr.setColor(.1f, 1, 0, 1);

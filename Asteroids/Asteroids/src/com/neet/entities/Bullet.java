@@ -1,3 +1,9 @@
+/*
+ *Class Bullet
+ *
+ *@Author Sergio Cordero
+ *@Matricula A01191167
+ */
 package com.neet.entities;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -11,6 +17,18 @@ public class Bullet extends SpaceObject{
 	
 	private boolean remove;
 	
+	/*
+	 * Metodo <I>constructor</I> de la clase <code>Bullet</code>
+	 *
+	 * @paramx tipo de dato <code>float</code> que define la posicion
+	 * en x del objeto.
+	 *
+	 * @paramy tipo de dato <code>float</code> que define la posicion
+	 * en y del objeto.
+	 *
+	 * @paramradians tipo de dato <code>float</code> que define la
+	 * direccion de la bala.
+	 */
 	public Bullet(float x, float y, float radians) {
 		this.x = x;
 		this.y = y;
@@ -26,8 +44,20 @@ public class Bullet extends SpaceObject{
 		lifeTime = 1;
 	}
 	
+	/*
+	* Metodo <I>shouldRemove()</I> de la clase <code>Bullet</code>.
+	* Regresa un tipo de dato <code>boolean</code> que dice si se 
+	* debe de borrar el objeto.
+	*/
 	public boolean shouldRemove() { return remove; }
 	
+	/*
+	 * Metodo <I>update</I> de la clase <code>Bullet</code>.
+	 * Actualiza el objeto dependiendo del valor de dt que reciba.
+	 * 
+	 * @paramdt tipo de dato <code>float</code> que modifica la posicion
+	 * del objeto dependiendo de dt.
+	 */
 	public void update(float dt) {
 		
 		x += dx * dt;
@@ -42,6 +72,13 @@ public class Bullet extends SpaceObject{
 		wrap();
 	}
 	
+	/*
+	 * Metodo <I>draw</I> de la clase <code>Asteroide</code>.
+	 * Pinta el objeto usando ShapeRenderer sr
+	 * 
+	 * @paramsr tipo de dato <code>ShapeRenderer</code> que es
+	 * lo que se pinta.
+	 */
 	public void draw(ShapeRenderer sr) {
 	    
 		sr.setColor(1, 0, 0, 1);

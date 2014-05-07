@@ -1,5 +1,5 @@
 /*
- *Class Base
+ *Class SpaceObject
  *
  *@Author Sergio Cordero
  *@Matricula A01191167
