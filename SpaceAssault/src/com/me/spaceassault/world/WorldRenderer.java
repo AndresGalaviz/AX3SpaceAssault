@@ -53,6 +53,7 @@ public class WorldRenderer {
 	private Texture tileTexture;
     private TextureRegion heroFrame;
     private TextureRegion badGuyFrame;
+    
 
     /** Animations **/
     private Animation[] walkLeftAnimation = new Animation[2];
@@ -63,6 +64,7 @@ public class WorldRenderer {
 	private Texture redBullet;
 	private Texture blueBullet;
 	private Texture textureFont;
+	private Texture heart;
 
     private SpriteBatch spriteBatch;
 	private boolean debug = false;
@@ -96,7 +98,7 @@ public class WorldRenderer {
 	    this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
 	    this.cam.update();
 	    this.debug = debug;
-	    this.team = 1;
+	    this.team = 0;
 	    spriteBatch = new SpriteBatch();
 	  
 	    
@@ -118,7 +120,7 @@ public class WorldRenderer {
 		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
 		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
 		blueBullet = new Texture(Gdx.files.internal("images/bullets/bullet2.png"));
-		
+		heart = new Texture(Gdx.files.internal("images/heart.png"));
 		
 		/** CARGAR PERSONAJE AZUL **/
 		
@@ -197,7 +199,7 @@ public class WorldRenderer {
 	        drawHero();
 	        drawBadGuys();
 	        drawBullets();
-
+	        drawLife();
 
 	    spriteBatch.end();
 	    spriteBatch.begin();
@@ -292,8 +294,14 @@ public class WorldRenderer {
 			}
 		}
 		spriteBatch.draw(heroFrame, hero.getPosition().x, hero.getPosition().y, hero.WIDTH , hero.HEIGHT);
-		
 
+
+	}
+	private void drawLife() {
+		Hero hero = world.getHero();
+		for(int i = 0; i < hero.getLife()/10; i++) {
+			spriteBatch.draw(heart,cam.position.x + i - 5, cam.position.y -3, 0.4f,0.4f);
+		}
 	}
 	
 	/**
