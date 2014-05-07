@@ -3,9 +3,11 @@ package com.me.spaceassault.world;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.me.spaceassault.resources.BadGuy;
 import com.me.spaceassault.resources.Bullet;
 import com.me.spaceassault.resources.Hero;
@@ -93,8 +95,40 @@ public class World {
 		//badGuys.add(new BadGuy(new Vector2(10,1), 12, 30));
 		//badGuys.add(new BadGuy(new Vector2(5,24), 16, 20));
 		//badGuys.add(new BadGuy(new Vector2(15,24), 10, 50));
-		hero = new Hero(new Vector2(1,4));
-		badGuys.add(new BadGuy(new Vector2(11, 3), 12, 30));
-		level = new Level();
+		//hero = new Hero(new Vector2(1,4));
+		//badGuys.add(new BadGuy(new Vector2(11, 3), 12, 30));
+		//level = new Level();
+		
+		Vector2 dim = new Vector2(0,0);
+		readGeneralLevelInfo(dim, "levels/level2grl.txt");
+		level = new Level(1, dim, "levels/level2lvl.txt");
+		
 	}
+	
+	private void readGeneralLevelInfo(Vector2 dim, String fileName) {
+		FileHandle handle = Gdx.files.internal(fileName);
+		String fileContent = handle.readString();
+		
+		String[] splitResult = fileContent.split(" ");
+		
+		dim.x = Integer.valueOf(splitResult[0]);
+		dim.y = Integer.valueOf(splitResult[1]);
+		
+		int x, y, l, s;
+		x = Integer.valueOf(splitResult[2]);
+		y = Integer.valueOf(splitResult[3]);
+		hero = new Hero(new Vector2(x, y));
+		
+		for (int i = 4; i < splitResult.length; i += 4) {
+			x = Integer.valueOf(splitResult[i]);
+			y = Integer.valueOf(splitResult[i+1]);
+			l = Integer.valueOf(splitResult[i+2]);
+			s = Integer.valueOf(splitResult[i+3]);
+			
+			badGuys.add(new BadGuy(new Vector2(x, y), l, s));
+			
+		}
+	}
+	
+	
 }

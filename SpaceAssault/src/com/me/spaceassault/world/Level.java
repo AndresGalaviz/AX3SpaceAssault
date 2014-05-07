@@ -9,8 +9,17 @@ public class Level {
 
 	private int width;
 	private int height;
+	private int lvl;
 	private Tile[][] tiles;
 
+	public Level(int l, Vector2 dim, String fileName) {
+		lvl = l;
+		width = (int)dim.x;
+		height = (int)dim.y;
+		tiles = new Tile[width][height];
+		loadDemoLevelFile(fileName);
+	}
+	
 	public int getWidth() {
 		return width;
 	}
@@ -35,10 +44,7 @@ public class Level {
 		this.tiles = Tiles;
 	}
 
-	public Level() {
-		//loadDemoLevel();
-		loadDemoLevelFile("levels/level2.txt");
-	}
+	
 
 	public Tile get(int x, int y) {
 		return tiles[x][y];
@@ -54,9 +60,9 @@ public class Level {
 		
 		String[] splitResult = fileContent.split(" ");
 		
-		width = Integer.valueOf(splitResult[0]);
-		height = Integer.valueOf(splitResult[1]);
-		tiles = new Tile[width][height];
+		//width = Integer.valueOf(splitResult[0]);
+		//height = Integer.valueOf(splitResult[1]);
+		//tiles = new Tile[width][height];
 		
 		for (int i = 2; i < splitResult.length; i += 2) {
 			int a = Integer.valueOf(splitResult[i]);
@@ -65,7 +71,7 @@ public class Level {
 			tiles[a][b] = new Tile(new Vector2(a, b));
 			
 		}
-		System.out.println();
+		
 	}
 	
 	
