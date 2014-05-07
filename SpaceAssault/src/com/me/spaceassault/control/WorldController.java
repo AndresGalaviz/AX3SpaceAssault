@@ -149,8 +149,9 @@ public class WorldController {
 		for (Bullet bullet : bullets) {
 			for (BadGuy badGuy : badGuys) {
 				if (checkCollisionBulletBadGuy(bullet, badGuy)) {
-					badGuy.setLife(badGuy.getLife() - 1);
 					bullets.removeValue(bullet, true);
+					System.out.println(badGuy.getLife());
+					badGuy.setLife(badGuy.getLife() - 1);
 					if (badGuy.getLife() <= 0) {
 						badGuys.removeValue(badGuy, true);
 						hero.addScore(hero.getScore() + badGuy.getStrength());
