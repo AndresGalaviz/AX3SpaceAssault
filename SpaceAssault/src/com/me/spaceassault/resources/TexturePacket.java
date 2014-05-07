@@ -1,7 +1,11 @@
 package com.me.spaceassault.resources;
 
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
-
+/**
+ * Clase <I>TexturePacket</I> que se 
+ * @author AndresG
+ *
+ */
 public class TexturePacket {
 
 	public static void main(String[] args) {
