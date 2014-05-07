@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,6 +26,8 @@ public class MenuScreen implements Screen {
 	private TextButton buttonPlay, buttonExit, buttonCredits, buttonInstructions;
 	private BitmapFont white, black, text;
 	private Label heading;
+	private SpriteBatch spriteBatch;
+	private BitmapFont font;
 	/**
      * Metodo <I>render</I> de la clase <code>MenuScreen</code>, En este
      * metodo se pintan los objetos y se actualizan variables que involucran
@@ -41,6 +44,14 @@ public class MenuScreen implements Screen {
 		stage.act(delta);
 		
 		//Table.drawDebug(stage);
+		
+		spriteBatch = new SpriteBatch();
+		font = new BitmapFont(Gdx.files.internal("data/256BYTES.fnt"),false);
+		 spriteBatch.begin();
+		 	font.setColor(Color.WHITE);
+		 	font.draw(spriteBatch, "Highscore: ", 30, 30);
+		 
+		 spriteBatch.end();
 		
 		stage.draw();
 	}
@@ -84,6 +95,7 @@ public class MenuScreen implements Screen {
 		white = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"),false);
 		black = new BitmapFont(Gdx.files.internal("data/blackHigher.fnt"),false);
 		text = new BitmapFont(Gdx.files.internal("data/SpaceRanger.fnt"),false);
+
 		
 		//creating button
 		TextButtonStyle textButtonStyle = new TextButtonStyle(); 
