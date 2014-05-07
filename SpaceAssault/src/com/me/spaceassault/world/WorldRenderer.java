@@ -95,9 +95,11 @@ public class WorldRenderer {
 	    
 	   
 	    textureFont = new Texture(Gdx.files.internal("data/256BYTES_0.png"), true);
+	    textureFont.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear); // linear filtering in nearest mipmap image
 	    font = new BitmapFont(Gdx.files.internal("data/256BYTES.fnt"), new TextureRegion(textureFont), false);
+	    font.setScale(.08f);
 
-	    font.setScale(-.95f);
+	    
 	    loadTextures();
 	}
 
@@ -157,11 +159,13 @@ public class WorldRenderer {
 	        drawHero();
 	        drawBadGuys();
 	        drawBullets();
-	        
-	        font.draw(spriteBatch, String.valueOf(hero.getScore()), hero.getPosition().x , hero.getPosition().y );
-	        System.out.println(hero.getPosition().x + " ---- " + hero.getPosition().y );
+
 
 	    spriteBatch.end();
+	    spriteBatch.begin();
+        font.draw(spriteBatch, String.valueOf(hero.getScore()), cam.position.x - 5, cam.position.y + 3);
+
+        spriteBatch.end();
 	    
 	    //if (debug) drawDebug();
 	}
