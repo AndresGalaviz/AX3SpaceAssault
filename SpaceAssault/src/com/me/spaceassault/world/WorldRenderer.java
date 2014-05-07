@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -55,6 +56,7 @@ public class WorldRenderer {
 	private TextureRegion heroFallRight;
 	
 	private Texture redBullet;
+	private Texture textureFont;
 
     private SpriteBatch spriteBatch;
 	private boolean debug = false;
@@ -91,9 +93,10 @@ public class WorldRenderer {
 	    spriteBatch = new SpriteBatch();
 	  
 	    
-	    font = new BitmapFont(Gdx.files.internal("data/whiteHigher.fnt"), false);
-	    Texture textureFont = new Texture(Gdx.files.internal("myfont.png"));
-	    texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+	   
+	    textureFont = new Texture(Gdx.files.internal("256BYTES_0.png"), true);
+	    font = new BitmapFont(Gdx.files.internal("256BYTES.fnt"), new TextureRegion(textureFont), false);
+
 	    font.setScale(-.95f);
 	    loadTextures();
 	}

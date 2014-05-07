@@ -8,6 +8,5 @@
 	<classpathentry kind="lib" path="libs/tween-engine-api.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-freetype-natives.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-freetype.jar"/>
-	<classpathentry kind="lib" path="/Users/AndresG/Dropbox/ITESM/04 - Cuarto Semestre Ene - May 2014/Videojuegos/Final project/Game/AX3SpaceAssault/SpaceAssault/libs/gdx-freetype-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
