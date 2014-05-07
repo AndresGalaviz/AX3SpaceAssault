@@ -26,13 +26,9 @@ public class GameScreen implements Screen, InputProcessor {
 		Gdx.input.setInputProcessor(this);
 	}
 
-    /**
-     * Metodo <I>render</I> de la clase <code>GameScreen</code>, En este
-     * metodo se pintan los objetos y se actualizan variables que involucran
-     * tiempo.
-     * @paramdelta tipo de dato <code>float</code> es el valor utilizado para
-     * manejar la diferencia de tiempo
-     */
+	/**
+	 * Render de la pantalla del juego
+	 */
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -41,15 +37,9 @@ public class GameScreen implements Screen, InputProcessor {
 		renderer.render();
 	}
 
-    /**
-     * Metodo <I>resize</I> de la clase <code>GameScreen</code>, En este
-     * metodo se redefine el tamaño de la pantalla
-     *
-     * @paramwidth tipo de dato <code>Entero</code> es el valor utilizado para
-     * manejar el tamaño en x.
-     * @paramheight tipo de dato <code>Entero</code> es el valor utilizado para
-     * manejar el tamaño en y.
-     */
+	/**
+	 * Ajusta el tamano de la pantalla
+	 */
 	@Override
 	public void resize(int width, int height) {
 		renderer.setSize(width, height);
@@ -58,11 +48,9 @@ public class GameScreen implements Screen, InputProcessor {
 
 	}
 
-    /**
-     * Metodo <I>show</I> de la clase <code>GameScreen</code>, En este
-     * metodo se definen los actores de la clase
-     *
-     */
+	/**
+	 * Lo que se muestra cuando la pantalla esta activa
+	 */
 	@Override
 	public void show() {
 
@@ -70,37 +58,24 @@ public class GameScreen implements Screen, InputProcessor {
 		// TODO Auto-generated method stub
 	}
 
-    /**
-     * Metodo <I>hide</I> de la clase <code>GameScreen</code>, En este
-     * metodo se minimiza la pantalla
-     */
+	/**
+	 * Lo que se hace cuando la pantalla esta inactiva
+	 */
 	@Override
 	public void hide() {
 		Gdx.input.setInputProcessor(null);
 	}
-	
-	/**
-     * Metodo <I>pause</I> de la clase <code>GameScreen</code>, En este
-     * metodo se pausa la pantalla
-     */
+
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 	}
-	
-	/**
-     * Metodo <I>resume</I> de la clase <code>GameScreen</code>, En este
-     * metodo se resume la pantalla.
-     */
+
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 	}
-	
-	/**
-     * Metodo <I>dispose</I> de la clase <code>GameScreen</code>, En este
-     * metodo se hace dispose para limpiar los contenedores utilizados en la clase.
-     */
+
 	@Override
 	public void dispose() {
         Gdx.input.setInputProcessor(null);

@@ -26,6 +26,13 @@ public class CreditsScreen implements Screen {
 	private BitmapFont white, black, text, text2;
 	private Label heading, name1,name2,name3,name4;
 	
+    /**
+     * Metodo <I>render</I> de la clase <code>CreditsScreen</code>, En este
+     * metodo se pintan los objetos y se actualizan variables que involucran
+     * tiempo.
+     * @paramdelta tipo de dato <code>float</code> es el valor utilizado para
+     * manejar la diferencia de tiempo
+     */
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
@@ -38,13 +45,27 @@ public class CreditsScreen implements Screen {
 		
 		stage.draw();
 	}
-
+	
+    /**
+     * Metodo <I>resize</I> de la clase <code>CreditsScreen</code>, En este
+     * metodo se redefine el tamaño de la pantalla
+     *
+     * @paramwidth tipo de dato <code>Entero</code> es el valor utilizado para
+     * manejar el tamaño en x.
+     * @paramheight tipo de dato <code>Entero</code> es el valor utilizado para
+     * manejar el tamaño en y.
+     */
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+    /**
+     * Metodo <I>show</I> de la clase <code>CreditsScreen</code>, En este
+     * metodo se definen los actores de la clase
+     *
+     */
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
@@ -123,25 +144,41 @@ public class CreditsScreen implements Screen {
 		
 
 	}
-
+	
+    /**
+     * Metodo <I>hide</I> de la clase <code>CreditsScreen</code>, En este
+     * metodo se minimiza la pantalla
+     */
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+     * Metodo <I>pause</I> de la clase <code>CreditsScreen</code>, En este
+     * metodo se pausa la pantalla
+     */
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+     * Metodo <I>resume</I> de la clase <code>GameOverScreen</code>, En este
+     * metodo se resume la pantalla.
+     */
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+     * Metodo <I>dispose</I> de la clase <code>CreditsScreen</code>, En este
+     * metodo se hace dispose para limpiar los contenedores utilizados en la clase.
+     */
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub

@@ -26,6 +26,13 @@ public class InstructionsScreen implements Screen {
 	private BitmapFont white, black, text;
 	private Label heading;
 	
+    /**
+     * Metodo <I>render</I> de la clase <code>InstructionsScreen</code>, En este
+     * metodo se pintan los objetos y se actualizan variables que involucran
+     * tiempo.
+     * @paramdelta tipo de dato <code>float</code> es el valor utilizado para
+     * manejar la diferencia de tiempo
+     */
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
@@ -39,12 +46,26 @@ public class InstructionsScreen implements Screen {
 		stage.draw();
 	}
 
+    /**
+     * Metodo <I>resize</I> de la clase <code>InstructionsScreen</code>, En este
+     * metodo se redefine el tamaño de la pantalla
+     *
+     * @paramwidth tipo de dato <code>Entero</code> es el valor utilizado para
+     * manejar el tamaño en x.
+     * @paramheight tipo de dato <code>Entero</code> es el valor utilizado para
+     * manejar el tamaño en y.
+     */
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+    /**
+     * Metodo <I>show</I> de la clase <code>InstructionsScreen</code>, En este
+     * metodo se definen los actores de la clase
+     *
+     */
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
