@@ -94,8 +94,8 @@ public class WorldRenderer {
 	  
 	    
 	   
-	    textureFont = new Texture(Gdx.files.internal("256BYTES_0.png"), true);
-	    font = new BitmapFont(Gdx.files.internal("256BYTES.fnt"), new TextureRegion(textureFont), false);
+	    textureFont = new Texture(Gdx.files.internal("data/256BYTES_0.png"), true);
+	    font = new BitmapFont(Gdx.files.internal("data/256BYTES.fnt"), new TextureRegion(textureFont), false);
 
 	    font.setScale(-.95f);
 	    loadTextures();
