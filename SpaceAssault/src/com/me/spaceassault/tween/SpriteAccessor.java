@@ -12,7 +12,7 @@ public static final int ALPHA = 0;
 
 	
 	/**
-	 * Obtiene los valores para accesar el sprite
+	 * Metodo <I>getValues</I> de la clase <code>SpriteAccessor</code> los valores para accesar el sprite
 	 */
 	@Override
 	public int getValues(Sprite target, int tweenType, float[] returnValues) {
@@ -27,7 +27,7 @@ public static final int ALPHA = 0;
 	}
 
 	/**
-	 * Actaliza los valores de los sprites
+	 * Metodo <I>setValues</I> de la clase <code>SpriteAccessor</code> que actaliza los valores de los sprites
 	 */
 	@Override
 	public void setValues(Sprite target, int tweenType, float[] newValues) {

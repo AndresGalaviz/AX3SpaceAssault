@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 /**
- * Clase principal para desplegar las pantallas
+ * Clase <I>InstructionsAndroidScreen</I> utilizada para desplegar las pantallas de instrucciones
  * 
  * @author AndresG
  *
