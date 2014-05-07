@@ -95,7 +95,7 @@ public class WorldRenderer {
 	    this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
 	    this.cam.update();
 	    this.debug = debug;
-	    this.team = 0;
+	    this.team = 1;
 	    spriteBatch = new SpriteBatch();
 	  
 	    

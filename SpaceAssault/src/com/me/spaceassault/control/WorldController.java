@@ -150,12 +150,13 @@ public class WorldController {
 			for (BadGuy badGuy : badGuys) {
 				if (checkCollisionBulletBadGuy(bullet, badGuy)) {
 					bullets.removeValue(bullet, true);
-					System.out.println(badGuy.getLife());
+					
 					badGuy.setLife(badGuy.getLife() - 1);
 					if (badGuy.getLife() <= 0) {
-						badGuys.removeValue(badGuy, true);
-						hero.addScore(hero.getScore() + badGuy.getStrength());
 						
+						hero.addScore(badGuy.getStrength());
+						System.out.println(badGuy.getStrength());
+						badGuys.removeValue(badGuy, true);
 					}
 				}
 			}
@@ -180,7 +181,8 @@ public class WorldController {
 					keys.get(keys.put(Keys.RIGHT, false));
 					keys.get(keys.put(Keys.FIRE, false));
 					keys.get(keys.put(Keys.JUMP, false));
-					((Game) Gdx.app.getApplicationListener()).setScreen(new GameOverScreen());
+					WorldController.this.dispose();
+					((Game) Gdx.app.getApplicationListener()).setScreen(new Game());
 					
 				}
 			}
