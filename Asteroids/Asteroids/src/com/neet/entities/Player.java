@@ -191,6 +191,17 @@ public class Player extends SpaceObject{
 		}
 		up = b; }
 	
+	/*
+	 * Metodo <I>setPosition</I> de la clase <code>spaceObject</code>.
+	 * Cambia la posicion del objeto dependiendo de los valores de 
+	 * x y y que reciba.
+	 * 
+	 * @paramx tipo de dato <code>float</code> que modifica la posicion
+	 * del objeto en x.
+	 * 
+	 * @paramy tipo de dato <code>float</code> que modifica la posicion
+	 * del objeto en y.
+	 */
 	public void setPosition(float x, float y) {
 		super.setPosition(x, y);
 		setShape();
