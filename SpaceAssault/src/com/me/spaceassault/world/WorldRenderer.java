@@ -108,6 +108,36 @@ public class WorldRenderer {
 	 * Carga las texturas para las imagenes
 	 */
 	public void loadTextures(){
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/sprites/monito.pack"));
+		
+		heroIdleRight = atlas.findRegion("idle");
+		heroIdleLeft = new TextureRegion(heroIdleRight);
+		heroIdleLeft.flip(true, false);
+		
+		tileTexture = new Texture(Gdx.files.internal("images/terrain/grass.png"));
+		
+		TextureRegion[] walkRightFrames = new TextureRegion[17];
+		for (int i = 1; i <= 17; i++) {
+			walkRightFrames[i-1] = atlas.findRegion("run" + (i < 10 ? "0" : "") + i);
+		}
+		walkRightAnimation = new Animation(RUNNING_FRAME_DURATION, walkRightFrames);
+		
+		TextureRegion[] walkLeftFrames = new TextureRegion[17];
+		for (int i = 0; i < 17; i++) {
+			walkLeftFrames[i] = new TextureRegion(walkRightFrames[i]);
+			walkLeftFrames[i].flip(true, false);
+		}
+		walkLeftAnimation = new Animation(RUNNING_FRAME_DURATION, walkLeftFrames);
+		
+		heroJumpRight = atlas.findRegion("jump");
+		heroJumpLeft = new TextureRegion(heroJumpRight);
+		heroJumpLeft.flip(true, false);
+		
+		heroFallRight = atlas.findRegion("fall");
+		heroFallLeft = new TextureRegion(heroFallRight);
+		heroFallLeft.flip(true, false);
+		
+		/*
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/characterpng/textures.pack"));
 		heroIdleLeft = atlas.findRegion("1");
 		heroIdleRight = new TextureRegion(heroIdleLeft);
@@ -138,7 +168,7 @@ public class WorldRenderer {
 		
 		heroFallRight = jump.findRegion("1");
 		heroFallLeft = new TextureRegion(heroFallRight);
-		heroFallLeft.flip(true, false);
+		heroFallLeft.flip(true, false);*/
 		
 		redBullet = new Texture(Gdx.files.internal("images/bullets/bullet.png"));
 	}
