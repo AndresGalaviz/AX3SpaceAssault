@@ -297,11 +297,18 @@ public class WorldRenderer {
 
 
 	}
+	/**
+	 * Dibuja las vidas
+	 */
 	private void drawLife() {
 		Hero hero = world.getHero();
 		for(int i = 0; i < hero.getLife()/10; i++) {
 			spriteBatch.draw(heart,cam.position.x + i - 5, cam.position.y -3, 0.4f,0.4f);
 		}
+	}
+	private void drawScore() {
+		Hero hero = world.getHero();
+		
 	}
 	
 	/**
