@@ -200,7 +200,7 @@ public class WorldController {
 		
 		for (Bullet badBullet : badBullets) {
 			if (checkCollisionBulletTiles(badBullet, delta)) {
-				bullets.removeValue(badBullet, true);
+				badBullets.removeValue(badBullet, true);
 			} else {
 				badBullet.update(delta);
 			}

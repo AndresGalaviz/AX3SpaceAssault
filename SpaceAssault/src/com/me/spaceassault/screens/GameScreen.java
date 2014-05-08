@@ -24,7 +24,7 @@ public class GameScreen implements Screen, InputProcessor {
 	private WorldController controller;
 	private Music music = Gdx.audio.newMusic(Gdx.files.internal("data/music.mp3"));;
 	private int width, height;
-	private long delay = 1000, startTime;
+	private long delay = 3000, startTime;
 	private boolean started = false;
 	
 	public GameScreen() {

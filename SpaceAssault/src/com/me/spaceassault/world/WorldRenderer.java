@@ -331,9 +331,12 @@ public class WorldRenderer {
 	 */
 	private void drawBadGuys() {
 		Array<BadGuy> badGuys = world.getBadGuys();
-		System.out.println(badGuys.size);
+		int abajo = 0;
 		TextureRegion badGuyFrame;
 		for (BadGuy badGuy : badGuys) {
+			if (badGuy.getPosition().y < 0) {
+				abajo++;
+			}
 			if (badGuy.isGrounded()) {
 				if (badGuy.getVelocity().x == 0) {
 					badGuyFrame = badGuy.isFacingLeft() ? heroIdleLeft[1-team] : heroIdleRight[1-team];
@@ -346,7 +349,11 @@ public class WorldRenderer {
 				badGuyFrame = badGuy.isFacingLeft() ? heroFallLeft[1-team] : heroFallRight[1-team];
 			}
 			spriteBatch.draw(badGuyFrame, badGuy.getPosition().x, badGuy.getPosition().y, badGuy.WIDTH, badGuy.HEIGHT);
+			if (abajo > 0) {
+				System.out.println(abajo + "/" + badGuys.size);
+			}
 		}
+		
 	}
 	
 	/**

@@ -60,6 +60,9 @@ public class BadGuy extends Object{
 				getPosition().x > hero.getPosition().x - w/2 - getBounds().width && 
 				getPosition().y < hero.getPosition().y + h/2 && 
 				getPosition().y > hero.getPosition().y - h/2 - getBounds().height);
+		if (moving) {
+			lastShoot = System.currentTimeMillis() - SHOOT_SLEEP/2;
+		}
 	}
 	
 	/**
