@@ -11,7 +11,7 @@ public class Hero extends Object {
 	 * @param position en la que se posiciona el enemigo
 	 */
 	public Hero(Vector2 position) {
-		super (position, 0.8f, 0.8f, 50f, 100);
+		super (position, 0.8f, 0.8f, 50f, 1000);
 		score = 0;
 	}
 

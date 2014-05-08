@@ -24,13 +24,15 @@ public class GameScreen implements Screen, InputProcessor {
 	private WorldController controller;
 	private Music music = Gdx.audio.newMusic(Gdx.files.internal("data/music.mp3"));;
 	private int width, height;
+	private long delay = 1000, startTime;
+	private boolean started = false;
 	
 	public GameScreen() {
 		world = new World();
 		renderer = new WorldRenderer(world, false);
 		controller = new WorldController(world, renderer.getCameraWidth(), renderer.getCameraHeight());
 		Gdx.input.setInputProcessor(this);
-		music.play();
+		startTime = System.currentTimeMillis();
 		
 	}
 
@@ -45,7 +47,11 @@ public class GameScreen implements Screen, InputProcessor {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		controller.update(delta);
+		if (started) {
+			controller.update(delta);
+		} else {
+			started = (System.currentTimeMillis() - startTime > delay);
+		}
 		renderer.render();
 	}
 

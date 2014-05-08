@@ -14,9 +14,11 @@ public class HighScore {
 		return hs;
 	}
 	public static void setHighScore(int hs) {
-		Preferences prefs = Gdx.app.getPreferences("myPreferences");
-		prefs.putInteger("highscoreax3", hs);
-		prefs.flush();
+		if (hs > getHighScore()) {
+			Preferences prefs = Gdx.app.getPreferences("myPreferences");
+			prefs.putInteger("highscoreax3", hs);
+			prefs.flush();
+		}
 	}
 	
 }

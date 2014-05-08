@@ -6,6 +6,7 @@ import com.me.spaceassault.resources.Hero;
 import com.me.spaceassault.resources.Tile;
 import com.me.spaceassault.world.World;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -67,6 +68,7 @@ public class WorldRenderer {
 	private Texture heart;
 	
 	private TextureRegion[] numbers = new TextureRegion[10];
+    private Music music = Gdx.audio.newMusic(Gdx.files.internal("data/music.mp3"));;
 
     private SpriteBatch spriteBatch;
 	private boolean debug = false;
@@ -102,6 +104,7 @@ public class WorldRenderer {
 	    this.debug = debug;
 	    this.team = 0;
 	    spriteBatch = new SpriteBatch();
+	    music.play();
 	  
 	    
 	   
@@ -309,7 +312,7 @@ public class WorldRenderer {
 	 */
 	private void drawLife() {
 		Hero hero = world.getHero();
-		for(int i = 0; i < hero.getLife()/10; i++) {
+		for(int i = 0; i < hero.getLife()/100; i++) {
 			spriteBatch.draw(heart,cam.position.x + i - 5, cam.position.y -3, 0.4f,0.4f);
 		}
 	}
@@ -328,6 +331,7 @@ public class WorldRenderer {
 	 */
 	private void drawBadGuys() {
 		Array<BadGuy> badGuys = world.getBadGuys();
+		System.out.println(badGuys.size);
 		TextureRegion badGuyFrame;
 		for (BadGuy badGuy : badGuys) {
 			if (badGuy.isGrounded()) {

@@ -6,7 +6,9 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 public class SpaceAssaultActivity extends AndroidApplication {
-    /** Called when the activity is first created. */
+   /**
+    * Called when the activity is first created
+    */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

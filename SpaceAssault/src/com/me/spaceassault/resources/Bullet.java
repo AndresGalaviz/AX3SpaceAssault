@@ -24,6 +24,7 @@ public class Bullet extends Object {
 		}
 		this.strength = strength;
 		getVelocity().y = 0;
+		
 	}
 	
 	public int getStrength() {
